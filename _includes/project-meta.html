@@ -1,7 +1,14 @@
 <div class="project-meta small">
+  {% if not project %}
+    {% assign project = page %}
+  {% endif %}
+
+  {% if project.author %}
+    <p>Author: <span class="project-author">{{ project.author }}</span></p>
+  {% endif %}
 
   {% if project.date %}
-    <p>from <span class="project-date">{{ project.date }}</span></p>
+    <p>from <span class="project-date">{{ project.date | date: "%b %-d, %Y" }}</span></p>
   {% endif %}
 
   {% if project.languages %}
