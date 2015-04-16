@@ -31,4 +31,4 @@ defaults:
 
 collections:
   projects:
-    output: false
+    output: true
