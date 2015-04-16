@@ -22,4 +22,8 @@ defaults:
       type: "posts"
     values:
       layout: "default"
-      category: blog 
+      category: blog
+
+collections:
+  projects:
+    output: false
