@@ -14,3 +14,11 @@ markdown: kramdown
 
 kramdown:
   input: GFM
+
+defaults:
+  -
+    scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "default" 
