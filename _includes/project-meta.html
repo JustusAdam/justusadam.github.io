@@ -1,0 +1,22 @@
+<div class="project-meta small">
+
+  {% if project.date %}
+    <p>from <span class="project-date">{{ project.date }}</span></p>
+  {% endif %}
+
+  {% if project.languages %}
+    <p>Language{% if project.languages.size > 1 %}s{% endif %}:
+      <span class="languages">
+        {{ project.languages | join: ", " }}
+      </span>
+    </p>
+  {% endif %}
+
+  {% if project.status %}
+    <p>current status: <span class="project-status">{{ project.status }}</span></p>
+  {% endif %}
+
+  {% if project.github_link %}
+    <a href="https://github.com/{{ project.github_link }}">Project on GitHub</a>
+  {% endif %}
+</div>
