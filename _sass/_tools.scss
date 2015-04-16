@@ -2,6 +2,10 @@
   font-size: small;
 }
 
+p.small, .small p, p.smaller, .smaller p {
+  margin-bottom: 0.5em;
+}
+
 .smaller {
   font-size: smaller;
 }

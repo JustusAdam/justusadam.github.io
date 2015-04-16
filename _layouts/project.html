@@ -9,7 +9,7 @@ layout: default
       {{ page.date | date: "%b %-d, %Y" }}{% if page.author %} • {{ page.author }}{% endif %}{% if page.meta %} • {{ page.meta }}{% endif %}</p>
     <div class="project-meta small">
       {% if page.github_link %}
-        <a href="https://github.com/{{ page.github_link }}">Project on GitHub</a>
+        <p><a href="https://github.com/{{ page.github_link }}">Project on GitHub</a></p>
       {% endif %}
 
       {% if page.languages  and page.languages.size != 0 %}
