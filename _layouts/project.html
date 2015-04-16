@@ -12,7 +12,7 @@ layout: default
     {% endif %}
 
     {% if page.languages  and page.languages.size != 0 %}
-      {{ page.languages | join ', '}}
+      {{ page.languages | join ", "}}
     {% endif %}
 
     {% if page.status %}
