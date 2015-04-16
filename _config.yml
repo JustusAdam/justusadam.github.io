@@ -23,7 +23,8 @@ defaults:
     values:
       layout: "post"
       category: blog
-  - scope:
+  -
+    scope:
       path: ""
       type: "projects"
     values:

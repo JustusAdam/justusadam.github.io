@@ -11,4 +11,4 @@ __Typical Example__:
 You're in University and have a bunch of subjects with fixed lectures and exercises to choose from. You'd prefer to not have any lessons in the morning from 7:30 - 9:00 (first timeslot) and you'd really hate it if you had lessons on a Friday.
 The schedule planner can, based on this information, calculate the schedules that most follow these rules you have put in place and it will ensure that ultimately not a single subject is missed and there's a slot allocated for each.
 
-forcing recompile
+Since it is mostly designed for Students of the Technical University Dresden it also includes a (not yet modular enough) scraping script for getting the raw lesson data depending on your semester.
