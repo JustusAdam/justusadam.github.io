@@ -1,6 +1,5 @@
 ---
 title: "initial post"
-categories: update
 tags: markdown update homepage git
 ---
 
