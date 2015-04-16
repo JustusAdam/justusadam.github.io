@@ -1,7 +1,7 @@
 <div class="project-meta small">
   {% unless project %}
     {% assign project = page %}
-  {% endif %}
+  {% endunless %}
 
   {% if project.author %}
     <p>Author: <span class="project-author">{{ project.author }}</span></p>

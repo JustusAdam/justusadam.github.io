@@ -5,32 +5,7 @@ layout: default
 
   <header class="post-header">
     <h1 class="post-title">{{ page.title }}</h1>
-    <div class="project-meta small">
-      {% if page.author %}
-        <p>Author: <span class="project-author">{{ page.author }}</span></p>
-      {% endif %}
-
-      {% if page.date %}
-        <p>from <span class="project-date">{{ page.date | date: "%b %-d, %Y" }}</span></p>
-      {% endif %}
-
-      {% if page.languages %}
-        <p>Language{% if page.languages.size > 1 %}s{% endif %}:
-          <span class="languages">
-            {{ page.languages | join: ", " }}
-          </span>
-        </p>
-      {% endif %}
-
-      {% if page.status %}
-        <p>Current status: <span class="project-status">{{ page.status }}</span></p>
-      {% endif %}
-
-      {% if page.github_link %}
-        <a href="https://github.com/{{ page.github_link }}">Project on GitHub</a>
-      {% endif %}
-    </div>
-
+    {% include project-meta.html %}
 
   </header>
 
