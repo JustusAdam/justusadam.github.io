@@ -1,0 +1,36 @@
+---
+title: Projects
+permalink: /projects/
+layout: default
+---
+
+<div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">{{ page.title }}</h1>
+  </header>
+
+  <article class="post-content">
+    <p>Welcome to the projects subdirectory</p>
+    {% for project in site.projects %}
+      <div class="project">
+        <a href="{{ project.relative_path }}">
+          <h3 class="project-title">{{ project.title }}</h3>
+        </a>
+
+        {% if project.date %}
+          <p>from <span class="project-date">{{ project.date }}</span></p>
+        {% endif %}
+
+        {% if project.status %}
+          <p>current status: <span class="project-status">{{ project.status }}</span></p>
+        {% endif %}
+
+        {% if project.github_link %}
+          <a href="https://github.com/{{ project.github_link }}">Project on GitHub</a>
+        {% endif %}
+      </div>
+    {% endfor %}
+  </article>
+
+</div>

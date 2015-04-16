@@ -5,8 +5,6 @@ tags: markdown update homepage git
 
 I love markdown.
 
-{{ post.title }}
-
 And I am too lazy to keep my old website updated. So, when [Kilian](//kilian.io) tweeted he'd moved his personal website over to [GitHub pages](//pages.github.io) I got tempted to do the same and continue the site and perhaps the blog?? at github pages.
 
 So here we are. This is now hosted by the awesome and generous [GitHub website](//github.com), written in markdown and using [Jekyll](//jekyllrb.com) to compile to html.
