@@ -21,8 +21,13 @@ defaults:
       path: ""
       type: "posts"
     values:
-      layout: "default"
+      layout: "post"
       category: blog
+  - scope:
+      path: ""
+      type: "projects"
+    values:
+      layout: "project"
 
 collections:
   projects:
