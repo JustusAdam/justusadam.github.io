@@ -1,6 +1,5 @@
 ---
 title: TeX compiler automator
-published: false
 github_link: fsr/lesson-builder
 languages:
   - Python
@@ -10,6 +9,8 @@ This one is unfinished but finished at the same time.
 
 It basically means that it work's and does what it's supposed to but I am not satisfied with it yet. The structure of the config is not good in my opinion.
 I've had some ideas on how to make it better (adding the features I'd like to have) but they all seemed to make too convoluted and difficult to use.
+
+Since there's no documentation yet, I've decided to add one as a github [wiki](https://github.com/fsr/lesson-builder/wiki). Not much there yet but there (hopefully) will be.
 
 ## What it does
 
