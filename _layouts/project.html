@@ -5,19 +5,21 @@ layout: default
 
   <header class="post-header">
     <h1 class="post-title">{{ page.title }}</h1>
-    <p class="post-meta small">{{ page.date | date: "%b %-d, %Y" }}{% if page.author %} • {{ page.author }}{% endif %}{% if page.meta %} • {{ page.meta }}{% endif %}</p>
+    <p class="post-meta">
+      {{ page.date | date: "%b %-d, %Y" }}{% if page.author %} • {{ page.author }}{% endif %}{% if page.meta %} • {{ page.meta }}{% endif %}</p>
+    <div class="project-meta small">
+      {% if page.github_link %}
+        <a href="https://github.com/{{ page.github_link }}">Project on GitHub</a>
+      {% endif %}
 
-    {% if page.github_link %}
-      <a href="https://github.com/{{ page.github_link }}">Project on GitHub</a>
-    {% endif %}
+      {% if page.languages  and page.languages.size != 0 %}
+        {{ page.languages | join ", "}}
+      {% endif %}
 
-    {% if page.languages  and page.languages.size != 0 %}
-      {{ page.languages | join ", "}}
-    {% endif %}
-
-    {% if page.status %}
-      <p>Current status: <span class="project-status">{{ page.status }}</span></p>
-    {% endif %}
+      {% if page.status %}
+        <p>Current status: <span class="project-status">{{ page.status }}</span></p>
+      {% endif %}
+    </div>
 
   </header>
 
