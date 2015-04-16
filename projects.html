@@ -12,25 +12,28 @@ layout: default
 
   <article class="post-content">
     <p>Welcome to the projects subdirectory</p>
-    {% for project in site.projects %}
-      <div class="project">
-        <a href="{{ project.relative_path }}">
-          <h3 class="project-title">{{ project.title }}</h3>
-        </a>
+    <p>Here you can find old and new projects that I have been or am working on</p>
+    <ul style="list-style-type:none">
+      {% for project in site.projects %}
+        <li class="project">
+          <a href="{{ project.relative_path }}">
+            <h3 class="project-title">{{ project.title }}</h3>
+          </a>
 
-        {% if project.date %}
-          <p>from <span class="project-date">{{ project.date }}</span></p>
-        {% endif %}
+          {% if project.date %}
+            <p>from <span class="project-date">{{ project.date }}</span></p>
+          {% endif %}
 
-        {% if project.status %}
-          <p>current status: <span class="project-status">{{ project.status }}</span></p>
-        {% endif %}
+          {% if project.status %}
+            <p>current status: <span class="project-status">{{ project.status }}</span></p>
+          {% endif %}
 
-        {% if project.github_link %}
-          <a href="https://github.com/{{ project.github_link }}">Project on GitHub</a>
-        {% endif %}
-      </div>
-    {% endfor %}
+          {% if project.github_link %}
+            <a href="https://github.com/{{ project.github_link }}">Project on GitHub</a>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </ul>
   </article>
 
 </div>
