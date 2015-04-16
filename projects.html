@@ -28,7 +28,7 @@ layout: default
             {% if project.languages %}
               <p>Language{% if project.languages.size < 1 %}s{% endif %}:
                 <span class="languages">
-                  {{ project.languages | join ", " }}
+                  {{ project.languages | join: ", " }}
                 </span>
               </p>
             {% endif %}

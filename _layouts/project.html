@@ -13,7 +13,7 @@ layout: default
       {% endif %}
 
       {% if page.languages  and page.languages.size != 0 %}
-        <p>Languages: <span class="languages">{{ page.languages | join ", "}}</span></p>
+        <p>Languages: <span class="languages">{{ page.languages | join: ", "}}</span></p>
       {% endif %}
 
       {% if page.status %}
