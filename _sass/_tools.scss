@@ -38,13 +38,13 @@ p.small, .small p, p.smaller, .smaller p {
   width: 100%;
 }
 
-@media (max-width: 600px) {
+@media (max-width: $on-palm) {
   .desktop-only {
     display: none;
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: $on-palm) {
   .fullscreen-on-mobile {
     width: 100%;
   }
