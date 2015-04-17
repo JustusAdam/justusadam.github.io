@@ -29,7 +29,15 @@ defaults:
       type: "projects"
     values:
       layout: "project"
+  -
+    scope:
+      path: ""
+      type: "legal"
+    values:
+      layout: "default"
 
 collections:
   projects:
+    output: true
+  legal:
     output: true

@@ -50,6 +50,11 @@
       </div>
     </div>
 
+    <div class="small footer-col-wrapper legal-section">
+      {% for legal in site.legal %}
+        <span class="footer-col footer-col-{{ forloop.index }}"><a href="{{ legal.url | prepend: site.baseurl }}">{{ legal.title }}</a></span>
+      {% endfor %}
+    </div>
   </div>
 
 </footer>
