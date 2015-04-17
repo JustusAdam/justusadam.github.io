@@ -13,35 +13,7 @@ Mostly I felt like there was a lot of unused space on the index page, so I start
 <div class="sidebar-right sidebar"></div>
 {% endhighlight %}
 
-To make the whole thing look good in I then add some custom (s)css tool classes which will look familiar to a lot of people.
-
-{% highlight css %}
-.left {
-  float: left;
-}
-
-.right {
-  float: right;
-}
-
-.clearfix {
-  clear: both;
-}
-.column-4 {
-  width: 33%;
-}
-
-.column-8 {
-  width: 66%;
-}
-
-.column-12 {
-  width: 100%;
-}
-
-{% endhighlight %}
-
-And finally I added some content in the form of short FAQ-like messages titled "Did you know ...".
+And I added some content in the form of short FAQ-like messages titled "Did you know ...".
 
 {% highlight html %}
 <div class="sidebar-right sidebar right column-4">
@@ -68,7 +40,8 @@ But I wasn't satisfied. There were a lot of big and ugly `<a>` tags in there  an
 
 The `if forloop.last` block adds a 'last' class to the last element to allow me to add some pretty separators using `border-bottom`.
 
-Now if I want to edit a message I can go straight to the file containing it and if I want to add/replace/delete I just have to add/replace/delete the `.md` file.
+Now if I want to edit a message, instead of digging around in lines upon lines of raw html code I can go straight to the message file containing some nice markdown source.
+The best feature in my eyes though is that if I want to add, replace or delete I just have to add/replace/delete `.md` files in the `_quick_facts` directory and it'll process them automatically.
 
 ## Displaying excerpts and descriptions
 
