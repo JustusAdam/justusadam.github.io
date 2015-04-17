@@ -41,4 +41,4 @@ collections:
     output: true
   legal:
     output: true
-  quick-facts:
+  quick_facts:
