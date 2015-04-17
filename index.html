@@ -17,10 +17,13 @@ layout: default
             <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
           </h2>
           {% if post.description %}
-            <p class="small light-font">
-              {{ post.description | truncate: 100, '...' }}
-            </p>
+            {% assign desc = post.description %}
+          {% else %}
+            {% assign desc = post.excerpt | remove: '<p>' | remove: '</p>' %}
           {% endif %}
+            <p class="small light-font">
+              {{ desc | truncate: site.quick_view_length, '...' }}
+            </p>
         </li>
       {% endfor %}
     </ul>

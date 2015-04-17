@@ -8,6 +8,7 @@ baseurl: "" # the subpath of your site, e.g. /blog/
 url: "http://justusadam.com" # the base hostname & protocol for your site
 twitter_username: justusadam_
 github_username:  justusadam
+quick_view_length: 100
 
 # Build settings
 markdown: kramdown
@@ -41,3 +42,4 @@ collections:
     output: true
   legal:
     output: true
+  quick-facts:
