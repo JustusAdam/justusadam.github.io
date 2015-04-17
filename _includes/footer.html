@@ -52,8 +52,9 @@
 
     <div class="small footer-col-wrapper legal-section">
       {% for legal in site.legal %}
-        <span class="footer-col footer-col-{{ forloop.index }}"><a href="{{ legal.url | prepend: site.baseurl }}">{{ legal.title }}</a></span>
+        <span class="footer-col"><a href="{{ legal.url | prepend: site.baseurl }}">{{ legal.title }}</a></span>
       {% endfor %}
+      <div class="copyright">&copy; 2015 Justus Adam</div>
     </div>
   </div>
 
