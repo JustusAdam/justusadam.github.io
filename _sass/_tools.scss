@@ -37,3 +37,15 @@ p.small, .small p, p.smaller, .smaller p {
 .column-12 {
   width: 100%;
 }
+
+@media (max-width: 600px) {
+  .desktop-only {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .fullscreen-on-mobile {
+    width: 100%;
+  }
+}

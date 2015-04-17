@@ -1,5 +1,6 @@
 .sidebar.right {
   padding-right: 0;
+  @extend .desktop-only;
 }
 
 .fact-list {
