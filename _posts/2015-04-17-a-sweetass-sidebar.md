@@ -3,7 +3,7 @@ title: A sweetass sidebar in Jekyll
 author: Justus
 ---
 
-So the [Jekyll](//jekyllrb.org) default installation using `jekyll new` is, albeit beautiful, a little bit bare bones, which is probably deliberate.
+So the [Jekyll](//jekyllrb.com) default installation using `jekyll new` is, albeit beautiful, a little bit bare bones, which is probably deliberate.
 
 ## Adding a sidebar
 
