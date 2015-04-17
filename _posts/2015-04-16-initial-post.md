@@ -1,6 +1,8 @@
 ---
 title: "initial post"
 tags: markdown update homepage git
+description: >
+  I put my homepage on a new foundation, here's how
 ---
 
 I love markdown.

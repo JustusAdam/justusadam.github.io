@@ -4,7 +4,7 @@ layout: default
 
 <div class="home">
 
-  <div class="content left">
+  <div class="content left column-8">
     <h1 class="page-heading">Posts</h1>
 
 
@@ -13,9 +13,14 @@ layout: default
         <li>
           <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
 
-          <h2>
+          <h2 style="margin-bottom: 10px">
             <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
           </h2>
+          {% if post.description %}
+            <p class="small light-font">
+              {{ post.description | truncate: 100, '...' }}
+            </p>
+          {% endif %}
         </li>
       {% endfor %}
     </ul>

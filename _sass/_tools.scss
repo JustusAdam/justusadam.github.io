@@ -21,3 +21,19 @@ p.small, .small p, p.smaller, .smaller p {
 .clearfix {
   clear: both;
 }
+
+.light-font {
+  color: $grey-text-color-light;
+}
+
+.column-4 {
+  width: 33%;
+}
+
+.column-8 {
+  width: 66%;
+}
+
+.column-12 {
+  width: 100%;
+}
