@@ -1,9 +1,8 @@
 # Site settings
-title: Justus Adam
+title: justusadam.com - v2.0
 email: justus@justusadam.com
 description: > # this means to ignore newlines until "baseurl:"
-  This page is about who I am and what I do. Soon it shall also again
-  contain my personal blog.
+  This page is about who I am and what I do. Plus it contains my personal blog.
 baseurl: "" # the subpath of your site, e.g. /blog/
 url: "http://justusadam.com" # the base hostname & protocol for your site
 twitter_username: justusadam_
