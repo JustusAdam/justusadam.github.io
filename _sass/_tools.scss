@@ -9,3 +9,15 @@ p.small, .small p, p.smaller, .smaller p {
 .smaller {
   font-size: smaller;
 }
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
+.clearfix {
+  clear: both;
+}
