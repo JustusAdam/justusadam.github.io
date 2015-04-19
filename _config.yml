@@ -27,6 +27,13 @@ defaults:
   -
     scope:
       path: ""
+      type: "drafts"
+    values:
+      layout: "post"
+      category: drafts
+  -
+    scope:
+      path: ""
       type: "projects"
     values:
       layout: "project"
