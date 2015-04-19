@@ -24,3 +24,11 @@
     margin-bottom: 0;
   }
 }
+
+.footnotes {
+  @extend .small;
+
+  margin-top: 70px;
+  padding-top: 30px;
+  border-top: 1px solid $grey-color;
+}
