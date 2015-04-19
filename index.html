@@ -31,12 +31,12 @@ layout: default
     <div class="pagination-navigation">
       {% if paginator.previous_page %}
         <div class="left">
-          <a class="previous pagination-link" href="{{ paginator.previous_page_path }}">&lt; &nbsp;&nbsp; Previous</a>
+          <a class="previous pagination-link" href="{{ paginator.previous_page_path }}">&#10554; &nbsp;&nbsp; Previous</a>
         </div>
       {% endif %}
       {% if paginator.next_page %}
         <div class="right">
-          <a class="next pagination-link" href="{{ paginator.next_page_path }}">Next &nbsp;&nbsp; &gt;</a>
+          <a class="next pagination-link" href="{{ paginator.next_page_path }}">Next &nbsp;&nbsp; &#10555;</a>
         </div>
       {% endif %}
     </div>

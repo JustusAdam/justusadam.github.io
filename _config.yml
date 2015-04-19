@@ -13,8 +13,8 @@ paginate: 5
 # Build settings
 markdown: kramdown
 
-kramdown:
-  input: GFM
+sass:
+  style: :compressed
 
 defaults:
   -
