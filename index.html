@@ -22,7 +22,7 @@ layout: default
             {% assign desc = post.excerpt | remove: '<p>' | remove: '</p>' %}
           {% endif %}
             <p class="small light-font">
-              {{ desc | truncate: site.quick_view_length, '...' }}
+              {{ desc | strip_html | truncate: site.quick_view_length, '...' }}
             </p>
         </li>
       {% endfor %}
