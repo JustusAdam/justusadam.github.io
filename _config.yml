@@ -8,6 +8,7 @@ url: "http://justus.science" # the base hostname & protocol for your site
 twitter_username: justusadam_
 github_username:  justusadam
 quick_view_length: 100
+paginate: 5
 
 # Build settings
 markdown: kramdown

@@ -9,7 +9,7 @@ layout: default
 
 
     <ul class="post-list">
-      {% for post in site.posts %}
+      {% for post in paginator.posts %}
         <li>
           <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
 
@@ -27,6 +27,20 @@ layout: default
         </li>
       {% endfor %}
     </ul>
+
+    <div class="paginate-navigation">
+      {% if paginator.previous_page %}
+        <div class="left">
+          <a class="previous" href="{{ paginator.previous_page_path }}">Previous</a>
+        </div>
+      {% endif %}
+      {% if paginator.next_page %}
+        <div class="right">
+          <a class="next" href="{{ paginator.next_page_path }}">Next</a>
+        </div>
+      {% endif %}
+    </div>
+
   </div>
 
   {% include sidebar-right.html %}
