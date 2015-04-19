@@ -38,6 +38,12 @@ p.small, .small p, p.smaller, .smaller p {
   width: 100%;
 }
 
+.slim-button {
+  padding: 7px 13px;
+  border: 1px solid $grey-color-light;
+  border-radius: 5px;
+}
+
 @media (max-width: $on-palm) {
   .desktop-only {
     display: none;

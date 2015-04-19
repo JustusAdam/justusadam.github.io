@@ -28,15 +28,15 @@ layout: default
       {% endfor %}
     </ul>
 
-    <div class="paginate-navigation">
+    <div class="pagination-navigation">
       {% if paginator.previous_page %}
         <div class="left">
-          <a class="previous" href="{{ paginator.previous_page_path }}">Previous</a>
+          <a class="previous pagination-link" href="{{ paginator.previous_page_path }}">&lt; &nbsp;&nbsp; Previous</a>
         </div>
       {% endif %}
       {% if paginator.next_page %}
         <div class="right">
-          <a class="next" href="{{ paginator.next_page_path }}">Next</a>
+          <a class="next pagination-link" href="{{ paginator.next_page_path }}">Next &nbsp;&nbsp; &gt;</a>
         </div>
       {% endif %}
     </div>
@@ -44,8 +44,8 @@ layout: default
   </div>
 
   {% include sidebar-right.html %}
-  <div class="clearfix" />
+  <div class="clearfix"></div>
 
   <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
-
+  <link type="text/css" rel="stylesheet" href="/css/pagination.css">
 </div>
