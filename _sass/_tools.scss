@@ -1,5 +1,9 @@
 .small {
   font-size: small;
+
+  pre, code, div, span {
+    font-size: small;
+  }
 }
 
 p.small, .small p, p.smaller, .smaller p {
@@ -8,6 +12,10 @@ p.small, .small p, p.smaller, .smaller p {
 
 .smaller {
   font-size: smaller;
+
+  pre, code, div, span {
+    font-size: smaller;
+  }
 }
 
 .left {
