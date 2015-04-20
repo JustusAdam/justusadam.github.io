@@ -1,0 +1,36 @@
+<div class="github-buttons">
+
+  {% unless project %}
+    {% assign priject = page %}
+  {% endunless %}
+
+  {% if project.github_user and (project.github_repository or project.github_repo) %}
+    {% if project.github_repository %}
+      {% assign repo = project.github_repository %}
+    {% else %}
+      {% assign repo = project.github_repo %}
+    {% endif %}
+
+    {% capture baseurl %}https://ghbtns.com/github-btn.html?user={{ project.github_user }}&repo={{ repo }}&count=true&type={% endcapture %}
+
+    {% unless project.watch_button == false %}
+      <span class="watch">
+        <iframe src="{{ baseurl }}watch&v=2" frameborder="0" scrolling="0" width="100px" height="20px"></iframe>
+      </span>
+    {% endunless %}
+
+    {% unless project.star_button == false %}
+      <span class="star">
+        <iframe src="{{ baseurl }}star" frameborder="0" scrolling="0" width="100px" height="20px"></iframe>
+      </span>
+    {% endunless %}
+
+    {% unless project.fork_button == false %}
+      <span class="fork">
+        <iframe src="{{ baseurl }}fork" frameborder="0" scrolling="0" width="100px" height="20px"></iframe>
+      </span>
+    {% endunless %}
+
+  {% endif %}
+
+</div>
