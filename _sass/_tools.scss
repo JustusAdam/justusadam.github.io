@@ -53,13 +53,13 @@ p.small, .small p, p.smaller, .smaller p {
 }
 
 @media (max-width: $on-palm) {
-  .desktop-only {
+  .widescreen-only {
     display: none;
   }
 }
 
 @media (max-width: $on-palm) {
-  .fullscreen-on-mobile {
+  .fullscreen-on-palm {
     width: 100%;
   }
 }
