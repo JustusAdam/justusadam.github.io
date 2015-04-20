@@ -1,17 +1,14 @@
 <div class="github-buttons">
 
   {% unless project %}
-    {% assign priject = page %}
+    {% assign project = page %}
   {% endunless %}
 
-  {% if project.github_user and (project.github_repository or project.github_repo) %}
-    {% if project.github_repository %}
-      {% assign repo = project.github_repository %}
-    {% else %}
-      {% assign repo = project.github_repo %}
-    {% endif %}
+  {% if project.github_link and project.github_buttons != false %}
 
-    {% capture baseurl %}https://ghbtns.com/github-btn.html?user={{ project.github_user }}&repo={{ repo }}&count=true&type={% endcapture %}
+    {% assign info = project.github_link | split: "/" %}
+  
+    {% capture baseurl %}https://ghbtns.com/github-btn.html?user={{ info[0] }}&repo={{ info[1] }}&count=true&type={% endcapture %}
 
     {% unless project.watch_button == false %}
       <span class="watch">

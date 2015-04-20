@@ -4,8 +4,6 @@ github_link: fsr/lesson-builder
 status: finished, actively maintained
 languages:
   - Python
-github_repository: lesson-builder
-github_user: fsr
 ---
 
 This one is unfinished but finished at the same time.
