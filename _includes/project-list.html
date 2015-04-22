@@ -1,0 +1,14 @@
+<div class="project-list">
+  <ul style="list-style-type:none">
+    {% for project in site.projects %}
+      <li class="project">
+        <h4 class="project-title">
+          <a href="{{ project.url }}">
+            {{ project.title }}
+          </a>
+        </h4>
+        {% include project-meta.html %}
+      </li>
+    {% endfor %}
+  </ul>
+</div>
