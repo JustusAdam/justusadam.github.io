@@ -14,8 +14,7 @@ The source can be found [here]({{ snippet_path }}/monkey-patching-snippets)*
 
 As everyone probably knows most objects in python are not static as static as in many other languages. When you create a class you can specify class attributes in the class body and instance attributes in the init method.
 
-{% assign snippet = snippets.attribute_basics %}
-{% include python-snippet.html %}
+{% include python-snippet.html snippet=snippets.attribute_basics %}
 
 
 However that is by no means final.
@@ -24,8 +23,7 @@ However that is by no means final.
 
 Even though you are encouraged to declare instance attributes in the initializer you are by no means required to do so. You can declare/assign instance attribute in any method and even outside the class at any point in the program.
 
-{% assign snippet = snippets.attributes_from_outside %}
-{% include python-snippet.html %}
+{% include python-snippet.html snippet=snippets.attributes_from_outside %}
 
 As you can see we can add attributes from inside another method. You can also remove the attributes from anywhere.
 
@@ -39,8 +37,7 @@ Never add instance attributes from the outside. You may accidentally overwrite o
 
 There are however some exceptions. For instance if you use a decorator to attach meta information to a function or class. It is okay to do here, because, again, you are guaranteed that the function is going to execute.
 
-{% assign snippet = snippets.python_meta_information_decorator %}
-{% include python-snippet.html %}
+{% include python-snippet.html snippet=snippets.python_meta_information_decorator %}
 
 
 *Note that we're attaching instance variables to a function. Functions are just objects, like anything else, so we're allowed to do that*
@@ -63,8 +60,7 @@ When an python object is created by the runtime the instance dict is actually em
 [^slots]:
     This is true for classes that do not define `__slots__` which will in fact allocate named fields.
 
-{% assign snippet = snippets.instance_dict_basic %}
-{% include python-snippet.html %}
+{% include python-snippet.html snippet=snippets.instance_dict_basic %}
 
 ## Patching classes
 
@@ -72,15 +68,13 @@ As you may have guessed already, if we're allowed to attach attributes to a func
 
 There are two ways for obtaining the class from an object.
 
-{% assign snippet = snippets.get_class %}
-{% include python-snippet.html %}
+{% include python-snippet.html snippet=snippets.get_class %}
 
 I personally prefer directly referring to `__class__` if I'm about to tamper with it, but either one works fine.
 
 Now we can add/remove our class attributes.
 
-{% assign snippet = snippets.alter_class_attributes %}
-{% include python-snippet.html %}
+{% include python-snippet.html snippet=snippets.alter_class_attributes %}
 
 ## How it works
 
