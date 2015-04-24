@@ -1,22 +1,22 @@
 monkey_patching:
   python_meta_information_decorator:
     name: Meta information decorator
-    filename: monkey-patching-snippets/meta_information_decorator.py
+    path: monkey-patching/meta_information_decorator.py
   attribute_basics:
     name: Attribute basics
-    filename: monkey-patching-snippets/attributes_basics.py
+    path: monkey-patching/attributes_basics.py
   attributes_from_outside:
     name: Changing attributes from the outside
-    filename: monkey-patching-snippets/attributes_from_outside.py
+    path: monkey-patching/attributes_from_outside.py
   instance_dict_basic:
     name: Instance dict basisc
-    filename: monkey-patching-snippets/instance_dict_basic.py
+    path: monkey-patching/instance_dict_basic.py
   get_class:
     name: Obtaining the class
-    filename: monkey-patching-snippets/get_class.py
+    path: monkey-patching/get_class.py
   alter_class_attributes:
     name: Altering class attributes
-    filename: monkey-patching-snippets/alter_class_attributes.py
+    path: monkey-patching/alter_class_attributes.py
   functions_and_methods:
     name: The difference between funcitons and methods
-    filename: monkey-patching-snippets/functions_and_methods.py
+    path: monkey-patching/functions_and_methods.py
