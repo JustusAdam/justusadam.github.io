@@ -28,7 +28,7 @@ As you can see we can add attributes from inside another method. You can also re
 
 ### Some things to learn from this
 
-Declare your instance attributes in the initializer because you are guaranteed that this method will execute, or you probably will run into unexpected AttributeErrors somewhere down the line.
+Declare your instance attributes in the initializer because you are guaranteed that this method will execute, or you probably will run into unexpected AttributeErrors somewhere down the line. Even initializing them with `None` is better than not initializing at all.
 
 Never add instance attributes from the outside. You may accidentally overwrite others or forget to do it and that would again cause name errors.
 
@@ -89,3 +89,9 @@ We've just learned that we can patch classes in python by modifying its instance
 Furthermore if you print one such method the output says the type is `function`, not `method`.
 
 In fact python does not have `methods` per se. Instead there are functions contained in a classes instance dict. When you have an instance of the class and you print the method referencing from the instance you'll notice that the type changes from `function` to `bound method`.
+
+{% include python-snippet.html snippet=snippets.functions_and_methods %}
+
+Bound methods are basically partially applied functions, where the first argument is the object the method has been called on.
+
+As we can also see on line 25 a method can be called on the class directly which in which case you will have to provide the `self` argument yourself, what the type of that `self` argument is is irrelevant, and not checked anywhere by default.

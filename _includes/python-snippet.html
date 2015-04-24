@@ -6,7 +6,7 @@
 
 {% capture snippet_path %}snippets/{{ langpath }}{{ snippet.path }}{% endcapture %}
 
-{% highlight python %}
+{% highlight python linenos %}
 {% include {{ snippet_path }} %}
 {% endhighlight %}
 <div class="snippet-meta light-font">

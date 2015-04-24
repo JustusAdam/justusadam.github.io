@@ -5,7 +5,7 @@ class TestClass:
     def __init__(self):
 
         print(dir(self))
-        # ==> ['__class__', '__delattr__', '__dict__', '__dir__', '__doc__',
+        # =>> ['__class__', '__delattr__', '__dict__', '__dir__', '__doc__',
         # '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__',
         # '__hash__', '__init__', '__le__', '__lt__', '__module__', '__ne__',
         # '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__',
@@ -15,7 +15,7 @@ class TestClass:
 
         # we can refer to the instance dict directly using __dict__
         print(self.__dict__)
-        # ==> {}
+        # =>> {}
 
         # this is an alternative way to get the instance dict
         print(vars(self))
@@ -23,7 +23,7 @@ class TestClass:
         self.bar = 'hi there'
 
         print(dir(self))
-        # ==> ['__class__', '__delattr__', '__dict__', '__dir__', '__doc__',
+        # =>> ['__class__', '__delattr__', '__dict__', '__dir__', '__doc__',
         # '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__',
         # '__hash__', '__init__', '__le__', '__lt__', '__module__', '__ne__',
         # '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__',
@@ -32,10 +32,10 @@ class TestClass:
         # now bar exists as well
 
         print(self.__dict__)
-        # ==> {'bar': 'hi there'}
+        # =>> {'bar': 'hi there'}
 
         print(self.__dict__['bar'])
-        # ==> 'hi there'
+        # =>> 'hi there'
 
     def method(self):
         pass
@@ -48,11 +48,11 @@ del a.__dict__['bar']
 
 print(
     hasattr(a, 'bar')
-)  # ==> False
+)  # =>> False
 
 print(
     'bar' in a.__dict__
-)  # ==> False
+)  # =>> False
 
 a.bar
-# ==> AttributeError: 'TestClass' object has no attribute 'bar'
+# =>> AttributeError: 'TestClass' object has no attribute 'bar'

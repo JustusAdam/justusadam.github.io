@@ -1,22 +1,26 @@
 class MyClass:
     def a_method(self):
-        print(self)
+        return self
 
 
 print(
     'a_method' in MyClass.__dict__
-)  # ==> True
+)  # =>> True
 
 print(
     MyClass.a_method
-)  # ==> <function MyClass.a_method at ...>
+)  # =>> <function MyClass.a_method at ...>
 
 obj = MyClass()
 
 print(
     obj.a_method
-)  # ==> <bound method MyClass.a_method of <__main__.MyClass object at ...>>
+)  # =>> <bound method MyClass.a_method of <__main__.MyClass object at ...>>
 
-obj.a_method()  # ==> <__main__.MyClass object at ...>
+print(
+    obj.a_method()
+)  # =>> <__main__.MyClass object at ...>
 
-type(obj).a_method('hello')  # ==> hello
+print(
+    type(obj).a_method('hello')
+)  # =>> hello

@@ -24,4 +24,4 @@ def my_func():
 
 
 print_with(my_func)
-# ==> <function my_func at ...> printed with blue
+# =>> <function my_func at ...> printed with blue

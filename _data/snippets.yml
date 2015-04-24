@@ -1,29 +1,41 @@
 monkey_patching:
+
   python_meta_information_decorator:
     name: Meta information decorator
     path: monkey-patching/meta_information_decorator.py
     language: python
+
   attribute_basics:
     name: Attribute basics
     path: monkey-patching/attributes_basics.py
     language: python
+
   attributes_from_outside:
     name: Changing attributes from the outside
     path: monkey-patching/attributes_from_outside.py
     language: python
+
   instance_dict_basic:
     name: Instance dict basisc
     path: monkey-patching/instance_dict_basic.py
     language: python
+
   get_class:
     name: Obtaining the class
     path: monkey-patching/get_class.py
     language: python
+
   alter_class_attributes:
     name: Altering class attributes
     path: monkey-patching/alter_class_attributes.py
     language: python
+
   functions_and_methods:
-    name: The difference between funcitons and methods
+    name: The difference between functions and methods
     path: monkey-patching/functions_and_methods.py
+    language: python
+
+  hacking_init:
+    name: Hacking __init__
+    path: monkey-patching/hacking_init.py
     language: python
