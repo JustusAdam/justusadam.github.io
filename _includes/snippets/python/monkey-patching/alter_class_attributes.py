@@ -30,3 +30,7 @@ print(
 print(
     instance.greeting_2
 )  # ==> dear me
+
+print(
+    'greeting_2' in TestClass.__dict__
+)  # ==> True

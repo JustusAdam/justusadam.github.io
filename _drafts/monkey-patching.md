@@ -28,7 +28,7 @@ As you can see we can add attributes from inside another method. You can also re
 
 ### Some things to learn from this
 
-Declare your instance variables in the initializer because you are guaranteed that this method will execute, or you probably will run into unexpected AttributeErrors somewhere down the line.
+Declare your instance attributes in the initializer because you are guaranteed that this method will execute, or you probably will run into unexpected AttributeErrors somewhere down the line.
 
 Never add instance attributes from the outside. You may accidentally overwrite others or forget to do it and that would again cause name errors.
 
@@ -41,7 +41,7 @@ There are however some exceptions. For instance if you use a decorator to attach
 
 *Note that we're attaching instance variables to a function. Functions are just objects, like anything else, so we're allowed to do that*
 
-## How it works
+### How it works
 
 Objects in python are actually quite a simple construct.
 
@@ -75,11 +75,11 @@ Now we can add/remove our class attributes.
 
 {% include python-snippet.html snippet=snippets.alter_class_attributes %}
 
-## How it works
+### How it works
 
-In python classes are just object. Instances of `type`. Like other objects they have an instance dict and you can modify that instance dict just like with any other object.[^class_dict_limits]
+In python classes are just object. Instances of `type`. And like most objects their attributes can be freely modified, removed or added.[^class_temper_limits] They do have an instance dict `__dict__` as well, however in this case it is not a vanilla python `dict` but rather a `mappingproxy` object. This is the interface the pytho interpreter shows for the instance dicts of lots of builtin types and objects, and this particular dict-like structure can **not** be modified directly. `__setattr__` and `__delattr__` however work on (most) types.
 
-[^class_dict_limits]:
+[^class_temper_limits]:
     This pretty much only applies to classes actually created using `class`, not to builtin types such as for example `object`, `function` and `type` itself.
 
 ## The fun stuff - advanced class patching

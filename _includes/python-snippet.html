@@ -1,9 +1,5 @@
 {% assign snippet = include.snippet %}
 
-{% unless include.show_name == false %}
-  <div class="centered"><strong>{{ snippet.name }}</strong></div>
-{% endunless %}
-
 {% if snippet.language %}
   {% assign langpath = snippet.language | append: '/' %}
 {% endif %}
@@ -13,6 +9,21 @@
 {% highlight python %}
 {% include {{ snippet_path }} %}
 {% endhighlight %}
-{% if snippet_base_url and include.link_source != false %}
-  <small><em>Source: [{{ snippet_base_url }}/{{ snippet_path }}]({{ snippet_base_url }}/{{ snippet_path }})</em></small>
-{% endif %}
+<div class="snippet-meta light-font">
+  {% unless include.show_name == false %}
+    <div>
+      <small class="right">{{ snippet.name }}</small>
+    </div>
+    <div class="clearfix"></div>
+  {% endunless %}
+  {% if snippet_base_url and include.link_source != false %}
+    <div>
+      <small class="right">
+        <em>
+          This snippets source on <a href="{{ snippet_base_url }}/{{ snippet_path }}">GitHub</a>
+        </em>
+      </small>
+    </div>
+  {% endif %}
+  <div class="clearfix"></div>
+</div>
