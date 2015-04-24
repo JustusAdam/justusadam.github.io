@@ -2,15 +2,14 @@
 title: Next level monkey patching
 author: Justus
 description: The dumb things you can(n't) do with python objects and classes
-curr_location: _drafts
 ---
 
 {% assign snippets = site.data.snippets.monkey_patching %}
 
-{% assign snippet_path = 'https://github.com/JustusAdam/justusadam.github.io/tree/master/' | append: page.curr_location %}
+{% assign snippet_base_url = 'https://github.com/JustusAdam/justusadam.github.io/tree/master/_includes' %}
 
 *Hint: all python examples here run on python 3 and you can try them for yourself and experiment.
-The source can be found [here]({{ snippet_path }}/monkey-patching-snippets)*
+The source can be found [here]({{ snippet_base_url }}/snippets/python/monkey-patching)*
 
 As everyone probably knows most objects in python are not static as static as in many other languages. When you create a class you can specify class attributes in the class body and instance attributes in the init method.
 
