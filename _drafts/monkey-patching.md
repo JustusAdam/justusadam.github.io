@@ -2,16 +2,22 @@
 title: Next level monkey patching
 author: Justus
 description: The dumb things you can(n't) do with python objects and classes
-snippet_folder: monkey-patching-snippets
 curr_location: _drafts
 ---
 
+{% assign snippets = site.data.snippets.monkey_patching %}
+
+{% assign snippet_path = 'https://github.com/JustusAdam/justusadam.github.io/tree/master/' | append: page.curr_location %}
+
 *Hint: all python examples here run on python 3 and you can try them for yourself and experiment.
-The source can be found [here](https://github.com/JustusAdam/justusadam.github.io/tree/master/{{ page.curr_location }}/{{ page.snippet_folder }})*
+The source can be found [here]({{ snippet_path }}/monkey-patching-snippets)*
 
 As everyone probably knows most objects in python are not static as static as in many other languages. When you create a class you can specify class attributes in the class body and instance attributes in the init method.
 
-{% highlight python %}{% include_relative {{ page.snippet_folder }}/attributes_basics.py %}{% endhighlight %}
+{% assign snippet = snippets.attribute_basics %}
+{% capture snippet_code %}{% include_relative {{ snippet.filename }} %}{% endcapture %}
+{% include python-snippet.html %}
+
 
 However that is by no means final.
 
@@ -19,7 +25,9 @@ However that is by no means final.
 
 Even though you are encouraged to declare instance attributes in the initializer you are by no means required to do so. You can declare/assign instance attribute in any method and even outside the class at any point in the program.
 
-{% highlight python %}{% include_relative {{ page.snippet_folder }}/attributes_from_outside.py %}{% endhighlight %}
+{% assign snippet = snippets.attributes_from_outside %}
+{% capture snippet_code %}{% include_relative {{ snippet.filename }} %}{% endcapture %}
+{% include python-snippet.html %}
 
 As you can see we can add attributes from inside another method. You can also remove the attributes from anywhere.
 
@@ -33,9 +41,10 @@ Never add instance attributes from the outside. You may accidentally overwrite o
 
 There are however some exceptions. For instance if you use a decorator to attach meta information to a function or class. It is okay to do here, because, again, you are guaranteed that the function is going to execute.
 
-{% highlight python %}
-{% include_relative {{ page.snippet_folder }}/meta_information_decorator.py %}
-{% endhighlight %}
+{% assign snippet = snippets.python_meta_information_decorator %}
+{% capture snippet_code %}{% include_relative {{ snippet.filename }} %}{% endcapture %}
+{% include python-snippet.html %}
+
 
 *Note that we're attaching instance variables to a function. Functions are just objects, like anything else, so we're allowed to do that*
 
@@ -57,10 +66,39 @@ When an python object is created by the runtime the instance dict is actually em
 [^slots]:
     This is true for classes that do not define `__slots__` which will in fact allocate named fields.
 
-{% highlight python %}
-{% include_relative {{ page.snippet_folder }}/instance_dict_basic.py %}
-{% endhighlight %}
+{% assign snippet = snippets.instance_dict_basic %}
+{% capture snippet_code %}{% include_relative {{ snippet.filename }} %}{% endcapture %}
+{% include python-snippet.html %}
 
 ## Patching classes
 
-As you may have guessed already, if we're allowed to attach attributes to a function, we are also alowed to attach attributes to a class.
+As you may have guessed already, if we're allowed to attach attributes to a function, we are also allowed to attach attributes to a class.
+
+There are two ways for obtaining the class from an object.
+
+{% assign snippet = snippets.get_class %}
+{% capture snippet_code %}{% include_relative {{ snippet.filename }} %}{% endcapture %}
+{% include python-snippet.html %}
+
+I personally prefer directly referring to `__class__` if I'm about to tamper with it, but either one works fine.
+
+Now we can add/remove our class attributes.
+
+{% assign snippet = snippets.alter_class_attributes %}
+{% capture snippet_code %}{% include_relative {{ snippet.filename }} %}{% endcapture %}
+{% include python-snippet.html %}
+
+## How it works
+
+In python classes are just object. Instances of `type`. Like other objects they have an instance dict and you can modify that instance dict just like with any other object.[^class_dict_limits]
+
+[^class_dict_limits]:
+    This pretty much only applies to classes actually created using `class`, not to builtin types such as for example `object`, `function` and `type` itself.
+
+## The fun stuff - advanced class patching
+
+We've just learned that we can patch classes in python by modifying its instance dict, which contains the class attributes. You may be guessing it already, or you may have seen it, the instance dict of a class does not only contains the attributes but it also the methods that are defined on the class.
+
+Furthermore if you print one such method the output says the type is `function`, not `method`.
+
+In fact python does not have `methods` per se. Instead there are functions contained in a classes instance dict. When you have an instance of the class and you print the method referencing from the instance you'll notice that the type changes from `function` to `bound method`.

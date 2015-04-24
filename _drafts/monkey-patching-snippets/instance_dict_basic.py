@@ -17,6 +17,9 @@ class TestClass:
         print(self.__dict__)
         # ==> {}
 
+        # this is an alternative way to get the instance dict
+        print(vars(self))
+
         self.bar = 'hi there'
 
         print(dir(self))
