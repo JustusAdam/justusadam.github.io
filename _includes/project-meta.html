@@ -27,9 +27,9 @@
     <p><a href="https://github.com/{{ project.github_link }}">Repository on GitHub</a></p>
   {% endif %}
 
-  {% if project.documentation_link %}
-    <p><a href="{{ project.documentation_link }}">Documentation</a>
-      {% if project.documentation_host %}on {{ project.documentation_host }}{% endif %}
+  {% if project.documentation and project.documentation.link %}
+    <p><a href="{{ project.documentation.link }}">Documentation</a>
+      {% if project.documentation.host %}on {{ project.documentation.host }}{% endif %}
     </p>
   {% endif %}
 </div>

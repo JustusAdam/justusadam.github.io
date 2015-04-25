@@ -3,8 +3,9 @@ title: Schedule Planner
 github_link: JustusAdam/schedule-planner
 status: "in active development"
 languages: [Haskell, Python]
-documentation_link: //justus.science/schedule-planner/
-documentation_host: GitHub Pages
+documentation:
+    link: //justus.science/schedule-planner/
+    host: GitHub Pages
 ---
 
 The schedule planner is a tool written in [Haskell](//haskell.org) and [Python](//python.org) which allows you to calculate a perfect schedule out of any number of "lessons" and rules for how you would like them to be laid out.

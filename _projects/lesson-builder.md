@@ -3,8 +3,9 @@ title: TeX compiler automator
 github_link: fsr/lesson-builder
 status: finished, actively maintained
 languages:
-  - Python
-documentation_link: https://github.com/fsr/lesson-builder/wiki
+    - Python
+documentation:
+    link: https://github.com/fsr/lesson-builder/wiki
 ---
 
 This one is unfinished but finished at the same time.
