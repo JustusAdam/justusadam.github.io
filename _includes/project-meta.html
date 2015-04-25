@@ -24,6 +24,12 @@
   {% endif %}
 
   {% if project.github_link %}
-    <a href="https://github.com/{{ project.github_link }}">Repository on GitHub</a>
+    <p><a href="https://github.com/{{ project.github_link }}">Repository on GitHub</a></p>
+  {% endif %}
+
+  {% if project.documentation_link %}
+    <p><a href="{{ project.documentation_link }}">Documentation</a>
+      {% if project.documentation_host %}on {{ project.documentation_host }}{% endif %}
+    </p>
   {% endif %}
 </div>

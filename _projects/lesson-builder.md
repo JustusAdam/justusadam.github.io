@@ -4,6 +4,7 @@ github_link: fsr/lesson-builder
 status: finished, actively maintained
 languages:
   - Python
+documentation_link: https://github.com/fsr/lesson-builder/wiki
 ---
 
 This one is unfinished but finished at the same time.
@@ -19,7 +20,7 @@ The builder module consists of two parts.
 
 ### The actual builder
 
-A bunch of python functions that'll asynchronously build however many TeX source files you like using a command that can be specified in the config.
+A bunch of python functions that'll asynchronously build however many TeX source files you like using a command that can be individually specified in the config.
 
 *Technically it could execute any command on any file but that would require said command to be added to the allowed commands python set in the script itself*
 
