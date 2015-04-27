@@ -94,4 +94,8 @@ In fact python does not have `methods` per se. Instead there are functions conta
 
 Bound methods are basically partially applied functions, where the first argument is the object the method has been called on.
 
-As we can also see on line 25 a method can be called on the class directly which in which case you will have to provide the `self` argument yourself, what the type of that `self` argument is is irrelevant, and not checked anywhere by default.
+As we can also see on line 25 a method can be called on the class directly which in which case you will have to provide the `self` argument yourself, what the type of that `self` argument is, is irrelevant, and not checked anywhere (by the language).
+
+Since methods are just functions until called, we can make the assumption, that they are in fact class attributes that happen to be callable. And in fact if you look at Python classes that is exactly the case. As a practical result of methods being nothing but class attributes and class instance dict being modifiable we can begin to assume that perhaps methods can be modified in just the same way.
+
+Let's see how it works:
