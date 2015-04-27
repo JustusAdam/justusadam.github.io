@@ -1,11 +1,15 @@
 <div class="github-repo-overview">
-  {% assign repos = site.github.public_repositories | sort: 'created_at' %}
+  {% assign repos = site.github.public_repositories | sort: 'created_at' | reverse %}
+  {% assign extra_sites = site.data.projects.additional_sites %}
   {% for repo in repos %}
     <div class="repository">
       <h3><a href="{{ repo.html_url }}">{{ repo.name }}{% if repo.fork %} (fork){% endif %}</a></h3>
       <p class="repo-description">
         {{ repo.description }}
       </p>
+      {% if extra_sites contains repo.name %}
+        <p><a href="{{ extra_sites[repo.name].url }}">Local project page</a></p>
+      {% endif %}
       <p>Owner: <a href="{{ repo.owner.html_url }}">{{ repo.owner.login }} <image src="{{ repo.owner.avatar_url }}" width="20" heigh="20" /></a></p>
     </div>
   {% endfor %}
