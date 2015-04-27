@@ -7,11 +7,11 @@
       <p class="repo-description">
         {{ repo.description }}
       </p>
-      <div class="repository-statistics">
+      <p class="repository-statistics small light-font">
         <span class="watchers">Watchers: {{ repo.watchers_count }}</span>
         <span class="stargazers">Stars: {{ repo.stargazers_count }}</span>
         <span class="forks">Forks: {{ repo.forks_count }}</span>
-      </div>
+      </p>
       {% if extra_sites contains repo.name %}
         <p><a href="{{ extra_sites[repo.name].url }}">Local project page</a></p>
       {% endif %}
