@@ -1,3 +1,5 @@
+#! /usr/bin/env python3
+
 class TestClass:
 
     def __init__(self):

@@ -1,3 +1,5 @@
+#! /usr/bin/env python3
+
 def attach_meta(**arguments):
 
     def _inner(function_or_class):

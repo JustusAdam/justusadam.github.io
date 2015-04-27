@@ -1,3 +1,5 @@
+#! /usr/bin/env python3
+
 class TestClass:
 
     # class atttributes are declared in the class body

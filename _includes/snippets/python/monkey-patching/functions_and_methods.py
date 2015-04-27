@@ -1,3 +1,5 @@
+#! /usr/bin/env python3
+
 class MyClass:
     def a_method(self):
         return self

@@ -1,3 +1,5 @@
+#! /usr/bin/env python3
+
 class TestClass:
     greeting = 'hello'
 
