@@ -39,3 +39,15 @@ monkey_patching:
     name: Hacking __init__
     path: monkey-patching/hacking_init.py
     language: python
+
+  method_reassignment:
+    name: Basic method manipulations
+    path: monkey-patching/method_reassignment.py
+
+  quick_decorator:
+    name: Quick decorator refresher
+    path: monkey-patching/quick_decorator.py
+
+  dynamic_static_classmethods:
+    name: Dynammic class- and staticmethods
+    path: monkey-patching/dynamic_static_classmethods.py

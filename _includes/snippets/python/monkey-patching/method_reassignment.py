@@ -26,8 +26,25 @@ a.foo()  # <- equivalent to TestClass.foo(a)
 # =>> foo is executing
 # =>> self is <__main__.TestClass object at ...>
 
+# assigning new methods
+TestClass.foo_2 = bar
+# equivalent to type(a).foo_2 = bar
+
+a.foo_2()
+# =>> bar is executing
+# =>> self is <__main__.TestClass object at ...>
+
+
+# reassigning old ones
 TestClass.foo = bar  # <- no errors
 
 a.foo()
 # =>> bar is executing
 # =>> self is <__main__.TestClass object at ...>
+
+
+# deleting methods
+del TestClass.foo_2
+
+a.foo_2()
+# =>> AttributeError: 'TestClass' object has no attribute 'foo_2'

@@ -99,3 +99,26 @@ As we can also see on line 25 a method can be called on the class directly which
 Since methods are just functions until called, we can make the assumption, that they are in fact class attributes that happen to be callable. And in fact if you look at Python classes that is exactly the case. As a practical result of methods being nothing but class attributes and class instance dict being modifiable we can begin to assume that perhaps methods can be modified in just the same way.
 
 Let's see how it works:
+
+{% include python-snippet.html snippet=snippets.method_reassignment %}[^new_inst_meth]
+
+[^new_inst_meth]:
+    The added/reassigned/removed methods affect both new and old instances of the class (instantly).
+
+*Do remember that you have to add methods __to the class__, not the instance/object.*
+
+Now please note that this is highly unsafe practice. Technically you can remove pretty much any method from any object and it is very hard to find where and if that has been done.
+
+There is some fun stuff you can do now, since the methods you declared yourself are not the only thing you can change. This is an example of how you can overwrite `__init__` to change the behaviour of a class during object instantiation.
+
+{% include python-snippet.html snippet=snippets.hacking_init %}
+
+However you do not have to stop there.
+
+Those that know how decorators work will be aware that they are just normal python functions and can be used as such.
+
+{% include python-snippet.html snippet=snippets.quick_decorator %}
+
+We can use that fact to cynamically create classmethods and staticmethods.
+
+{% include python-snippet.html snippet=snippets.dynamic_static_classmethods %}

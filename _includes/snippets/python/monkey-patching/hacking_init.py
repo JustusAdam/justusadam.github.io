@@ -34,4 +34,4 @@ SubClass.__init__ = new_init
 print('\ninstantiating', SubClass, 'one last time')
 SubClass()
 # =>> I overwrote __init__
-# =>> <function BaseClass.__init__ at 0x107db18c8> executing
+# =>> <function BaseClass.__init__ at ...> executing
