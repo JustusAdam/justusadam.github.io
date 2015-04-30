@@ -6,8 +6,6 @@ description: The dumb things you can(n't) do with python objects and classes
 
 {% assign snippets = site.data.snippets.monkey_patching %}
 
-{% assign snippet_base_url = 'https://github.com/JustusAdam/justusadam.github.io/tree/master/_includes' %}
-
 *Hint: all python examples here run on python 3 and you can try them for yourself and experiment.
 The source can be found [here]({{ snippet_base_url }}/snippets/python/monkey-patching)*
 

@@ -1,12 +1,8 @@
 {% assign snippet = include.snippet %}
 
-{% if snippet.language %}
-  {% assign langpath = snippet.language | append: '/' %}
-{% endif %}
+{% capture snippet_path %}snippets/haskell/{{ snippet.path }}{% endcapture %}
 
-{% capture snippet_path %}snippets/python/{{ snippet.path }}{% endcapture %}
-
-{% highlight python linenos %}
+{% highlight haskell linenos %}
 {% include {{ snippet_path }} %}
 {% endhighlight %}
 <div class="snippet-meta light-font">
