@@ -1,3 +1,4 @@
+{% if site.github %}
 <div class="github-repo-overview">
   {% assign repos = site.github.public_repositories | sort: 'created_at' | reverse %}
   {% assign extra_sites = site.data.projects.additional_sites %}
@@ -18,3 +19,4 @@
     </div>
   {% endfor %}
 </div>
+{% endif %}
