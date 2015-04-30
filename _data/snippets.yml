@@ -51,3 +51,9 @@ monkey_patching:
   dynamic_static_classmethods:
     name: Dynammic class- and staticmethods
     path: monkey-patching/dynamic_static_classmethods.py
+
+
+functor:
+  cmd_args:
+    name: Defining command line arguments with the options package
+    path: functors/cmd_args.hs
