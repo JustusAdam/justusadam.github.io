@@ -11,6 +11,11 @@ quick_view_length: 100
 paginate: 5
 snippet_base_url: "https://github.com/JustusAdam/justusadam.github.io/tree/master/_includes"
 
+page_logo:
+  default: /images/lambda-logo-filled-gradient.svg
+  svg: /images/lambda-logo-filled-gradient.svg
+  small: /images/lambda-logo-filled-gradient.svg
+
 # Build settings
 markdown: kramdown
 
