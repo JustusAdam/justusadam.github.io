@@ -1,6 +1,7 @@
 ---
 title: I met the Functor
-description: "I've had some first experiences with Haskell Functors" 
+description: "I've had some first experiences with Haskell Functors"
+author: Justus
 ---
 
 {% assign snippets = site.data.snippets.functor %} 
@@ -17,4 +18,10 @@ The reason I even came in contact with the (applicative) Functor was that it was
 
 {% include haskell-snippet.html snippet=snippets.cmd_args %}
 
-I had of course never seen either `pure` or `<*>` before, because I'm a complete Haskell noob.   
+I had of course never seen either `pure` or `<*>` before, because I'm a complete Haskell noob, but seing it being used prompted me to look at it in more depth and try to understand maybe not how it necassarily works, but rather what it does and how I may even use it.
+
+It tuned out that that was a very good decision, because this Functor is actually very useful. It allows you to take functions and combine them such that when the resulting Functor (yes like a Monad this operation yields an instance of the wrapper itself) is being 'called' with an argument, it calls all each function with that argument and then some base function with all results. One of the simple and practical applications I have found for this is doing several calculations on a single input, accumulating results in a tuple or transforming fome fields of some data type into a tuple.
+
+{% include haskell-snippet.html snippet=snippets.tuples %}
+
+

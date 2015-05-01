@@ -1,9 +1,5 @@
 {% assign snippet = include.snippet %}
 
-{% if snippet.language %}
-  {% assign langpath = snippet.language | append: '/' %}
-{% endif %}
-
 {% capture snippet_path %}snippets/python/{{ snippet.path }}{% endcapture %}
 
 {% highlight python linenos %}

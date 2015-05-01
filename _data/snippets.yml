@@ -51,9 +51,16 @@ monkey_patching:
   dynamic_static_classmethods:
     name: Dynammic class- and staticmethods
     path: monkey-patching/dynamic_static_classmethods.py
+    
+  dynamic_init:
+    name: A decorator that dynamically creates typechecked init methods
+    path: monkey-patching/dynamic_init.py
 
 
 functor:
   cmd_args:
     name: Defining command line arguments with the options package
     path: functors/cmd_args.hs
+  tuples:
+    name: Constructing with the Applicative Functor
+    path: functors/tuples.hs
