@@ -52,3 +52,16 @@ tt, code, kbd, samp {
   padding: 10px;
   float: left;
 }
+
+.info-box {
+  padding: 30px 35px;
+}
+
+.blue {
+  color: $white;
+  background-color: $alt-blue;
+}
+
+.blue a {
+  color: $orange;
+}
