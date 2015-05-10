@@ -1,4 +1,6 @@
-# Site settings
+
+# Default Site settings
+# --------------------------------
 title: justus' homepage - v2.0
 email: justus@justusadam.com
 description: > # this means to ignore newlines until "baseurl:"
@@ -7,6 +9,12 @@ baseurl: "" # the subpath of your site, e.g. /blog/
 url: "http://justus.science" # the base hostname & protocol for your site
 twitter_username: justusadam_
 github_username:  justusadam
+
+# --------------------------------
+
+
+# Custom additions
+# --------------------------------
 quick_view_length: 100
 paginate: 5
 snippet_base_url: "https://github.com/JustusAdam/justusadam.github.io/tree/master/_includes"
@@ -16,11 +24,20 @@ page_logo:
   svg: /images/lambda-logo-filled-gradient.svg
   small: /images/lambda-logo-filled-gradient.svg
 
+# --------------------------------
+
 # Build settings
+# --------------------------------
 markdown: kramdown
 
 sass:
   style: :compressed
+  
+gems:
+  - jekyll-mentions
+  - jemoji
+  - jekyll-redirect-from
+  - jekyll-sitemap
 
 defaults:
   -
@@ -56,3 +73,5 @@ collections:
   legal:
     output: true
   quick_facts:
+
+# --------------------------------
