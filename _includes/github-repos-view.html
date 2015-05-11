@@ -1,20 +1,34 @@
 {% if site.github %}
 <div class="github-repo-overview">
+
   {% assign repos = site.github.public_repositories | sort: 'created_at' | reverse %}
   {% assign extra_sites = site.data.projects.additional_sites %}
   {% for repo in repos %}
+
     <div class="repository">
+
       <h3 class="repository-name"><a href="{{ repo.html_url }}">{{ repo.name }}{% if repo.fork %} (fork){% endif %}</a></h3>
+
       <p class="repo-description">
         {{ repo.description }}
       </p>
+
       <p class="repository-statistics small light-font">
         <span class="watchers">Watchers: {{ repo.watchers_count }}</span>
         <span class="stargazers">Stars: {{ repo.stargazers_count }}</span>
         <span class="forks">Forks: {{ repo.forks_count }}</span>
       </p>
+
       {% if extra_sites contains repo.name %}
         <p><a href="{{ extra_sites[repo.name].url }}">Local project page</a></p>
+      {% endif %}
+
+      {% if repo.has_pages %}
+        <p><a href="{{ repo.owner.login }}.github.io/{{ repo.name }}">GitHub Pages</a></p>
+      {% endif %}
+
+      {% if repo.homepage %}
+        <p><a href="{{ repo.homepage }}">External Homepage</a></p>
       {% endif %}
     </div>
   {% endfor %}
