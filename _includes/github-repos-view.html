@@ -11,13 +11,16 @@
 
       <p class="repository-statistics small right">
         <span class="watchers">
-          <a class="button watch-link" href="{{ repo.html_url }}/notification/subscribe">Watchers: {% include weighted-number.html number=repo.watchers_count %}</a>
+          <a class="button watch-link" href="{{ repo.html_url }}/notification/subscribe">Watchers</a>
+          <span class="stat-count">{% include weighted-number.html number=repo.watchers_count %}</span>
         </span>
         <span class="stargazers">
-          <a class="button star-link" href="{{ repo.html_url }}/star">Stars: {% include weighted-number.html number=repo.stargazers_count %}</a>
+          <a class="button star-link" href="{{ repo.html_url }}/star">Stars</a>
+          <span class="stat-count">{% include weighted-number.html number=repo.stargazers_count %}</span>
         </span>
         <span class="forks">
-          <a class="button fork-link" href="{{ repo.html_url }}/fork">Forks: {% include weighted-number.html number=repo.forks_count %}</a>
+          <a class="button fork-link" href="{{ repo.html_url }}/fork">Forks</a>
+          <span class="stat-count">{% include weighted-number.html number=repo.forks_count %}</span>
         </span>
       </p>
 
