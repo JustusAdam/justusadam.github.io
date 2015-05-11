@@ -19,17 +19,19 @@
         <span class="forks">Forks: {{ repo.forks_count }}</span>
       </p>
 
-      {% if extra_sites contains repo.name %}
-        <p><a href="{{ extra_sites[repo.name].url }}">Local project page</a></p>
-      {% endif %}
+      <p class="external-pages">
+        {% if extra_sites contains repo.name %}
+          <span><a href="{{ extra_sites[repo.name].url }}">Local project page</a></span>
+        {% endif %}
 
-      {% if repo.has_pages %}
-        <p><a href="{{ repo.owner.login }}.github.io/{{ repo.name }}">GitHub Pages</a></p>
-      {% endif %}
+        {% if repo.has_pages %}
+          <span><a href="http://{{ repo.owner.login }}.github.io/{{ repo.name }}">GitHub Pages</a></span>
+        {% endif %}
 
-      {% if repo.homepage %}
-        <p><a href="{{ repo.homepage }}">External Homepage</a></p>
-      {% endif %}
+        {% if repo.homepage and repo.fork != true %}
+          <span><a href="{{ repo.homepage }}">External Homepage</a></span>
+        {% endif %}
+      </p>
     </div>
   {% endfor %}
 </div>
