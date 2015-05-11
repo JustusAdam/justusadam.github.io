@@ -67,7 +67,7 @@ tt, code, kbd, samp {
   padding: 30px 35px;
 }
 
-.blue {
+.info-box.blue {
   color: $white;
   background-color: $alt-blue;
 }
@@ -79,4 +79,20 @@ tt, code, kbd, samp {
 .external-pages > span {
   margin-right: 20px;
   display: inline-block;
+}
+
+.blue {
+  color: #3050b1
+}
+
+.red {
+  color: #ec185e;
+}
+
+.green {
+  color: #83d84b;
+}
+
+.black {
+  color: black;
 }
