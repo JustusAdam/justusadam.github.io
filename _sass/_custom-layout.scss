@@ -81,18 +81,18 @@ tt, code, kbd, samp {
   display: inline-block;
 }
 
-.blue {
-  color: #3050b1
-}
-
-.red {
-  color: #ec185e;
-}
-
-.green {
+.weighted-light {
   color: #83d84b;
 }
 
-.black {
-  color: black;
+.weighted-middle {
+  color: #e29d27;
+}
+
+.weighted-heavy {
+  color: #ec185e;
+}
+
+.weighted-none {
+  color: $grey-color;
 }
