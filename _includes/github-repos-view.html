@@ -10,9 +10,15 @@
       <h3 class="repository-name left"><a href="{{ repo.html_url }}">{{ repo.name }}{% if repo.fork %} (fork){% endif %}</a></h3>
 
       <p class="repository-statistics small right">
-        <span class="watchers">Watchers: {% include weighted-number.html number=repo.watchers_count %}</span>
-        <span class="stargazers">Stars: {% include weighted-number.html number=repo.stargazers_count %}</span>
-        <span class="forks">Forks: {% include weighted-number.html number=repo.forks_count %}</span>
+        <span class="watchers">
+          <a class="button watch-link" href="{{ repo.html_url }}/notification/subscribe">Watchers: {% include weighted-number.html number=repo.watchers_count %}</a>
+        </span>
+        <span class="stargazers">
+          <a class="button star-link" href="{{ repo.html_url }}/star">Stars: {% include weighted-number.html number=repo.stargazers_count %}</a>
+        </span>
+        <span class="forks">
+          <a class="button fork-link" href="{{ repo.html_url }}/fork">Forks: {% include weighted-number.html number=repo.forks_count %}</a>
+        </span>
       </p>
 
       <div class="clearfix"></div>
