@@ -11,13 +11,16 @@
 
       <p class="repository-statistics small right">
         <span class="button watchers">
-          <a class="watch-link" href="{{ repo.html_url }}/notifications/subscribe">Watchers</a><span class="stat-count">{% include weighted-number.html number=repo.watchers_count %}</span>
+          <!-- <a class="watch-link" href="{{ repo.html_url }}/notifications/subscribe">Watchers</a><span class="stat-count">{% include weighted-number.html number=repo.watchers_count %}</span> -->
+          <span class="watch-link">Watchers</span><span class="stat-count">{% include weighted-number.html number=repo.watchers_count %}</span>
         </span>
         <span class="button stargazers">
-          <a class="star-link" href="{{ repo.html_url }}/star">Stars</a><span class="stat-count">{% include weighted-number.html number=repo.stargazers_count %}</span>
+          <!-- <a class="star-link" href="{{ repo.html_url }}/star">Stars</a><span class="stat-count">{% include weighted-number.html number=repo.stargazers_count %}</span> -->
+          <span class="star-link">Stars</span><span class="stat-count">{% include weighted-number.html number=repo.stargazers_count %}</span>
         </span>
         <span class="button forks">
-          <a class="fork-link" href="{{ repo.html_url }}/fork">Forks</a><span class="stat-count">{% include weighted-number.html number=repo.forks_count %}</span>
+          <!-- <a class="fork-link" href="{{ repo.html_url }}/fork">Forks</a><span class="stat-count">{% include weighted-number.html number=repo.forks_count %}</span> -->
+          <span class="fork-link">Forks</span><span class="stat-count">{% include weighted-number.html number=repo.forks_count %}</span>
         </span>
       </p>
 
