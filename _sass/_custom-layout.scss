@@ -101,12 +101,28 @@ tt, code, kbd, samp {
   border: 1px solid $grey-color-light;
   border-radius: 5px;
   display: inline-block;
-  padding: 3px 5px;
   box-shadow: 0 0 2px $grey-color-light;
   text-decoration: none;
   color: $grey-color;
+
+  a {
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: none;
+  }
+}
+
+.button > a, .button > span, .button div {
+  padding: 3px 7px;
+  display: inline-block;
+}
+
+.button:hover {
+  text-decoration: none;
 }
 
 .stat-count {
-  padding: 3px 5px;
+  border-left: 1px solid $grey-color-light;
 }
