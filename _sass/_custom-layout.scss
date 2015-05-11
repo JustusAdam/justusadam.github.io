@@ -40,11 +40,21 @@ tt, code, kbd, samp {
 }
 
 .github-repo-overview .repository {
-  margin: 25px;
+  margin: 10px;
+  padding: 10px;
+  border-bottom: 1px solid $grey-color-light;
+}
+
+.github-repo-overview .repository.last {
+  border-bottom-style: none;
+}
+
+.repository-statistics {
+  margin-top: 15px;
 }
 
 .repository-statistics > span {
-  margin-right: 25px;
+  margin-left: 25px;
 }
 
 .page-logo {

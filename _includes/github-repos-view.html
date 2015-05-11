@@ -5,18 +5,20 @@
   {% assign extra_sites = site.data.projects.additional_sites %}
   {% for repo in repos %}
 
-    <div class="repository">
+    <div class="repository{% if forloop.last %} last{% endif %}">
 
-      <h3 class="repository-name"><a href="{{ repo.html_url }}">{{ repo.name }}{% if repo.fork %} (fork){% endif %}</a></h3>
+      <h3 class="repository-name left"><a href="{{ repo.html_url }}">{{ repo.name }}{% if repo.fork %} (fork){% endif %}</a></h3>
 
-      <p class="repo-description">
-        {{ repo.description }}
-      </p>
-
-      <p class="repository-statistics small light-font">
+      <p class="repository-statistics small right">
         <span class="watchers">Watchers: {{ repo.watchers_count }}</span>
         <span class="stargazers">Stars: {{ repo.stargazers_count }}</span>
         <span class="forks">Forks: {{ repo.forks_count }}</span>
+      </p>
+
+      <div class="clearfix"></div>
+
+      <p class="repo-description">
+        {{ repo.description }}
       </p>
 
       <p class="external-pages">
