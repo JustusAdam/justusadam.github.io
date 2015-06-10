@@ -1,5 +1,5 @@
 ---
-title: The Schedule web-app is finally live
+title: The Schedule Planner web-app is finally live
 author: Justus
 ---
 
