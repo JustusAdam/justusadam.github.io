@@ -1,4 +1,4 @@
 ---
 number: 1
 ---
-The schedule planner webapp is [live here]({{ site.baseurl }}schedule-planner-web/).
+The schedule planner webapp is [live here]({{ site.baseurl }}schedule-planner-web/){:target="_blank"}.
