@@ -1,11 +1,13 @@
 {% if site.github %}
 <div class="github-repo-overview">
 
+  <a class="button toggle-forks">Show forks</a>
+
   {% assign repos = site.github.public_repositories | sort: 'created_at' | reverse %}
   {% assign extra_sites = site.data.projects.additional_sites %}
   {% for repo in repos %}
 
-    <div class="repository{% if forloop.last %} last{% endif %}">
+    <div class="repository{% if forloop.last %} last{% endif %}{% if repo.fork %} is-fork{% endif %}">
 
       <h3 class="repository-name left"><a href="{{ repo.html_url }}">{{ repo.name }}{% if repo.fork %} (fork){% endif %}</a></h3>
 
