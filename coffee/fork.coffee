@@ -17,27 +17,23 @@ show = (elem) ->
 class ForkActions
   constructor: ->
     @forks = document.getElementsByClassName('is-fork')
-    @toggle_buttons = document.getElementsByClassName('toggle-forks')
+    @toggle_button_elem = document.getElementById('toggle-forks')
     @showing = true
     @toggle_forks()
 
-    map @toggle_buttons, (e) =>
-      e.addEventListener("click", => @toggle_forks())
-
-  toggle_button: (message) ->
-    console.log(@toggle_buttons)
-    map @toggle_buttons, (e) ->
-      e.innerHTML = message
+    @toggle_button_elem.addEventListener("click", => @toggle_forks())
 
   toggle_forks: ->
+    console.log('hallo')
     if @showing
       @showing = false
       map @forks, hide
-      @toggle_button "Show forks"
+      @toggle_button_elem.removeAttribute('checked')
     else
       @showing = true
       map @forks, show
-      @toggle_button "Hide forks"
+      if @toggle_button_elem.hasAttribute('checked')
+        @toggle_button_elem.setAttribute('checked')
 
 
 window.onload = ->

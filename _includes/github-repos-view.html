@@ -1,7 +1,8 @@
 {% if site.github %}
 <div class="github-repo-overview">
 
-  <a href="#" class="toggle-forks">Show forks</a>
+  <label for="toggle-forks">Show forks</label>
+  <input id="toggle-forks" type="checkbox">
 
   {% assign repos = site.github.public_repositories | sort: 'created_at' | reverse %}
   {% assign extra_sites = site.data.projects.additional_sites %}
@@ -46,4 +47,12 @@
     </div>
   {% endfor %}
 </div>
+
+{% else %}
+
+<label for="toggle-forks">Show forks</label>
+<input id="toggle-forks" type="checkbox">
+
+<div class="is-fork">kf</div>
+
 {% endif %}
