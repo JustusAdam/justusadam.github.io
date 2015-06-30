@@ -1,7 +1,7 @@
 {% if site.github %}
 <div class="github-repo-overview">
 
-  <a class="button toggle-forks">Show forks</a>
+  <a href="#" class="toggle-forks">Show forks</a>
 
   {% assign repos = site.github.public_repositories | sort: 'created_at' | reverse %}
   {% assign extra_sites = site.data.projects.additional_sites %}

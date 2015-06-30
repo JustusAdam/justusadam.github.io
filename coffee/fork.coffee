@@ -7,37 +7,37 @@ map = (iter, func) ->
 
 
 hide = (elem) ->
-  elem.setAttribute('display', 'none')
+  elem.style.display = 'none'
 
 
 show = (elem) ->
-  elem.setAttribute('display', 'block')
+  elem.style.display = 'block'
 
-forks = ->
-  document.getElementsByClassName('is-fork')
-
-
-get_toggle_button = ->
-  document.getElementsByClassName('toggle-forks')
-
-show_forks = ->
-  map forks(), show
-
-  map get_toggle_button(), (e) ->
-    e.innerHTML = "Hide forks"
-    e.addEventListener("click", hide_forks)
-
-
-hide_forks= ->
-  map forks(), hide
-
-  map get_toggle_button(), (e) ->
-    e.innerHTML = "Show forks"
-    e.addEventListener("click", show_forks)
 
 class ForkActions
   constructor: ->
-    hide_forks()
+    @forks = document.getElementsByClassName('is-fork')
+    @toggle_buttons = document.getElementsByClassName('toggle-forks')
+    @showing = true
+    @toggle_forks()
+
+    map @toggle_buttons, (e) =>
+      e.addEventListener("click", => @toggle_forks())
+
+  toggle_button: (message) ->
+    console.log(@toggle_buttons)
+    map @toggle_buttons, (e) ->
+      e.innerHTML = message
+
+  toggle_forks: ->
+    if @showing
+      @showing = false
+      map @forks, hide
+      @toggle_button "Show forks"
+    else
+      @showing = true
+      map @forks, show
+      @toggle_button "Hide forks"
 
 
 window.onload = ->
