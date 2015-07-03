@@ -127,3 +127,16 @@ tt, code, kbd, samp {
 .stat-count {
   border-left: 1px solid $grey-color-light;
 }
+
+
+.toggle-box {
+  float: left;
+  padding: 0px 6px 3px;
+  border: 1px none $grey-color-light;
+  border-top-style: solid;
+  border-bottom-style: solid;
+
+  label {
+    font-size: small;
+  }
+}
