@@ -18,6 +18,6 @@
     <path d="M 0 0 L 325 0 L 25 400 L 0 400 z" fill="#ffa13c" />
     <path d="M 50 0 L 400 0 L 400 400 L 350 400 z" fill="white"></path>
     <path d="M 100 0 L 400 0 L 400 400 L 400 400 z" fill="#3a8de5" />
-    <rect x="0" y="0" width="400" height="400" fill="url(#MyGradient)" />
+
   </g>
 </svg>

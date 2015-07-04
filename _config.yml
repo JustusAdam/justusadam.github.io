@@ -20,9 +20,9 @@ paginate: 5
 snippet_base_url: "https://github.com/JustusAdam/justusadam.github.io/tree/master/_includes"
 
 page_logo:
-  default: /images/lambda-logo-filled-gradient.svg
+  default: /images/logo.png
   svg: /images/lambda-logo-filled-gradient.svg
-  small: /images/lambda-logo-filled-gradient.svg
+  small: /images/logo.png
 
 # --------------------------------
 
@@ -32,7 +32,7 @@ markdown: kramdown
 
 sass:
   style: :compressed
-  
+
 gems:
   - jekyll-mentions
   - jemoji
