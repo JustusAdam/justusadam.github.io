@@ -51,7 +51,7 @@ monkey_patching:
   dynamic_static_classmethods:
     name: Dynammic class- and staticmethods
     path: monkey-patching/dynamic_static_classmethods.py
-    
+
   dynamic_init:
     name: A decorator that dynamically creates typechecked init methods
     path: monkey-patching/dynamic_init.py
@@ -64,3 +64,9 @@ functor:
   tuples:
     name: Constructing with the Applicative Functor
     path: functors/tuples.hs
+
+
+hspec:
+  pathSpec:
+    name: An example for a hspec test (spec)
+    path: hspec/PathSpec.hs
