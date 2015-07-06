@@ -28,19 +28,37 @@ An example:
 
 This code is not just nice to read, but also produces actual testing output that is easy to read AND it is also fun to write.
 
-    [function] isPathLine
-      returns true if the line starts with "PATH="
-      returns true if the line starts with "path="
-      rejects a string not containing PATH=
-      rejects the empty string
-      rejects any random string containing "PATH="
-    [function] alterMaybe
-      alters a line matching the predicate
-      alters the first ocurrence only
-      fails if the predicate matches nothing
+<pre>
+<code>[function] isPathLine
+<span class="green">  returns true if ⍵ starts with "PATH="</span>
+<span class="green">  returns true if ⍵ starts with "path="</span>
+<span class="green">  rejects ⍵ := {"PATH=" ∉ ⍵}</span>
+<span class="green">  rejects 𝜖</span>
+<span class="green">  rejects any random string containing "PATH="</span>
+[function] alterMaybe
+<span class="green">  alters a line matching the predicate</span>
+<span class="green">  alters the first ocurrence only</span>
+<span class="green">  fails if the predicate matches nothing</span>
+[function] addToPathLine
+<span class="red">  appends a path to PATH when mode=Append FAILED [1]</span>
+<span class="red">  prepends a path in PATH when mode=Prepend FAILED [2]</span>
 
-    Finished in 0.0044 seconds
-    8 examples, 0 failures
+Failures:
+
+  1) [function] addToPathLine appends a path to PATH when mode=Append
+<span class="red">       expected: "PATH=/old/path:/another:/new/path"</span>
+<span class="red">        but got: "PATH=/new/path:/old/path:/another"</span>
+
+  2) [function] addToPathLine prepends a path in PATH when mode=Prepend
+<span class="red">       expected: "PATH=/new/path:/old/path:/another"</span>
+<span class="red">        but got: "PATH=/old/path:/another:/new/path"</span>
+
+Randomized with seed 847662247
+
+Finished in 0.0131 seconds
+<span class="red">10 examples, 2 failures</span>
+</code>
+</pre>
 
 As a result I started writing a whole bunch of tests my project. The `Spec.hs` file is now about 180 lines long.
 
