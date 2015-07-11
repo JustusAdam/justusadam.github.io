@@ -2,7 +2,7 @@
 # Default Site settings
 # --------------------------------
 title: justus' homepage - v2.0
-email: justus@justusadam.com
+email: me@justus.science
 description: > # this means to ignore newlines until "baseurl:"
   This page is about who I am and what I do. Plus it contains my personal blog.
 baseurl: "" # the subpath of your site, e.g. /blog/
