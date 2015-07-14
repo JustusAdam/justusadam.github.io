@@ -27,14 +27,14 @@ class ForkActions
     console.log('hallo')
     if @showing
       @showing = false
-      map @forks, hide
+      hide for fork in @forks
       @toggle_button_elem.removeAttribute('checked')
     else
       @showing = true
-      map @forks, show
+      show for fork in @forks
       if @toggle_button_elem.hasAttribute('checked')
         @toggle_button_elem.setAttribute('checked')
 
 
-window.onload = ->
+window.addEventListener "DOMContentLoaded", ->
   window.forkActions = new ForkActions()
