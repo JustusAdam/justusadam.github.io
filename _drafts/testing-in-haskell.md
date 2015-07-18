@@ -20,7 +20,7 @@ As is to be expected following the refactoring (and major effort to get the code
 
 Now I hadn't written a single test in Haskell yet. I had heard of [QuickCheck](https://hackage.haskell.org/package/QuickCheck) but I not actually used it yet. I also knew QuickCheck wasn't the tool I needed right now. I wasn't that my software was going to go into production and I had to check for corner cases through random testing. No, I required good old fashion unit tests to see which Filter was causing the problem or whether or not it was perhaps the chaining of those filters.
 
-So I started looking at [hspec](https://hackage.haskell.org/package/hspec). Hspec is a library designed to basically imitate [RSpec](http://rspec.info), a popular [Ruby](https://ruby-lang.org) testing tool, which allows you you to write very easy and comfortable to read tests, by structuring the library such that the test code itself would almost look like normal, valid, english sentences.
+So I started looking at [hspec](https://hackage.haskell.org/package/hspec). Hspec is a library designed to conceptually resemble [RSpec](http://rspec.info), a popular [Ruby](https://ruby-lang.org) testing tool, which allows you you to write very easy and comfortable to read tests, by structuring the library such that the test code itself would almost look like normal, valid, english sentences.
 
 An example:
 
@@ -30,14 +30,14 @@ This code is not just nice to read, but also produces actual testing output that
 
 <pre>
 <code>[function] isPathLine
-<span class="green">  returns true if ⍵ starts with "PATH="</span>
-<span class="green">  returns true if ⍵ starts with "path="</span>
+<span class="green">  is true if ⍵ starts with "PATH="</span>
+<span class="green">  is true if ⍵ starts with "path="</span>
 <span class="green">  rejects ⍵ := {"PATH=" ∉ ⍵}</span>
 <span class="green">  rejects 𝜖</span>
 <span class="green">  rejects any random string containing "PATH="</span>
 [function] alterMaybe
 <span class="green">  alters a line matching the predicate</span>
-<span class="green">  alters the first ocurrence only</span>
+<span class="green">  alters the first occurrence only</span>
 <span class="green">  fails if the predicate matches nothing</span>
 [function] addToPathLine
 <span class="red">  appends a path to PATH when mode=Append FAILED [1]</span>

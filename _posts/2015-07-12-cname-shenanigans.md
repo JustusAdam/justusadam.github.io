@@ -22,9 +22,9 @@ That could have been the end of it, if not for a couple of days ago, when I deci
 
 Turns out setting a CNAME entry for a domain pretty much overrides everything. CNAME's are designed to redirect *all* traffic to a (sub)domain to another domain, all traffic, including email. When A CNAME has been set the DNS server will ignore any other entry for that same name or flat out reject you setting any additional entries for the domain. Thus by setting one for 'justus.science' I inadvertently directed all emails going to *any-address@justus.science* to GitHub pages, which does not provide an email service and as a result dropped them.
 
-Fixing it was rather simple. A second look at the GitHub pages help pages revealed that, any type of DNS entry could be used for a page (and why shouldn't it). So I changed the CNAME entrty to an A entry[^aentry] to [GitHub's IP][githubaname], waited for the TTL to expire, send test mails again and suddenly they all arrived as expected, where expected. The MX entry was in effect.
+Fixing it was rather simple. A second look at the GitHub pages help pages revealed that, any type of DNS entry could be used for a page (and why shouldn't it). So I changed the CNAME entrty to an A entry[^aentry] to [GitHub's IP][githubname], waited for the TTL to expire, send test mails again and suddenly they all arrived as expected, where expected. The MX entry was in effect.
 
-[githubaname]: https://help.github.com/articles/tips-for-configuring-an-a-record-with-your-dns-provider/
+[githubname]: https://help.github.com/articles/tips-for-configuring-an-a-record-with-your-dns-provider/
 
 [^aentry]:
-    If you'd like to know more about setting A names with GitHub, [here][githubaname] is the official help page.
+    If you'd like to know more about setting A names with GitHub, [here][githubname] is the official help page.
