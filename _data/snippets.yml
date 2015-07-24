@@ -70,3 +70,17 @@ hspec:
   pathSpec:
     name: An example for a hspec test (spec)
     path: hspec/PathSpec.hs
+
+http:
+  start:
+    name: How it starts.
+    path: http/Start.hs
+  form:
+    name: Requests with form data
+    path: http/Form.hs
+  utf8:
+    name: Making utf-8 encoded text
+    path: http/Utf8.hs
+  authenticate:
+    name: Performing authenticated Requests
+    path: http/Authenticate.hs
