@@ -27,11 +27,11 @@ class ForkActions
     console.log('hallo')
     if @showing
       @showing = false
-      hide for fork in @forks
+      hide(fork) for fork in @forks
       @toggle_button_elem.removeAttribute 'checked'
     else
       @showing = true
-      show for fork in @forks
+      show(fork) for fork in @forks
       if @toggle_button_elem.hasAttribute 'checked'
         @toggle_button_elem.setAttribute 'checked'
 
