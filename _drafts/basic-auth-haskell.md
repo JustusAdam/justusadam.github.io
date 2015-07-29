@@ -51,8 +51,32 @@ Sending requests with actual (x-www-urlencoded) payload is, as I discovered with
 ## Requests with Authentication
 
 Even though it took me a relatively long time to figure out how to do authentication with this library, it is actually relatively simple.
+The BrowserAction will actually handle most of the hard authentication work for you, provided the webpage you're visiting communicates in the canonical way, using HTTP error codes.
 
-<!-- TODO Authentication -->
+When performing the POST or GET request with the `request` function the Browser action will check the returned status code and take action depending on the code. The two codes that are of interest are 200 (Status OK) and 401 (Unauthorized).
+In case of 200 the server has computed the resource you requested and BrowserAction will simply return the body of the request. In case of 401 the server requests you to authenticate to it.
+
+If the server requests the authentication, BrowserAction will attempt to satisfy the authentication by fetching a Username, Password combination from a generator function and sending a request for authentication to the server, retrying the original request afterwards.
+The type signature for the generator function is `URI -> String -> IO (Maybe (String, String))` and by default is equivalent to `\_ _ -> return Nothing` aka there will be no authentication for any URI.
+You can however set your own generator function with the `setAuthorityGen` function in the BrowserAction.
+
+#### A few things to note about the generator function
+
+- The two arguments provided are the full URI for the requested resource and the so called realm, which is a message the server sends to unauthorized clients.  
+    Thus your generator function can return different Username, Password combinations depending on the URI.
+- The generator function returns a maybe. If you don't recognize the URI that it is trying to authenticate for you don't have to provide any credentials by simply returning `Nothing`
+- The return type of the generator function is an IO computation, which means you may read the credentials from a file or request them from a different server.
+
+#### How does this look in practice?
+
+A very simple authenticated request could look something like this.
+
+{% include haskell-snippet.html snippet=snippets.authenticate %}
+
+Another version of the provider function, for multiple URI's would be by hardcoding an association list of them and fetching from the list. Like in the example below.
+
+{% include haskell-snippet.html snippet=snippets.list_auth %}
+
 
 ## Sending literal JSON
 
@@ -65,5 +89,3 @@ The JSON standard requires the text to be unicode encoded. However when using st
 [warp]: https://hackage.haskell.org/package/warp
 
 {% include haskell-snippet.html snippet=snippets.utf8 %}
-
-<!-- TODO UTF encoding for literal json -->

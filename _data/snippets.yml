@@ -84,3 +84,6 @@ http:
   authenticate:
     name: Performing authenticated Requests
     path: http/Authenticate.hs
+  list_auth:
+    name: Using an association list for providing Passwords
+    path: http/ListAuth.hs
