@@ -6,14 +6,16 @@ title: Basic authenticated http requests and forms in Haskell
 
 ## Prelude
 
-I've recently needed to make a basic, authenticated HTTP request in Haskell, however I found it difficult to find examples and documentation on the web so I thought I'd share my findings with the world in the form of a blog post (and a gist).
+I've recently needed to make a basic, authenticated HTTP request in Haskell, however I found it difficult to find examples and documentation on the web so I thought I'd share my findings with the world in the form of a blog post (and a [gist][]).
+
+[gist]: https://gist.github.com
 
 First of all, in order to use http in Haskell you'll want to use the right library. Fortunately for me I already knew a library which is sort of the standard library for Haskell when it comes to http (client side). The aptly named [HTTP][] library.
 
 [HTTP]: https://hackage.haskell.org/package/HTTP
 [hackage]: https://hackage.haskell.org
 
-The hackage page for the [hackage][] page for the [HTTP][] library albeit being helpful does not provide very many examples on how to use it and more importantly does not provide a lot of guidance for beginners when it comes to choosing the right submodule for a particular task.
+The Hackage page for the [hackage][] page for the [HTTP][] library albeit being helpful does not provide very many examples on how to use it and more importantly does not provide a lot of guidance for beginners when it comes to choosing the right submodule for a particular task.
 
 I the past I've mostly dealt with the very basic Network.HTTP package. Which is reasonably easy to understand and totally sufficient for simple, unauthenticated **GET** requests. However if you want to do more complicated things like for example auth or cookies it is too low level. For those more complicated requests you'll want to use the Network.Browser module, which seems a bit intimidating at first.
 
@@ -82,10 +84,11 @@ Another version of the provider function, for multiple URI's would be by hardcod
 
 I've also recently had the pleasure to be in a situation where I've wanted to create some very simple json, for which the proper way (via the [aeson][] library) would have felt like overkill,
 
-I wanted to create thw output with just string concatenation and then send it to the client. Unfortunately the [warp][] library, which is sort of the standard web server library for Haskell, uses ByteStrings for output. Now if you do things the canonical way, the [aeson][] way it'll create a unicode encoded ByteString for you and there's nothing to worry about.
+I wanted to create the output with just string concatenation and then send it to the client. Unfortunately the [warp][] library, which is sort of the standard web server library for Haskell, uses ByteStrings for output. Now if you do things the canonical way, the [aeson][] way it'll create a unicode encoded ByteString for you and there's nothing to worry about.
 
 The JSON standard requires the text to be unicode encoded. However when using string literals and concatenation it becomes quite obvious that ByteString is inherently not meant for unicode. So in order to get a Unicode encoded String you'll have create `Text` rather than a `String` and then specifically encode it as a unicode ByteString. You can do this by importing the `Data.Text.Encoding` module or the `Data.Text.Lazy.Encoding` module if you, like me, are dealing with [warp][] and need a lazy ByteString for output and then simply use the `encodeUtf8` function on your `Text`.
 
 [warp]: https://hackage.haskell.org/package/warp
+[aeson]: https://hackage.haskell.org/package/aeson
 
 {% include haskell-snippet.html snippet=snippets.utf8 %}
