@@ -1,10 +1,6 @@
 ---
 ---
 
-map = (iter, func) ->
-  for elem in iter
-    func(elem)
-
 
 hide = (elem) ->
   elem.style.display = 'none'
@@ -24,7 +20,6 @@ class ForkActions
     @toggle_button_elem.addEventListener "click", => @toggle_forks()
 
   toggle_forks: ->
-    console.log('hallo')
     if @showing
       @showing = false
       hide(fork) for fork in @forks
@@ -36,5 +31,5 @@ class ForkActions
         @toggle_button_elem.setAttribute 'checked'
 
 
-window.addEventListener "DOMContentLoaded", ->
+window.addEventListener 'DOMContentLoaded', ->
   window.forkActions = new ForkActions()

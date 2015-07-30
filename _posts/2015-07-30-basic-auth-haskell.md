@@ -1,5 +1,8 @@
 ---
 title: Basic authenticated http requests and forms in Haskell
+description: >
+    There are no examples for using simple authentication with the Haskell
+    HTTP library that I could find. So here is how it's done.
 ---
 
 {% assign snippets = site.data.snippets.http %}
