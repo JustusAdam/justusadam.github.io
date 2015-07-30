@@ -11,7 +11,7 @@ description: >
 
 I've recently needed to make a basic, authenticated HTTP request in Haskell, however I found it difficult to find examples and documentation on the web so I thought I'd share my findings with the world in the form of a blog post (and a [gist][]).
 
-[gist]: https://gist.github.com
+[gist]: https://gist.github.com/JustusAdam/9f1b3da2fadef823ff8b
 
 First of all, in order to use http in Haskell you'll want to use the right library. Fortunately for me I already knew a library which is sort of the standard library for Haskell when it comes to http (client side). The aptly named [HTTP][] library.
 
@@ -76,7 +76,7 @@ You can however set your own generator function with the `setAuthorityGen` funct
 
 A very simple authenticated request could look something like this.
 
-{% include haskell-snippet.html snippet=snippets.authenticate %}
+{% gist 9f1b3da2fadef823ff8b %}
 
 Another version of the provider function, for multiple URI's would be by hardcoding an association list of them and fetching from the list. Like in the example below.
 
