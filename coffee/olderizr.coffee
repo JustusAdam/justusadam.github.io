@@ -16,12 +16,15 @@ changes = [
   ["html", "flash"],
   ["Html", "Flash"],
   ["HTML", "flash"]
-].sort((a, b) -> a[0].length - b[0].length)
+]
+
+changes.sort((a, b) -> a[0].length - b[0].length)
 
 
 changeback = changes
               .map( (i) -> i.reverse() )
-              .sort( (a, b) -> a[0].length - b[0].length )
+
+changeback.sort( (a, b) -> a[0].length - b[0].length )
 
 
 class Olderizr
