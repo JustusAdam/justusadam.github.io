@@ -21,8 +21,7 @@ changes = [
 changes.sort((a, b) -> a[0].length - b[0].length)
 
 
-changeback = changes
-              .map( (i) -> i.reverse() )
+changeback = changes.map( (i) -> i = i.slice(); i.reverse(); i )
 
 changeback.sort( (a, b) -> a[0].length - b[0].length )
 
@@ -39,8 +38,6 @@ class Olderizr
 
   change: ->
 
-    console.log "changing"
-
     if @is_original
       to_change = changes
     else
@@ -54,6 +51,8 @@ class Olderizr
       elem = walker.currentNode
       elem.nodeValue = changeHelper(to_change, elem.nodeValue)
 
+    return
+
 
   changeHelper = (c, start) ->
     c.reduce( (html, i) ->
@@ -64,3 +63,4 @@ class Olderizr
 
 document.addEventListener 'DOMContentLoaded',  ->
   new Olderizr()
+  return
