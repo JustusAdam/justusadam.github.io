@@ -2,7 +2,10 @@
   font-size: small;
 }
 
-p.small, .small p, p.smaller, .smaller p {
+p.small,
+.small p,
+p.smaller,
+.smaller p {
   margin-bottom: 0.5em;
 }
 
@@ -46,6 +49,10 @@ p.small, .small p, p.smaller, .smaller p {
   padding: 7px 13px;
   border: 1px solid $grey-color-light;
   border-radius: 5px;
+
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 @media (max-width: $on-palm) {
@@ -60,7 +67,7 @@ p.small, .small p, p.smaller, .smaller p {
   }
 }
 
-.centered {
+.centered, .center {
   margin-left: auto;
   margin-right: auto;
 }

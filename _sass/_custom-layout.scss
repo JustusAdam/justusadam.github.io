@@ -17,10 +17,10 @@ tt, code, kbd, samp {
     margin: 10px 0 5px;
     padding: 0 5px 5px;
     border-bottom: 1px solid $grey-color-light;
-  }
 
-  li.last {
-    border-bottom-style: none;
+    &.last {
+      border-bottom-style: none;
+    }
   }
 }
 
@@ -105,19 +105,19 @@ tt, code, kbd, samp {
   text-decoration: none;
   color: $grey-color;
 
-  a {
-    text-decoration: none;
-  }
-
-  a:hover {
+  a, a:hover {
     text-decoration: none;
   }
 }
 
-.button > a, .button > span, .button div {
-  padding: 3px 7px;
-  display: inline-block;
-  color: $alt-blue;
+.button {
+  > a,
+  > span,
+  div {
+    padding: 3px 7px;
+    display: inline-block;
+    color: $alt-blue;
+  }
 }
 
 .button:hover {
