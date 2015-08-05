@@ -9,9 +9,19 @@ changes = [
   ["Function", "Bloke"],
   ["Haskell", "PHP"],
   ["Git", "Dude"],
-  ["Monad", "Liquid awesomeness"],
-  ["monad", "liquid awesomeness"]
-]
+  ["Monad", "Boxxiboxbox"],
+  ["monad", "boxxiboxbox"],
+  ["python", "snake oil"],
+  ["Python", "Snake oil"],
+  ["html", "flash"],
+  ["Html", "Flash"],
+  ["HTML", "flash"]
+].sort((a, b) -> a[0].length - b[0].length)
+
+
+changeback = changes
+              .map( (i) -> i.reverse() )
+              .sort( (a, b) -> a[0].length - b[0].length )
 
 
 class Olderizr
@@ -31,15 +41,15 @@ class Olderizr
     if @is_original
       to_change = changes
     else
-      to_change = changes.map( (i) -> i.reverse())
+      to_change = changeback
 
     walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT)
+
+    @is_original = not @is_original
 
     while walker.nextNode()
       elem = walker.currentNode
       elem.nodeValue = changeHelper(to_change, elem.nodeValue)
-
-    @is_original = not @is_original
 
 
   changeHelper = (c, start) ->
