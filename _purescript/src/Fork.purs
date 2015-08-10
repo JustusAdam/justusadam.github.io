@@ -59,7 +59,6 @@ main =
     main' _ = do
       doc <- document globalWindow
 
-      log "executing"
       button <- getElementById "toggle-forks" doc
 
       case button of
@@ -67,7 +66,5 @@ main =
           forks <- getElementsByClassName "is-fork" doc
 
           void $ addMouseEventListener MouseClickEvent (toggleForksEvent forks button) button
-
-          void $ toggleForks forks button
 
         Nothing -> return unit

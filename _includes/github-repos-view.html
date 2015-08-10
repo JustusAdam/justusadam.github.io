@@ -12,7 +12,7 @@
   {% assign extra_sites = site.data.projects.additional_sites %}
   {% for repo in repos %}
 
-    <div class="repository{% if forloop.last %} last{% endif %}{% if repo.fork %} is-fork{% endif %}">
+    <div class="repository{% if forloop.last %} last{% endif %}{% if repo.fork %} hidden is-fork{% endif %}">
 
       <h3 class="repository-name left"><a href="{{ repo.html_url }}">{{ repo.name }}{% if repo.fork %} (fork){% endif %}</a></h3>
 
@@ -59,6 +59,6 @@
 </div>
 <div class="clearfix"></div>
 
-<div class="is-fork">kf</div>
+<div class="is-fork hidden">kf</div>
 
 {% endif %}
