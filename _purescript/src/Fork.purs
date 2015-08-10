@@ -65,6 +65,8 @@ main =
         Just button -> do
           forks <- getElementsByClassName "is-fork" doc
 
+          for forks (classAdd "hidden")
+
           void $ addMouseEventListener MouseClickEvent (toggleForksEvent forks button) button
 
         Nothing -> return unit
