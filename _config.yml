@@ -12,6 +12,8 @@ github_username:  justusadam
 
 # --------------------------------
 
+exclude:
+  - _purescript
 
 # Custom additions
 # --------------------------------
