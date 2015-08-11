@@ -143,3 +143,9 @@ tt, code, kbd, samp {
 
 .red { color: $red; }
 .green { color: $green; }
+
+.hide-forks {
+  .is-fork {
+    display: none;
+  }
+}

@@ -2,11 +2,8 @@ module Fork (main) where
 
 import Data.DOM.Simple.Element
 import Data.DOM.Simple.Events
-import Control.Monad.State.Class
-import Control.Monad.State.Trans
 import Control.Monad.Eff
 import Control.Monad.Eff.Class
-import Control.Monad.Trans
 import Prelude
 import Control.Apply
 import Data.Traversable
@@ -25,30 +22,31 @@ import Data.Maybe
 infixr 9 &
 
 
-toggleForksEvent :: forall a b eff. (Element a, Element b) => Array a -> b -> DOMEvent -> Eff (dom :: DOM.DOM | eff) Unit
-toggleForksEvent a b _ = toggleForks a b
+toggleForksEvent :: forall eff. DOMEvent -> Eff (dom :: DOM.DOM | eff) Unit
+toggleForksEvent _ = toggleForks
 
-toggleForks :: forall a b eff. (Element a, Element b) => Array a -> b -> Eff (dom :: DOM.DOM | eff) Unit
-toggleForks forks button = do
 
-  -- this should be saved some other way
-  how <- hasAttribute "checked" button
+toggleForks :: forall eff. Eff (dom :: DOM.DOM | eff) Unit
+toggleForks = do
+  doc <- document globalWindow
+  docBody <- body doc
 
-  let alterButton =
-        "checked" &
-          if how
-            then removeAttribute
-            else flip setAttribute ""
+  button <- getElementById "toggle-forks" doc
 
-  let alterElements =
-        "hidden" &
-          if how
-            then classAdd
-            else classRemove
+  isHidden <- classContains "hide-forks" docBody
 
-  alterButton button
-  for_ forks $ alterElements
+  maybe
+    (return unit)
+    ("checked" &
+      if isHidden
+        then flip setAttribute ""
+        else removeAttribute)
+    button
 
+  docBody & "hide-forks" &
+    if isHidden
+      then classRemove
+      else classAdd
 
 -- main :: forall eff. Eff (dom :: DOM.DOM | eff) Unit
 main =
@@ -58,15 +56,14 @@ main =
     main' :: forall eff. DOMEvent -> Eff (dom :: DOM.DOM | eff) Unit
     main' _ = do
       doc <- document globalWindow
+      docBody <- body doc
+
+      classAdd "hide-forks" docBody
 
       button <- getElementById "toggle-forks" doc
 
       case button of
-        Just button -> do
-          forks <- getElementsByClassName "is-fork" doc
-
-          for forks (classAdd "hidden")
-
-          void $ addMouseEventListener MouseClickEvent (toggleForksEvent forks button) button
+        Just button ->
+          void $ addMouseEventListener MouseClickEvent toggleForksEvent button
 
         Nothing -> return unit
