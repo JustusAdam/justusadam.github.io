@@ -4,7 +4,8 @@
 title: justus' homepage - v2.0
 email: me@justus.science
 description: > # this means to ignore newlines until "baseurl:"
-  This page is about who I am and what I do. Plus it contains my personal blog.
+  Hello, my name is Justus Adam. I am a computer science student and developer.
+  This page is about who I am and what I do. And it contains my blog.
 baseurl: "" # the subpath of your site, e.g. /blog/
 url: "http://justus.science" # the base hostname & protocol for your site
 twitter_username: justusadam_

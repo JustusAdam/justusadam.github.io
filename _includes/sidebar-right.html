@@ -1,7 +1,7 @@
 <div class="sidebar-right sidebar right column-4 widescreen-only">
   <p>Did you know ...</p>
   <ul class="fact-list smaller">
-    {% assign quick_facts = site.quick_facts | sort: 'number' %}
+    {% assign quick_facts = site.quick_facts | sort: 'weight' %}
     {% for fact in quick_facts %}
       <li{% if forloop.last %} class="last"{% endif %}>{{ fact.output }}</li>
     {% endfor %}
