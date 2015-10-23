@@ -7,7 +7,7 @@ description: The dumb things you can(n't) do with python objects and classes
 {% assign snippets = site.data.snippets.monkey_patching %}
 
 *Hint: all python examples here run on python 3 and you can try them for yourself and experiment.
-The source can be found [here]({{ snippet_base_url }}/snippets/python/monkey-patching)*
+The source can be found [here]({{ site.snippet_base_url }}/snippets/python/monkey-patching)*
 
 As everyone probably knows most objects in python are not static as static as in many other languages. When you create a class you can specify class attributes in the class body and instance attributes in the init method.
 
@@ -123,7 +123,7 @@ We can use that fact to dynamically create classmethods and staticmethods.
 
 I can actually think of very few ways that this can be useful. You should of course not apply this to live objects, since the consequences are highly opaque.
 
-One way of using this though is to take a bunch of classes and add common or dynamically constructed methods to them. 
+One way of using this though is to take a bunch of classes and add common or dynamically constructed methods to them.
 
 The following is an example of a decorator that can be applied to a class and if there are public class variable in the class, whose value is a type, it will remove them and dynamically construct an `__init__` method for the class which requires the names of those fields as keyword arguments, typechecks them and then adds them to the object.
 
@@ -132,7 +132,7 @@ We can easily construct this and then add this new `__init__` method to our clas
 {% include python-snippet.html snippet=snippets.dynamic_init %}
 
 You could just as easily add more to this decorator. The fields it adds could be private by default and it could also add dynamic accessor methods. Instead of just writing types to the class attributes, you could provide further meta information and construct appropriate accessor methods or even not create fields at all and instead create field mimicking accessor methods using `@property`. This can be very useful if your object is tying to hide (or simplify) access to a database or external system by imitating a normal object but instead of accessing fields it may make a database or network connection or read from a file.   
- 
+
 All in all it is I think useful to know that these things are possible, and if used correctly certainly can be a powerful tool. I like the possibilities but I also have never really used it in practice.
 
-Let me know if you'd be interested to see more 'useful' application of this concept and I might make another post about it. 
+Let me know if you'd be interested to see more 'useful' application of this concept and I might make another post about it.

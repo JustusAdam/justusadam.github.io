@@ -24,7 +24,7 @@ And I added some content in the form of short FAQ-like messages titled "Did you 
 </div>
 {% endhighlight %}
 
-But I wasn't satisfied. There were a lot of big and ugly `<a>` tags in there  and the whole thing felt so ... static. Actually writing a `<ul>` element by hand in html felt just ... wrong. Fortunately I had just learnt about [jekyll collections](jekyllrb.com/docs/collections/) and was using them to create some [project pages](/projects/). So I created a new collection called 'quick_facts' and refactored the messages into individual `.md`'s containing markdown source for the messages, plus the YAML Front Matter and added this little line instead of the giant blobs of text from before.
+But I wasn't satisfied. There were a lot of big and ugly `<a>` tags in there  and the whole thing felt so ... static. Actually writing a `<ul>` element by hand in html felt just ... wrong. Fortunately I had just learnt about [jekyll collections](https://jekyllrb.com/docs/collections/) and was using them to create some [project pages](/projects/). So I created a new collection called 'quick_facts' and refactored the messages into individual `.md`'s containing markdown source for the messages, plus the YAML Front Matter and added this little line instead of the giant blobs of text from before.
 
 {% highlight html %}
 {% raw %}

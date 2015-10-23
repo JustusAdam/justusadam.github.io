@@ -147,3 +147,7 @@ tt, code, kbd, samp {
     display: none;
   }
 }
+
+.fun-button {
+  @extend a;
+}
