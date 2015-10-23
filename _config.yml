@@ -10,6 +10,8 @@ github_username:  justusadam
 
 exclude:
   - _purescript
+  - script
+  - vendor
 
 # Custom additions
 # --------------------------------
@@ -42,28 +44,24 @@ feed:
   path: atom.xml
 
 defaults:
-  -
-    scope:
+  - scope:
       path: ""
       type: "posts"
     values:
       layout: "post"
       category: blog
-  -
-    scope:
+  - scope:
       path: ""
       type: "drafts"
     values:
       layout: "post"
       category: drafts
-  -
-    scope:
+  - scope:
       path: ""
       type: "projects"
     values:
       layout: "project"
-  -
-    scope:
+  - scope:
       path: ""
       type: "legal"
     values:
