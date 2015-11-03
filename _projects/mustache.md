@@ -13,8 +13,14 @@ documentation:
 
 ## What?
 
+This is a library for the Haskell programming language that allows parsing of arbitrary text files which use the mustache template syntax and subsequent substitution of parts of the text with data.
+
 > Logic-less templates
 
 Is what the [official homepage][mustache] describes mustache templates as.
 
 [mustache]: http://mustache.github.io
+
+## Why?
+
+I was unsatisfied with the old implementation
