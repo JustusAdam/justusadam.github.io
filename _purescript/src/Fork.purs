@@ -22,7 +22,7 @@ import Data.Maybe
 infixr 9 &
 
 
-toggleForksEvent :: forall eff. DOMEvent -> Eff (dom :: DOM.DOM | eff) Unit
+toggleForksEvent :: forall a eff. a -> Eff (dom :: DOM.DOM | eff) Unit
 toggleForksEvent _ = toggleForks
 
 
