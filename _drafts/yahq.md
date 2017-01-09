@@ -1,3 +1,8 @@
+---
+title: Yet another Haskell quickstart
+author: Justus
+---
+
 1. Nutz nicht cabal direkt, sondern 'stack'
 
     docs.haskellstack.org
