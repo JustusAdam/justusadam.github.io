@@ -17,7 +17,7 @@ The New York Times just published [this](https://www.nytimes.com/2017/12/25/opin
 I should preface by saying that I do not know Mr. Wehner.
 I have never met him, I harbor no ill will against Mr. Wehner nor against his faith, his opinions or Christians in general.
 I only take issue with some (okay, lets be frank **most**) of his arguments in the opinion piece.
-My main concern is that many of his "arguemnts" are phrased in a seemingly reasonable way.
+My main concern is that many of his "arguments" are phrased in a seemingly reasonable way.
 As if to logically construct some conclusion.
 In his mind, I'm sure, those arguments and conclusions seem perfectly sound.
 I will however attempt to deconstruct the narrative and point out the flaws and (in my opinion **gaping**) logical holes in it.
@@ -41,19 +41,19 @@ It is interesting because, as I understand it, and as I have been told by the fa
 One such "turning point" mentioned to me for instance was people tunring to faith towards the end of their lives (in fear presumably).
 Be that as a result of natural causes (age) or tragedy (sickness for instance).
 Similarly the ranks of the faithful grow in numbers in times of general, widespread hardship which would indicate quite the opposite of his experience.
-This is not to be taken as critique, but an intersting obervation.
-It seems to suggest that, actually, in times of crisis people simlpy reevaluate funcamental beliefs.
+This is not to be taken as critique, but an intersting observation.
+It seems to suggest that, actually, in times of crisis people simlpy reevaluate fundamental beliefs.
 
 > This question is compounded during periods like this one, when faith seems to distort reality rather than clarify it, when it’s easily manipulated for low rather than high purpose and when some of those who claim to be people of faith act in ways that bring dishonor to it and themselves.
 
 Well ... This ones's intersting.
-I shall not disaggree with him but rather offer some further considerations.
+I shall not disagree with him but rather offer some further considerations.
 Is not the manipulation of people inherent in faith? 
 Faith, as required by religion, rejects logical argument in favor of trust in some arbitrary autoritarian figure like the pope, a pastor etc.
 This, by design, creates a situation where large groups of people can be persuaded, against their better judgement, emotions and logic to follow an idea or perhaps even orders given by the authority.
 One could be so cynical as to suggest this as the primary goal of faith.
 But suffice it that we just contemplate it.
-I do not with to suggest that religion was formed with ill intent, but merely suggest it created a highly exploitable system.
+I do not want to suggest that religion was formed with ill intent, but merely suggest it created a highly exploitable system.
 
 
 > Why take a leap of faith, given all that? 
@@ -65,7 +65,7 @@ It is.
 > According to the Gospel of John, the other disciples told Thomas that they had seen the risen Lord, to which Thomas replied he wouldn’t believe until he put his fingers in the nail marks in Jesus’ hands and put his hand into Jesus’ side.
 
 Well he seems a reasonable man.
-If somewhat markabre.
+If somewhat macabre.
 I'd have been convinced by seing the man on his feet again.
 
 > Fast-forward a week, when Thomas encounters Jesus, who tells him, "Put your finger here; see my hands. Reach out your hand and put it into my side. Stop doubting and believe." 
@@ -78,13 +78,13 @@ I'd have been convinced by seing the man on his feet again.
 Well now we come to the easy questions.
 Why is faith precious in the eye of god?
 It's literally the only thing keeping him alive.
-And by this I mean alive in the minds of the people, I don't want to start a discussion on the actual existence of god (though you may be abl to guess my stance on the subject).
+And by this I mean alive in the minds of the people, I don't want to start a discussion on the actual existence of god (though you may be able to guess my stance on the subject).
 
-If no one today believed blindly in the miracles of Jesus and the existance of god today then no one would believe in Christianity at all.
-If there were whitnesses to those miracles they are not alive anymore.
+If no one today believed blindly in the miracles of Jesus and the existence of god today then no one would believe in Christianity at all.
+If there were witnesses to those miracles they are not alive anymore.
 It seems in recent years (the last 2000 years) Jesus and god have, for the most part, satisfied themselves by creating small miracles in a style where it may as well have been natural events.
 No big public appearances, no man walking on water or spontaneous whine.
-Thus bind beliefe is all thats left.
+Thus bind believe is all thats left.
 
 > To start out, it’s worth noting that treating Christian faith as different from proof doesn’t mean it’s antithetical to evidence and reason. 
 > Christianity is a faith that claims to be rooted in history, not abstract philosophy. 
@@ -106,9 +106,9 @@ For a statement or fact to be **true** it means for the subject to exist in real
 Now as *reason* is the tool we use to make statements about the world it is by definition the tool to determine truth.
 
 Now if you want to go down the road of Descartes and question whether human/your perception of the world is accurate at all then yes, there is a leap of "faith" required.
-This is necessary as there is not inherent proof, actually not even the possibility of a proof, that what we/you/I experience is actually real.
+This is necessary as there is no inherent proof, actually not even the possibility of a proof, that what we/you/I experience is actually real.
 Therefore if it wasn't real, for instance if you were simply subject of a simluation, then you could not make true statements of the real world but you may not even be aware of it.
-The same is true for causality, the principle that unerlies all human made predictions about nature.
+The same is true for causality, the principle that underlies all human made predictions about nature.
 
 I want to make clear though that I don't really believe it is a leap of "faith" to trust your senses and causality, at least not in the same way religion is.
 The reason is that your senses "make sense".
@@ -118,7 +118,7 @@ For instance if you see a ball flying towards your face you will make the predic
 Many choose in this instance to act on the prediction and dodge the ball, resulting in an avoidance of the collision.
 Though I imagine each and every one has experienced what happens if one is too late to act and the collision takes place.
 Our **observation**, whether actually real or not, has yielded a **prediction**, determined with causality, which was promptly **verified** either by being hit or by avoiding the collision.
-Hence trusting one's senses, though technically a leap of faith, is simply useful ans proven to work.
+Hence trusting one's senses, though technically a leap of faith, is simply useful and has proven to work.
 
 > Denying the existence of God is as much a leap of faith as asserting it. 
 
@@ -160,7 +160,7 @@ To believe in them is a wholly different thing than to believe in the existence 
 > Something would not require faith if the proof of it was absolute. 
 > According to Philip Yancey, the author of "The Jesus I Never Knew," "Faith requires the possibility of rejection, or it is not faith."
 
-That is unequivacly true.
+That is unequivocally true.
 
 > Perhaps the key to understanding why faith is prized within the Christian tradition is that it involves trust that would not be needed if the existence of God were subject to a mathematical proof. 
 > What God is seeking is not our intellectual ascent so much as a relationship with us. 
@@ -171,7 +171,7 @@ That is unequivacly true.
 > That’s true for us as individuals, and it can be true for God as well.
 
 And here we go again with the flawed comparisons.
-But I shall hold my analysis until later, he elaborats on this.
+But I shall hold my analysis until later, he elaborates on this.
 
 > Faith demonstrates human trust in him — and, according to James Forsyth, pastor at McLean Presbyterian Church in Virginia, which my family attends, it demonstrates that we accept God’s love for us. 
 > "There is a force within love that longs to be received," he says.
@@ -190,7 +190,7 @@ But I shall hold my analysis until later, he elaborats on this.
 > For example, I know my wife loves me because I know her, I know her heart, I know her character, and because I trust her. 
 > "Your knowledge of her is less about physical certainty," Ms. Harder wrote to me, "and more about a well-placed confidence in who she is (a faith in her that is qualitatively different, and far more personal and holistic, than intellectual certainty)."
 
-I shall skip the bible talk and go straight to the intersing part, the marital relationship.
+I shall skip the bible talk and go straight to the interesting part, the marital relationship.
 He says he **knows** her, **knows** her heart and **knows** her character.
 How does he **know** those things.
 I'd venture to guess she has repeatedly through action and conversation shown herself, her intentions, her character and so on.
