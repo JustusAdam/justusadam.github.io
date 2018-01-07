@@ -84,7 +84,7 @@ If no one today believed blindly in the miracles of Jesus and the existence of g
 If there were witnesses to those miracles they are not alive anymore.
 It seems in recent years (the last 2000 years) Jesus and god have, for the most part, satisfied themselves by creating small miracles in a style where it may as well have been natural events.
 No big public appearances, no man walking on water or spontaneous whine.
-Thus bind believe is all thats left.
+Thus blind belief is all thats left.
 
 > To start out, it’s worth noting that treating Christian faith as different from proof doesn’t mean it’s antithetical to evidence and reason. 
 > Christianity is a faith that claims to be rooted in history, not abstract philosophy. 
@@ -246,3 +246,13 @@ Until then.
 Be nice to one another.
 
 And Merry Christmas.
+
+
+## Postscript
+
+I have since been informed that the word *truth* actually is distinct from *objective truth*.
+The former (original) meaning is that something is fit for a purpose or achieveing a goal as in the phrase "the arrow flies straight and true".
+The latter decribes an actual fact.
+As such I must submit that if Mr. Wehner was taking about the former form of truth my argument gets considerably weaker.
+The former form of truth is indeed intelligible through all sorts of methods.
+However since he references materialists and proofs I feel safe to assume that Mr. Wehner also was talking about *objective truth* or at least something which aspires to be as in a thruth which, though unproven, we assume to be objectively true.
