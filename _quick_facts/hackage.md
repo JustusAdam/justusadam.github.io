@@ -5,4 +5,4 @@ I maintain several packages under my [account on Hackage ![Haskell Logo][haskell
 
 [hackage]: https://hackage.haskell.org
 [account]: https://hackage.haskell.org/user/justus
-[haskell-logo]: http://evenmere.org/~bts/haskell-logo/logo-0.svg
+[haskell-logo]: https://evenmere.org/~bts/haskell-logo/logo-0.svg
