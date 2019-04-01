@@ -1,6 +1,5 @@
 ---
 layout: default
-title: Home
 ---
 
 ![A picture of me](/images/me.jpg){:width="40%" align="right"}
