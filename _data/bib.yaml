@@ -1,0 +1,31 @@
+- title: Compiling for concise code and efficient I/O
+  publication: Proceedings of the 27th International Conference on Compiler Construction
+  link: https://dl.acm.org/citation.cfm?id=3179505
+  authors:
+    - Sebastian Ertel
+    - Andrés Goens
+    - Justus Adam
+    - Jeronimo Castrillon
+  date: "2018-2-24"
+- title: Supporting Fine-grained Dataflow Parallelism in Big Data Systems.
+  publication: PMAM@ PPoPP
+  date: "2018-2-24"
+  authors:
+    - Sebastian Ertel
+    - Justus Adam
+    - Jeronimo Castrillon
+  link: https://cfaed.tu-dresden.de/files/Images/people/chair-cc/publications/1802_Ertel_PMAM.pdf
+- title: Level Graphs
+  date: "2018"
+  authors:
+    - Andrés Goens
+    - Sebastian Ertel
+    - Justus Adam
+    - Jeronimo Castrillon
+  link: https://cfaed.tu-dresden.de/files/Images/people/chair-cc/publications/1801_Goens_MULTIRPOG.pdf
+- title: Control Flow and Side Effects support in a Framework for automatic I/O batching
+  date: "2017-5-9"
+  authors: [Justus Adam]
+  note: Bachelors Thesis
+  institution: Technische Universität Dresden
+  link: https://cfaed.tu-dresden.de/files/user/sertel/BachelorsThesis-Justus-Adam.pdf
