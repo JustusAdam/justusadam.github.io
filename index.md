@@ -27,6 +27,7 @@ I have been studying computer science at the TU Dresden since 2013. In 2016 I
 did my Bachelors degree and I am now in the process of writing my masters
 thesis.
 
-My undergraduate studies were mostly concerned with a parallelizing compiler
-called [Ohua](https://ohua-dev.github.io/ohua/). You can find the respective
-publications [here](/bib/).
+My undergraduate studies were mostly concerned with the architecture of
+distributed systems and my research so far centers around a parallelizing
+compiler called [Ohua](https://ohua-dev.github.io/ohua/). You can find the
+respective publications [here](/bib/).
