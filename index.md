@@ -30,22 +30,19 @@ Universität Dresden](https://tu-dresden.de).
 ## About me
 
 I have been studying computer science at the TU Dresden since 2013. In 2016 I
-finished my Bachelors degree[^1] and I am now in the process of writing my masters
-thesis[^4].
+finished my Bachelors degree [^1] and I am now in the process of writing my 
+masters thesis [^4].
 
 My undergraduate studies were mostly concerned with the architecture of
 distributed systems. I also work as a student research assistant at the [Chair
 for Compiler Construction](https://cfaed.tu-dresden.de/ccc-about). The research
 I am involved in centers around a parallelizing compiler called
-Ohua [^2] [^3].
+[Ohua](http://ohua-dev.github.io/ohua/).
 
-When I'm not at the university I like to [climb small
-walls](https://kletterarena-dresden.de) (a sport called
-["bouldering"](https://en.wikipedia.org/wiki/Bouldering)) and sing in the
-[university choire](https://unichor-dresden.de). I also enjoy playing video
-games and I occasionally play the piano.
+When I'm not studying or working I like to [climb low rock walls
+](https://en.wikipedia.org/wiki/Bouldering) and I also sing in the
+[university choire](https://unichor-dresden.de). I enjoy playing video
+games and I play the piano.
 
 [^1]: Link to my [Bachelors thesis](https://cfaed.tu-dresden.de/files/user/sertel/BachelorsThesis-Justus-Adam.pdf)
-[^2]: The Ohua [project page](http://ohua-dev.github.io/ohua/)
-[^3]: [Ohua on GitHub](https://github.com/ohua-dev)
-[^4]: [Slides](/pdfs/forschungsprojekt.pdf) to the topic introduction of for my masters thesis
+[^4]: [Slides](/pdfs/forschungsprojekt.pdf) for the topic introduction presentation of for my masters thesis
