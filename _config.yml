@@ -43,6 +43,7 @@ plugins:
   - jekyll-feed
   - jekyll-paginate
   - jekyll-gist
+  - jekyll-coffeescript
 
 feed:
   path: atom.xml
