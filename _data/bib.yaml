@@ -6,10 +6,10 @@
     - Andrés Goens
     - Justus Adam
     - Jeronimo Castrillon
-  date: "2018-2-24"
+  date: "2018-02-24"
 - title: Supporting Fine-grained Dataflow Parallelism in Big Data Systems.
   publication: PMAM@ PPoPP
-  date: "2018-2-24"
+  date: "2018-02-24"
   authors:
     - Sebastian Ertel
     - Justus Adam
@@ -24,7 +24,7 @@
     - Jeronimo Castrillon
   link: https://cfaed.tu-dresden.de/files/Images/people/chair-cc/publications/1801_Goens_MULTIRPOG.pdf
 - title: Control Flow and Side Effects support in a Framework for automatic I/O batching
-  date: "2017-5-9"
+  date: "2017-05-09"
   authors: [Justus Adam]
   note: Bachelors Thesis
   institution: Technische Universität Dresden
