@@ -15,4 +15,6 @@ See also my [Google Scholar user page]({{site.scholar_link}}).
 
 <small> {{p.note}} {{ p.authors | join: ", " }} {% if p.publication %}_{{p.publication }}_{% elsif p.institution %}_{{ p.institution }}_{% endif %} {{ p.date }}</small>
 
+{{ p.comment | markdownify }}
+
 {% endfor %}

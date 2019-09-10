@@ -1,3 +1,13 @@
+- title: "STCLang: State Thread Composition as a Foundation for Monadic Dataflow Parallelism"
+  date: "2019-07-23"
+  link: https://doi.org/10.1145/3331545.3342600
+  publication: "Proceedings of the 12th ACM SIGPLAN International Symposium on Haskell"
+  authors:
+    - Sebastian Ertel
+    - Justus Adam
+    - Norman A. Rink
+    - Andrés Goens
+    - Jeronimo Castrillon
 - title: Compiling for concise code and efficient I/O
   publication: Proceedings of the 27th International Conference on Compiler Construction
   link: https://dl.acm.org/citation.cfm?id=3179505

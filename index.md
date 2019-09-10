@@ -16,6 +16,18 @@ Universität Dresden](https://tu-dresden.de).
 - [A list of publications I worked on](/bib/)
 - [My profile on Google Scholar]({{site.scholar_link}})
 
+#### What I am currently working on
+
+- My masters thesis
+
+  I am working to compile a lambda calculus based language
+  ([Ohua](https://ohua-dev.github.io)) into database queries with user defined
+  operators in [Noria](https://github.com/mit-pdos/noria)
+
+  If you'd like a teaser, there are slides
+  ([pdf](/slides/mt-intermediate-defence.pdf)|[pptx](/slides/mt-intermediate-defence.pptx))
+  I did for my intermediate defence that show what the project is about.
+
 ### Open Source Software
 
 - [My GitHub account](https://github.com/JustusAdam)
@@ -30,7 +42,7 @@ Universität Dresden](https://tu-dresden.de).
 ## About me
 
 I have been studying computer science at the TU Dresden since 2013. In 2016 I
-finished my Bachelors degree [^1] and I am now in the process of writing my 
+finished my Bachelors degree [^1] and I am now in the process of writing my
 masters thesis [^4].
 
 My undergraduate studies were mostly concerned with the architecture of
