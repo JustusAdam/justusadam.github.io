@@ -7,7 +7,9 @@ layout: default
 Hello there,
 
 My name is Justus Adam and I am a student of computer science at the [Technische
-Universität Dresden](https://tu-dresden.de).
+Universität Dresden](https://tu-dresden.de) and I am also a student research
+assistant at the [chair for compiler
+construction](https://cfaed.tu-dresden.de/ccc-about).
 
 ## Stuff you may be interested in
 
@@ -18,15 +20,21 @@ Universität Dresden](https://tu-dresden.de).
 
 #### What I am currently working on
 
-- My masters thesis
+I am in the process of writing my masters thesis.
 
-  I am working to compile a lambda calculus based language
-  ([Ohua](https://ohua-dev.github.io)) into database queries with user defined
-  operators in [Noria](https://github.com/mit-pdos/noria)
+I am compiling a lambda calculus based language
+([Ohua](https://ohua-dev.github.io)) into database queries with custom (user
+defined) operators in [Noria](https://github.com/mit-pdos/noria).
 
-  If you'd like a teaser, there are slides
-  ([pdf](/slides/mt-intermediate-defence.pdf)|[pptx](/slides/mt-intermediate-defence.pptx))
-  I did for my intermediate defence that show what the project is about.
+The goal is to make it possible for users to write database queries in a subset
+of either rust or ML with the ability to manipulate state and have the compiler
+automatically generate operators and query fragments which allows the code to be
+efficiently executed and parallelized and to leverage the unique advantages of
+the noria system (very high throughput on reads).
+
+If you'd like a teaser, there are slides
+([pdf](/slides/mt-intermediate-defence.pdf)|[pptx](/slides/mt-intermediate-defence.pptx))
+I did for my intermediate defence that show what the project is about.
 
 ### Open Source Software
 
