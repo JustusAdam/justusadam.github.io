@@ -18,21 +18,28 @@ construction](https://cfaed.tu-dresden.de/ccc-about).
 
 ### What I am currently working on
 
-I am in the process of writing my masters thesis.
+I have just finished writing and defending my masters thesis and I am now in the
+process of moving to the UK to the University of Kent to start my PhD with
+[Stephen R. Kell](https://www.cs.kent.ac.uk/people/staff/srk21/).
 
-I am compiling a lambda calculus based language
+For the thesis we compiled a lambda calculus based language
 ([Ohua](https://ohua-dev.github.io)) into database queries with custom (user
 defined) operators in [Noria](https://github.com/mit-pdos/noria).
 
-The goal is to make it possible for users to write database queries in a subset
+The goal was to make it possible for users to write database queries in a subset
 of either rust or ML with the ability to manipulate state and have the compiler
 automatically generate operators and query fragments which allows the code to be
 efficiently executed and parallelized and to leverage the unique advantages of
 the noria system (very high throughput on reads).
 
-If you'd like a teaser, there are slides [^5] I did for my intermediate defence
-that show what the project is about. There are also old slides [^4] for the
-topic introduction, but they are not up to date anymore.
+If you are interested, there's a [2-page extended abstract](/pdfs/noria-udfs-extended-abstract.pdf) I wrote that outlines
+the basic ideas. You can also [read the full work](/pdfs/thesis.pdf) or look at
+the slides of my defence
+([pdf](/slides/mt-defence.pdf)|[pptx](/slides/mt-defence.pptx)).
+
+**Old material:** Slides [^5] I did for my intermediate defence that show what
+the project is about. Slides [^4] for the topic introduction, but they are not
+up to date anymore.
 
 ### Open Source Software
 
