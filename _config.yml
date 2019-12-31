@@ -71,6 +71,11 @@ defaults:
       type: "legal"
     values:
       layout: "default"
+  - scope:
+      path: ""
+      type: "england-blog"
+    values:
+      layout: "england-post"
 
 collections:
   projects:
@@ -78,5 +83,7 @@ collections:
   legal:
     output: true
   quick_facts:
+  england-blog:
+    output: true
 
 # --------------------------------

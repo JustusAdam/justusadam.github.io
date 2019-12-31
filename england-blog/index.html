@@ -1,0 +1,50 @@
+---
+layout: default
+---
+
+<div class="home">
+
+  <div class="content fullscreen-on-palm">
+    <h1 class="page-heading">Der England Blog</h1>
+
+    <div style="font-size:90%;">
+        <p>Hallo LeserIn,</p>
+
+        <p>
+            Dies ist ein Blog über meine Erlebnisse und Promotion in England. Er
+            ist vor allem gedacht für Freunde und Familie und daher wohl für
+            anderweitige Leser eher uninteressant, was aber keinen abhalten
+            soll.
+        </p>
+
+        <p>Ich wünsche allen Interessierten viel Spaß beim lesen</p>
+    </div>
+
+    <h2>Einträge</h2>
+
+    <ul class="post-list">
+      {% assign posts = site.england-blog | sort: 'date' %}
+      {% for post in posts %}
+        <li>
+          <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
+
+          <h2 style="margin-bottom: 10px">
+            <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+          </h2>
+          {% if post.description %}
+            {% assign desc = post.description %}
+          {% else %}
+            {% assign desc = post.excerpt | remove: '<p>' | remove: '</p>' %}
+          {% endif %}
+            <p class="small light-font">
+              {{ desc | strip_html | truncate: site.quick_view_length, '...' }}
+            </p>
+        </li>
+      {% endfor %}
+    </ul>
+
+  </div>
+
+  <div class="clearfix"></div>
+
+</div>

@@ -151,3 +151,14 @@ tt, code, kbd, samp {
 .fun-button {
   @extend a;
 }
+
+article.england-blog {
+    font-family: "Times New Roman", serif;
+    padding: 0 2em;
+    text-indent: 4em;
+
+    @include media-query($on-palm) {
+        padding: 0;
+        text-indent: 3em;
+    }
+}
