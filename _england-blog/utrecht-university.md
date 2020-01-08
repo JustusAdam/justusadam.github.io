@@ -28,7 +28,7 @@ Heute dann also die Uni. Ich treffe mich dort mit [Gabrielle
 Keller](https://www.uu.nl/staff/GKKeller)
 ([@gckeller](https://twitter.com/gckeller) auf Twitter) die dort als Professorin
 angestellt ist und ebenfalls an Techniken und Bibliotheken zum parallelen
-Programmieren forscht. Wir haben uns letztes Jahr zu [ICFP](icfp19.sigplan.org/)
+Programmieren forscht. Wir haben uns letztes Jahr zu [ICFP](https://icfp19.sigplan.org/)
 in Berlin kennen gelernt und festgestellt, dass wir in einem ähnlichen Bereich
 forschen.
 
