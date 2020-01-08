@@ -53,7 +53,6 @@ War ganz nett da. Viele Leute waren da und es gab gratis Kuchen und Brötchen.
 Und mit einem letzten Besuch der örtlichen Stammkneipe mit Freunden neigt sich
 der letzte Tag in Deutschland (bis auf weiteres) dem Ende zu.
 
-
 Ich bin sehr, sehr müde und freue mich auf Schlaf. (Zukunftsjustus weiß bereits,
 dass das noch gar nichts ist und ich morgen noch **viel** zeitiger **viel**
 müder sein werde).
