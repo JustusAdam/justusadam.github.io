@@ -161,4 +161,14 @@ article.england-blog {
         padding: 0;
         text-indent: 3em;
     }
+
+    hr {
+        margin-bottom: 1em;
+    }
+}
+
+img.mobile-large {
+    @include media-query($on-palm) {
+        width: 100% !important;
+    }
 }
