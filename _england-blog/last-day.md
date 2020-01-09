@@ -24,7 +24,7 @@ Ich bin doch tatsächlich noch mal pro-forma bei meinen Eltern eingezogen. Und
 das nach 7 1/2 Jahren Unabhängigkeit. Das scheint wohl aber irgendwelche
 Vorteile zu haben. Jedenfalls war ich darauf natürlich **nicht** vorbereitet.
 Die Mitarbeiterin war jedoch sehr kulant und hilfreich und so hat das doch noch
-funktioniert. Und jetzt bin wohne ich offiziell immer noch in Dresden. Der
+funktioniert. Und jetzt wohne ich offiziell immer noch in Dresden. Der
 Stiefvater hat schon gesagt, dass ich mit diesem Arbeitsweg jetzt mächtig
 absahnen könnte... wenn ich Steuern zahlen würde.
 
@@ -52,7 +52,6 @@ War ganz nett da. Viele Leute waren da und es gab gratis Kuchen und Brötchen.
 
 Und mit einem letzten Besuch der örtlichen Stammkneipe mit Freunden neigt sich
 der letzte Tag in Deutschland (bis auf weiteres) dem Ende zu.
-
 
 Ich bin sehr, sehr müde und freue mich auf Schlaf. (Zukunftsjustus weiß bereits,
 dass das noch gar nichts ist und ich morgen noch **viel** zeitiger **viel**
