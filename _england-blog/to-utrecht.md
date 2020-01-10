@@ -93,9 +93,9 @@ vegetarischen/veganen Würstchen)
 ![Fancy Hot Dog](/images/england-blog/to-utrecht/hot-dog.jpg)
 
 Danach wieder am Folien machen. Ich hab keine Lust mehr. Ich bin zu müde. Ich
-mache sie am Ende fertig, indem ich einige aus anderen Talks kopiere und etwas
-verändere. Da sollte schon gehen. So mega hoch sind die Erwartungen sicherlich
-sowieso nicht.
+mache sie am Ende fertig, indem ich einige aus anderen Talks kopiere und ein
+wenig verändere. Da sollte schon gehen. So mega hoch sind die Erwartungen
+sicherlich sowieso nicht.
 
 Dann geht's ins Bett. Das Hostel ist ganz nett und sauber, allerdings hab ich
 etwas Pech gehabt mit den anderen Leuten auf meinem Zimmer. Da ist einer dabei,
