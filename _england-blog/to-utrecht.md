@@ -31,7 +31,6 @@ Enttäuschung habe ich noch keine Windmühle und auch noch keine Tulpen gesehen.
 Tatsächlich sieht es hier beeindruckend ähnlich aus wie bei den Germanen. Oh
 halt, doch nicht, es gibt nämlich (überall, breite) Radwege!
 
-
 ![Wacklige Radwege](/images/england-blog/to-utrecht/shaky-bike-lanes.jpg)
 
 <small>Ein wackliges Foto von den Radwegen</small>
