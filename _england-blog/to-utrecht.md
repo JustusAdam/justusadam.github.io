@@ -9,7 +9,7 @@ Heute ist es soweit. Offizielles Auszugsdatum.
 Es war die 2. Nacht auf der Couch, und diesmal noch kürzer als die Erste. Ich
 bin also ziemlich müde als früh um 6:30 der Wecker klingelt. Zum Glück klingelt
 er überhaupt. Gestern Abend hat nämlich mein Handy spontan den Geist aufgegeben.
-Hat wohl eigentlich nur was damit zu tun dass der Akku zu niedrig ist. Das sagt
+Hat wohl eigentlich nur was damit zu tun, dass der Akku zu niedrig ist. Das sagt
 es einem allerdings nicht, sondern reagiert einfach auf nichts mehr, auch nicht
 auf das Anstecken an die Steckdose. Ist jedenfalls ziemlich beängstigend, gerade
 im Hinblick auf den Zeitpunkt. Alle meine Fahrkarten sind auf dem
