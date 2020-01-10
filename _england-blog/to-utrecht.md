@@ -17,7 +17,7 @@ Handy, und ich hätte jetzt auf die Schnelle auch keinen Drucker um sie
 auszudrucken. Schlimmer noch, das Handy ist auch mein Wecker. Ich besitze gar
 keinen anderen mehr. Zum Glück konnte ich mir einen bei einem
 meiner Mitbewohner leihen. Und das mit den Fahrkarten ist auch nicht so schlimm.
-Ich lade mir die PDF's auf den Laptop, das wird auch gehen.
+Ich lade mir die PDFs auf den Laptop, das wird auch gehen.
 
 ![Der Morgen](/images/england-blog/to-utrecht/the-morning.jpg)
 
