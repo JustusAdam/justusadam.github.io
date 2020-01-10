@@ -86,7 +86,7 @@ Utrecht sieht richtig schön aus mit seinen kleinen Gässchen und sich aneinande
 schmiegenden Häusern. Bilder gibt es morgen oder übermorgen, wenn ich weniger im
 Stress bin und es nicht so dunkel ist. Zeit zum Erkunden habe ich heute nicht,
 der Vortrag muss noch fertig werden. Ich sehe nur den Teil der Stadt auf dem Weg
-zum Hostel. Danach bin ich nur noch mal kurz unterwegs um etwas zu essen, es
+zum Hostel. Danach bin ich nur noch mal kurz unterwegs um etwas zu essen. Es
 gibt fancy Hot Dogs! (Schmecken hervorragend und es gibt sie auch mit
 vegetarischen/veganen Würstchen)
 
