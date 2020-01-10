@@ -74,7 +74,7 @@ unerwarteten Hürde. Am Ausgang stehen Barrieren, auf denen man Karten oder
 Tickets scannen muss. Das erklärt dann auch warum kein Schaffner in dem Zug war.
 Da ich mit dem System allerdings nicht vertraut war, hat es ein paar Minuten
 gedauert. Ich war mir zunächst nicht sicher, ob ich überhaupt in die richtige
-Richtung unterwegs war und das wirklich der Ausgang ist. Am Ende hat das
+Richtung unterwegs und das wirklich der Ausgang war. Am Ende hat das
 Lesegerät den QR Code des Tickets auf meinem Handy aber anstandslos angenommen.
 Jetzt stellt euch mal vor, mein Handy hätte wirklich nicht mehr funktioniert. Das
 wäre vielleicht lustig gewesen, wenn ich hätte müssen mein Laptop Bildschirm auf
