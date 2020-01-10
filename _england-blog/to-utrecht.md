@@ -72,7 +72,7 @@ Um halb 6, eine dreiviertel Stunde später als gedacht komme ich schließlich in
 Utrecht Centraal an. Das Verlassen des Bahnhofsgebäudes wird zu einer
 unerwarteten Hürde. Am Ausgang stehen Barrieren, auf denen man Karten oder
 Tickets scannen muss. Das erklärt dann auch warum kein Schaffner in dem Zug war.
-Da ich mit dem System allerdings nicht vertraut war hat es ein paar Minuten
+Da ich mit dem System allerdings nicht vertraut war, hat es ein paar Minuten
 gedauert. Ich war mir zunächst nicht sicher, ob ich überhaupt in die richtige
 Richtung unterwegs war und das wirklich der Ausgang ist. Am Ende hat das
 Lesegerät den QR Code des Tickets auf meinem Handy aber anstandslos angenommen.
