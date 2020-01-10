@@ -102,5 +102,5 @@ etwas Pech gehabt mit den anderen Leuten auf meinem Zimmer. Da ist einer dabei,
 der schnarcht nicht, er stöhnt. Die ganze Nacht. Teilweise sehr laut. Super
 weird. Ist allerdings kein großes Problem, ich habe Ohropax dabei, und man kann
 auch vom Hostel unentgeldlich welche haben und die reichen aus. Und so schlafe
-ich diese Nacht dank eines normalen Bettes und warmer Decke besser als die zwei
-vorherigen (und auch länger). Was will man mehr.
+ich diese Nacht dank eines normalen Bettes und warmer Decke besser (und auch
+länger) als die zwei vorherigen. Was will man mehr.
