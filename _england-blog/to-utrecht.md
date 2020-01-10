@@ -77,8 +77,8 @@ gedauert. Ich war mir zunächst nicht sicher, ob ich überhaupt in die richtige
 Richtung unterwegs und das wirklich der Ausgang war. Am Ende hat das
 Lesegerät den QR Code des Tickets auf meinem Handy aber anstandslos angenommen.
 Jetzt stellt euch mal vor, mein Handy hätte wirklich nicht mehr funktioniert. Das
-wäre vielleicht lustig gewesen, wenn ich hätte müssen mein Laptop Bildschirm auf
-das Lesegerät an der Barriere halten um den Code einzuscannen.
+wäre vielleicht lustig gewesen, wenn ich, um den Code einzuscannen, den
+Bildschirm meines Laptops auf das Lesegerät an der Barriere hätte halten müssen.
 
 ![Ich in Utrecht](/images/england-blog/to-utrecht/selfie.jpg)
 
