@@ -93,7 +93,7 @@ vegetarischen/veganen Würstchen)
 ![Fancy Hot Dog](/images/england-blog/to-utrecht/hot-dog.jpg)
 
 Danach wieder am Folien machen. Ich hab keine Lust mehr. Ich bin zu müde. Ich
-mache sie am Ende fertig indem ich einige aus anderen Talks kopiere und etwas
+mache sie am Ende fertig, indem ich einige aus anderen Talks kopiere und etwas
 verändere. Da sollte schon gehen. So mega hoch sind die Erwartungen sicherlich
 sowieso nicht.
 
