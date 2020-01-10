@@ -99,8 +99,8 @@ sicherlich sowieso nicht.
 
 Dann geht's ins Bett. Das Hostel ist ganz nett und sauber, allerdings hab ich
 etwas Pech gehabt mit den anderen Leuten auf meinem Zimmer. Da ist einer dabei,
-der Schnarcht nicht, er Stöhnt. Die ganze Nacht. Teilweise sehr laut. Super
-weird. Ist allerdings kein Großes Problem, ich habe Ohropax dabei, und man kann
+der schnarcht nicht, er stöhnt. Die ganze Nacht. Teilweise sehr laut. Super
+weird. Ist allerdings kein großes Problem, ich habe Ohropax dabei, und man kann
 auch vom Hostel unentgeldlich welche haben und die reichen aus. Und so schlafe
 ich diese Nacht dank eines normalen Bettes und warmer Decke besser als die zwei
 vorherigen (und auch länger). Was will man mehr.
