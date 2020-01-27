@@ -12,7 +12,7 @@ so sehr viel neues passiert und andererseits weil ich beschäftigt (d.h. faul)
 bin.
 
 Ich versuche daher mal einen etwas anderen Stil und gehe nicht chronologisch vor
-sondern gruppiert nach Kategorien. Da sich ergeben hat, dass die einzelnen
+sondern gruppiert nach Kategorie. Da sich ergeben hat, dass die einzelnen
 Kategorien doch recht voll wurden habe ich mich entschieden statt dessen
 mehrere, thematisierte Einträge zu machen. Die werden jetzt so über die nächsten
 Tage erscheinen.
@@ -23,14 +23,14 @@ aber ich erzähle jetzt trotzdem davon.
 ## Waschen
 
 Ich habe mittlerweile herausgefunden, wie man hier wäscht. Im selben Haus, in
-dem auch die Rezeption ist gibt es einen kleinen Waschsalon.
+dem auch die Rezeption ist, gibt es einen kleinen Waschsalon.
 
-Der ist nicht besonders toll. Es scheint gerade genug zu sein für die Menge an
-Leuten die hier wohnen. Die Trommeln groß und auch sauber, aber, ihr ahnt es
+Der ist nicht besonders toll. Es scheint gerade auszureichen für die Menge an
+Leuten die hier wohnen. Die Trommeln sind groß und auch sauber, aber, ihr ahnt es
 sicher schon, *sie sind auch echt teuer*. 2,70£ pro Waschgang, wozu dann noch
 mal 1,30£ für den Trockner kommen. Den braucht man auch, weil ein Wäscheständer
-passt in die Zimmer eher nicht rein. Ich verstehe echt nicht warum das so teuer
-ist. Wir zahlen ja schließlich schon für Wasser mit der Miete. Und falls es an
+sowieso nicht in die Zimmer rein passt. Ich verstehe echt nicht warum das so teuer
+ist. Wir zahlen ja schließlich schon mit der Miete für das Wasser. Und falls es an
 den goßen Trommeln liegt, warum würde jemand so große Trommeln hier installieren
 wo quasi jeder alleine wohnt???
 
@@ -51,12 +51,11 @@ Halten wir fest, waschen ist nicht so doll hier.
 ## Einkaufen
 
 Einkaufen ist mittlerweile besser. Habe neulich zum ersten mal bei Tesco
-bestellt. Das ist recht bequem und wenn man mit den Zeiten flexible ist sehr
-günstig. Wenn man mit der Zeit etwas flexibel ist und ein paar Tage im Voraus
-bucht, kostet die Lieferung nur 1£. Flexibel heißt hier man wählt einen 4
-Stunden Slot aus, und bekommt dann am Liefertag je nach Auslastung einen 1
-Stunden Slot zugewiesen. Wenn man mehr bezahlt (3+ £) kann man direkt einen 1
-Stunden Slot auswählen.
+bestellt. Das ist recht bequem und, wenn man mit den Zeiten flexible ist, sehr
+günstig. Die Lieferung kostet nur 1£ wenn man schon ein paar Tage im voraus
+bestellt. Flexibel heißt hier man wählt einen 4 Stunden Slot aus, und bekommt
+dann am Liefertag je nach Auslastung einen 1 Stunden Slot zugewiesen. Wenn man
+mehr bezahlt (3+ £) kann man direkt einen 1 Stunden Slot auswählen.
 
 Der freundliche Lieferant fährt sogar alles bis in die Küche (mit einer
 Sackkarre). Die Lieferung kommt nämlich auf stapelbaren Plastikpaletten anstatt
@@ -65,7 +64,7 @@ ein Minimum-Einkaufspreis von 40£ gibt, sonst kostet es noch mal 4£ mehr.
 
 Ich habe natürlich gleich direkt mal Großeinkauf gemacht für fast 100£. Gewürze,
 viel gefrostetes Gemüse, Kartoffeln, getrocknete Kichererbsen, etc... (fast)
-alles was man zum Kochen braucht.
+alles was man zum Kochen eben so braucht.
 
 
 ## Kochen
@@ -79,10 +78,10 @@ meiner Würzung. Es schmeckt gut, aber noch nicht *sehr* gut. Und Curry kann seh
 gut schmecken.
 
 Glücklicherweise muss das nicht so bleiben. Eines der Dinge, die ich mir
-vorgenommen hatte als ich nach England kam, war jemanden zu finden, der mich das
-indische Kochen richtig lehren kann und ich kann mit stolz behaupten, dass ich
+vorgenommen hatte als ich nach England kam, war, jemanden zu finden, der mich das
+indische Kochen richtig lehren kann und ich kann mit Stolz behaupten, dass ich
 einen großen Schritt in diese Richtung getan habe. Ich sprach neulich mit einem
-Juniorprofessor[^1], bzw seine Frau bei einem unserer freitäglichen
+Juniorprofessor[^1], bzw seine Frau, bei einem unserer freitäglichen
 Pub-Stammtische über mein Vorhaben besser Indisch-Kochen zu lernen und sie hat
 mich direkt eingeladen bei ihnen zum Essen vorbei zu kommen. Sie ist selbst aus
 Indien, ich bekomme also Tipps direkt von einem "local". Noch gibt es kein
@@ -91,27 +90,27 @@ gerechnet, dass es viel länger dauert jemanden zu finden der Lust hat mich das
 zu lehren.
 
 [^1]: Eigentlich heißt es hier "Lecturer", also wortwörtlich "Vorlesender".
-    "Junionprofessor" ist, wie ich mir sagen lassen habe, das beste deutsch
+    "Juniorprofessor" ist, wie ich mir sagen lassen habe, das beste deutsch
     Äquivalent.
 
 Heute war ich (noch) etwas experimenteller mit dem Kochen und habe statt einer
 Basis aus gestückelten Tomaten eine Mehlschwitze gemacht. Das Resultat ist nicht
 schlecht, ist nur kein Curry mehr. Schmeckt eher wie ein Sonntagsbraten ohne
-Fleisch. Aber es ist auf jedenfalls sehr nahrhaft mit reichlich Fett wegen der
+Fleisch. Aber es ist auf jedenfalls sehr nahrhaft, mit reichlich Fett wegen der
 Mehlschwitze und weil ich die sonstigen Veggies erst mal angebraten habe, und
 reichlich Protein wegen vielen Kichererbsen.
 
 Was ich vor einigen Tagen noch probiert habe war die unheilige Kombination aus
 Pasta Aglio et Olio und Gemüsestäbchen. Die sind wie Fischstäbchen, aber halt
-mit Gemüse drin. Uheilig vor allem weil die zwei Sachen eher nicht zusammen
+mit Gemüse drin. Unheilig vor allem weil die zwei Sachen eher nicht zusammen
 passen. Dazu kommt noch, dass ich noch nie Aglio et Olio gemacht habe. Ich habe
 also experimentiert und gleich 2 Fehler gemacht. Einerseits habe ich die Menge
 an Knoblauch die notwendig ist stark unterschätzt. Da der Knobi mit viel Öl in
 die Pfanne kommt verliert sich der Geschmack sehr. Und andererseits habe ich die
-Pasta nach dem Kochen mit in die Pfanne gehauen für eine kurze Zeit, was weniger
+Pasta nach dem Kochen für eine kurze Zeit mit in die Pfanne gehauen, was weniger
 gut geklappt hat, sie wollte zu sehr ankleben. Bin mir noch nicht sicher wie ich
-das besser machen kann. Geschmeckt hat es trotzdem, wenn auch nicht ganz so es
-vielleicht sollte.
+das besser machen kann. Geschmeckt hat es trotzdem, wenn auch nicht ganz so wie
+es vielleicht sollte.
 
 
 ## Schuhe
@@ -121,11 +120,12 @@ fertig mit dem Haushalt.
 
 Was ich noch erwähnen wollte sind die neuen Schuhe, die ich mir gekauft habe.
 Die hatte ich schon eine ganze weile im Blick. Kamen damals auf Instagram in der
-Werbung. Targeted Advertising funktioniert sehr gut. Es handelt sich um
+Werbung. Targeted Advertising funktioniert also sehr gut. Es handelt sich um
 Merino-Runners, also Schuhe aus Wolle. Eventuell hätte ich wärmere Schuhe kaufen
-sollen, weil diese sind eher für die Übergangszeit gedacht. Glücklicherweise
+sollen, weil diese eher für die Übergangszeit gedacht sind. Glücklicherweise
 wird es aber hier auch nicht besonders kalt. Was an diesen Schuhen besonders
-schön ist, ist dass sie aufgrund des weichen Materials super am Fuß sitzt. Und
-gut aussehen tun sie auch. Hab mich mal für eine aufregendere Farbe entschieden.
-Dafür gab es schon einige Komplimente. Ich bin mir ziemlich sicher, dass das das
-erste mal ist, dass überhaupt jemand etwas über Schuhe gesagt hat die ich trage.
+schön ist ist, dass sie aufgrund des weichen Materials super am Fuß sitzen. Und
+fancy sehen sie auch aus. Hab mich mal für eine aufregendere Farbe entschieden.
+Dafür gab es auch schon einige Komplimente. Ich bin mir ziemlich sicher, dass es
+das erste mal ist, dass überhaupt jemand etwas über Schuhe gesagt hat die ich
+trage.
