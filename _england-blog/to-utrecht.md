@@ -2,6 +2,7 @@
 title: Nach Utrecht
 author: Justus Adam
 date: 2020-01-07
+published: true
 ---
 
 Heute ist es soweit. Offizielles Auszugsdatum.

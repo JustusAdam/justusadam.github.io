@@ -2,6 +2,7 @@
 title: Der letzte Tag in Deutschland
 date: 2020-01-06
 author: Justus Adam
+published: true
 ---
 
 Hinweis: Die zeitliche Perspektive dieses Eintrages könnte etwas eigenartig

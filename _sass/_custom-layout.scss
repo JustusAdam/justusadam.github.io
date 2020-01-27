@@ -154,12 +154,24 @@ tt, code, kbd, samp {
 
 article.england-blog {
     font-family: "Times New Roman", serif;
-    padding: 0 2em;
-    text-indent: 4em;
+    text-indent: 2em;
+
+    p {
+        padding: 0 2em;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        text-indent: 0;
+        font-family: "Open Sans", sans-serif;
+    }
 
     @include media-query($on-palm) {
         padding: 0;
         text-indent: 3em;
+
+        p {
+            padding: 0;
+        }
     }
 
     hr {

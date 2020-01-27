@@ -23,7 +23,7 @@ layout: default
     <h2>Einträge</h2>
 
     <ul class="post-list">
-      {% assign posts = site.england-blog | sort: 'date' | reverse %}
+      {% assign posts = site.england-blog | where: "published", true | sort: 'date' | reverse %}
       {% for post in posts %}
         <li>
           <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>

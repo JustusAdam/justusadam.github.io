@@ -2,6 +2,7 @@
 title: Nach Canterbury
 author: Justus Adam
 date: 2020-01-10
+published: true
 ---
 
 Heute beginnt die letzte Etappe der Reise. Ich bin extra sehr zeitig

@@ -2,6 +2,7 @@
 date: 2020-01-11
 title: Einkaufen
 author: Justus Adam
+published: true
 ---
 
 Heute ist Samstag und damit eine gute Gelegenheit um Einkäufe zu erledigen. Vor

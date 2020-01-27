@@ -2,6 +2,7 @@
 title: Ankunft in Canterbury
 date: 2020-01-15
 author: Justus Adam
+published: true
 ---
 
 So. Jetzt werde ich mal einige Tage in einem Post abfrühstücken. Einerseits weil
