@@ -47,6 +47,7 @@ plugins:
 
 feed:
   path: atom.xml
+  collections: [england-blog]
 
 defaults:
   - scope:
@@ -76,6 +77,8 @@ defaults:
       type: "england-blog"
     values:
       layout: "england-post"
+      feed: "/england-blog/feed.xml"
+      atom: "/england-blog.xml"
 
 collections:
   projects:

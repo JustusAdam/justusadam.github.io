@@ -10,6 +10,16 @@
   <link rel="shortcut icon" href="{{ site.page_logo.small }}">
   <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}">
   <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
-  <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}" />
+  {% if page.feed %}
+  {% assign feed = page.feed %}
+  {% assign subtitle = " England Blog" %}
+  {% else %}
+  {% assign feed = "/feed.xml" %}
+  {% assign subtitle = "" %}
+  {% endif %}
+  <link rel="alternate" type="application/rss+xml" title="{{ site.title | append: subtitle }}" href="{{ feed | prepend: site.baseurl | prepend: site.url }}" />
+  {% if page.atom %}
+  <link type="application/atom+xml" rel="alternate" href="{{ page.atom | prepend: site.baseurl | prepend: site.url }}" title="{{site.title | append: " England Blog" }}">
+  {% endif %}
   {% feed_meta %}
 </head>

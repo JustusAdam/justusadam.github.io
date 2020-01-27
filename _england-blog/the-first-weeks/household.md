@@ -6,14 +6,14 @@ author: Justus Adam
 
 Hallo alle miteinander,
 
-diesmal lieft doch etwas mehr Zeit zwischen den Einträgen. Das liegt zum einen
+diesmal liegt doch etwas mehr Zeit zwischen den Einträgen. Das liegt zum einen
 daran, dass doch recht schnell ein gewisser Alltag eingekehrt ist und nicht mehr
 so sehr viel neues passiert und andererseits weil ich beschäftigt (d.h. faul)
 bin.
 
 Ich versuche daher mal einen etwas anderen Stil und gehe nicht chronologisch vor
-sondern gruppiere nach Kategorie. Da sich ergeben hat, dass die einzelnen
-Kategories doch recht voll wurden habe ich mich entschieden statt dessen einige,
+sondern gruppiert nach Kategorien. Da sich ergeben hat, dass die einzelnen
+Kategorien doch recht voll wurden habe ich mich entschieden statt dessen
 mehrere, thematisierte Einträge zu machen. Die werden jetzt so über die nächsten
 Tage erscheinen.
 
