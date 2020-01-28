@@ -2,6 +2,7 @@
 title: "Die ersten Wochen: Haushalt"
 date: 26-01-2020
 author: Justus Adam
+published: true
 ---
 
 Hallo alle miteinander,
@@ -129,3 +130,11 @@ fancy sehen sie auch aus. Hab mich mal für eine aufregendere Farbe entschieden.
 Dafür gab es auch schon einige Komplimente. Ich bin mir ziemlich sicher, dass es
 das erste mal ist, dass überhaupt jemand etwas über Schuhe gesagt hat die ich
 trage.
+
+![Shoes](/images/england-blog/the-first-weeks/shoes.jpg)
+
+Demnächst (hoffentich morgen) gibt es dann ein Kapitel über den PhD. Momentaner
+Status und eine ausfühliche Erklärung worum es eigentlich geht. Und vielleicht
+auch ein paar damit verbundene, aufregende Neuigkeiten. ;-)
+
+Bis dahin.
