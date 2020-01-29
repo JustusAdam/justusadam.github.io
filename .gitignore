@@ -5,3 +5,4 @@ bower_components
 _purescript/output
 /vendor/
 /.bundle/config
+/.vendor/
