@@ -1,8 +1,3 @@
----
-title: "Die ersten Wochen: PhD"
-date: 27-01-2020
-author: Justus Adam
----
 
 ## Freizeit
 
@@ -25,3 +20,9 @@ author: Justus Adam
 ## In der nächsten Folge
 
 - Pictures from the school
+
+## Kochen
+
+- selbstgemachtes Müsli
+  - Hab zunächst die Menge an Haferflocken unterschätzt, weil die hier alle als
+    porrige feiner gerollt werden.
