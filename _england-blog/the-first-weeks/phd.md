@@ -2,13 +2,15 @@
 title: "Die ersten Wochen: PhD"
 date: 29-01-2020
 author: Justus Adam
+published: true
 ---
 
 
-Der PhD (steht für Doctor of Philosophy) kommt sehr gut voran. Ich denke für die wenige Zeit, die ich bis jetzt
-hatte um daran zu arbeiten bin ich schon weit voran gekommen. Aber um das ganze
-mal etwas in den Zusammenhang zu setzen sollte ich vielleicht kurz erklären
-worum es eigentlich geht. Das hat zumindest Robert vorgeschlagen.
+Der PhD (steht für Doctor of Philosophy) kommt sehr gut voran. Ich denke für die
+wenige Zeit, die ich bis jetzt hatte um daran zu arbeiten bin ich schon weit
+voran gekommen. Aber um das ganze mal etwas in den Zusammenhang zu setzen sollte
+ich vielleicht kurz erklären worum es eigentlich geht. Das hat zumindest Robert
+vorgeschlagen.
 
 ## Worum es eigentlich geht
 
@@ -67,7 +69,7 @@ einheften. Ich denke es ist jedem klar, dass das praktisch ist.
 Das eigentliche Problem tritt jetzt auf wenn ich wieder aushefte. Eine
 Operation, die das tun könnte wäre `ausheften(Hefter) -> (Hefter, Heftbar)`. Wie
 ihr seht ist die Signatur dieser Operation genau umgekehrt zu `einheften`. Das
-ist problematisch, da ich jetzt also ein `Heftbar` erhalten und kein `Papier`
+ist problematisch, da ich jetzt also ein `Heftbar` erhalte und kein `Papier`
 oder eine `Folie`. Warum? Weil der `Hefter` nicht weiß ob es eine `Folie` oder
 ein `Papier` ist. Darum kümmert sich der `Hefter` nicht. Ihn interessiert nur,
 dass alles `Heftbar` ist. Wenn ich das soeben Ausgeheftete aber zum Beispiel
@@ -77,49 +79,57 @@ nicht.
 
 Manchmal tritt nun die Situation auf, dass ein Programmierer ganz sicher weiß
 (oder zu wissen glaubt), dass in *diesem* `Hefter` *ausschließlich* `Papier`
-eingeheftet wird (wurde). Dann kann er das Ausgeheftete einfach als `Papier`
+eingeheftet wurde . Dann kann er das Ausgeheftete einfach als `Papier`
 behandeln und drauf los schreiben. In der Programmierung nennen wir das einen
 **cast**. Das sähe dann ungefähr so aus: `beschreibe((Papier)
 ausgeheftetesBlatt, "Text zum draufschreiben")`. Der cast ist `(Papier)
 ausgeheftetesBlatt` womit man dem Typchecker sagt "benutze
 `ausgeheftetesBlatt` als `Papier`!".
 
-Mit dieser Operation umgeht man die
-Sicherheiten des Typsystems. Dieses kann nun nicht mehr garantieren, das wir die
-Daten in unserem Programm korrekt verwenden. Wenn so ein cast falsch angewendet
-wird, also zum Beispiel *doch* eine `Folie` in dem Hefter war dann können, je
-nach Programmiersprache schlimme Dinge geschehen.
+Mit dieser Operation umgeht man die Sicherheiten des Typsystems. Dieses kann nun
+nicht mehr garantieren, das wir die Daten in unserem Programm korrekt verwenden.
+Wenn so ein cast falsch angewendet wird, also zum Beispiel *doch* eine `Folie`
+in dem Hefter war dann können, je nach Programmiersprache schlimme Dinge
+geschehen.
 
 In Java beispielsweise wird eine `Exception` geworfen. Das bedeutet, das
 Programm ist im Ausnahmezustand und wird beginnen die Ausführung zu beenden bis
 ein anderer Programmteil die Situation untersucht und verarbeitet oder, wenn das
-nicht passiert, terminiert das Programm. Das kann sehr unerwartet sein, gerade
-für einen Benutzer, wenn plötzlich, ohne Vorwarnung das Programm abstürzt.
+nicht passiert, terminiert das Programm. Das ist eine unangenehme Überraschung
+für einen Benutzer, wenn plötzlich, ohne Vorwarnung, das Programm abstürzt.
 
 Allerdings sind die Java Fehler noch harmlos. In C beispielsweise wird das
 Programm gar nicht *merken*, dass es einen falschen Cast gemacht hat. Es wird
-sehr wahrscheinlich die Daten korrumpieren und andere Programmteile werden sie nicht mehr korrekt
-verwenden können. Das ist im Prinzip passiert genau das was man erwarten würde.
-Die `beschreibe` Operation tut einfach so, als hätte sie ein `Papier` vor sich
-und fängt an auf der Folie herum zu kritzeln. Die Folie ist danach natürlich
-nicht mehr zu gebrauchen, was das Programm aber ebenfalls nicht merkt, sondern
-es wir einfach nicht mehr lesen können was in der Folie ist, weil die
-Kritzeleien das Darunterliegende zu unleserlich machen.
+sehr wahrscheinlich die Daten korrumpieren[^k] und andere Programmteile werden
+sie nicht mehr korrekt verwenden können. Das ist im Prinzip passiert genau das
+was man erwarten würde. Die `beschreibe` Operation tut einfach so, als hätte sie
+ein `Papier` vor sich und fängt an auf der Folie herum zu kritzeln. Die Folie
+ist danach natürlich nicht mehr zu gebrauchen, was das Programm aber ebenfalls
+nicht merkt, sondern es wir einfach nicht mehr lesen können was in der Folie
+ist, weil die Kritzeleien das Darunterliegende zu unleserlich machen.
 
-### Inhalt des PhD
+[^k]: Ich habe keine bessere Übersetzung dafür gefunden. Es heißt im prinzip nur
+    so viel, dass die Daten in einen Zustand gebracht werden, in dem sie nicht
+    sein sollten oder nicht sein dürfen.
+
+### 🎓 Inhalt des PhD
 
 Meine Arbeit beschäftigt sich nun damit sicher zu stellen, dass das auch funktioniert.
-Ich werde ein Programm schreiben, das in solchen Fällen das Programm analysiert
+Ich werde ein Werkzeug entwerfen und bauen[^w], das in solchen Fällen das Programm analysiert
 und prüft, dass in diesem `Hefter` wirklich nur `Papier` ist, da der
 normale Typchecker das nicht kann. Besonders vorteilhaft hier ist, dass die
 Analyse schon läuft während das Programm geschrieben wird und man dem Programmierer
 solche Fehler direkt melden kann, anstatt erst später wenn das Programm schon
 läuft.
 
+[^w]: Mit Werkzeug ist hier natürlich auch ein Programm gemein. Programme, die
+    Programme analysieren, ja, soetwas gibt es in meiner Informatik-Unterkategorie
+    dauernd :D
+
 Ich sollte vielleicht dazu sagen, dass solche *casts* vor allem bei älteren
 Typsystemen notwendig sind. Mittlerweile gibt es viele neuere Typsysteme, die
 *diese* Arten von Fehlern nicht mehr haben. In der Regel spricht man dann von
-einem *stärkeren* Typsystem. Stärke wird hier im sinne von "Können" verwendet,
+einem *stärkeren* Typsystem. Stärke wird hier im Sinne von "Können" verwendet,
 solche Typsysteme *können* diese komplizierteren Zusammenhänge abbilden und
 verstehen.
 
@@ -133,7 +143,7 @@ Sprache zu verändern. Man müsste also, um ein stärkeres Typsystem verwenden z
 können, sein Programm in einer neuen Sprache neu schreiben, und das ist je nach
 Größe des Programms schwierig bis effektiv unmöglich.
 
-### Was tut mein Werkzeug?
+### 🔧 Wie arbeitet mein Werkzeug?
 
 Die Art und Weise, auf die mein Werkzeug diese Typen checken soll, ist, indem es
 zunächst die Teile des Programms, die einen Einfluss darauf haben was in dem
@@ -156,24 +166,25 @@ weiter, bis alle Ursprünge meines Wissens gefunden worden wären.[^5]
     also nie enden, während die Suche im Programm spätestens dann endet, wenn
     wir am Start ankommen.
 
-In diesem Beispiel ist mein Computerwissen die möglichen Typen von Daten, die
+In diesem Beispiel ist mein Computerwissen die möglichen Typen von Daten, die im
 `Hefter` gelandet sein könnten und die Chronologie ist das ganze Programm. Mit
-der Suche von gerade eben haben wir ein *slice* der Geschichte erstellt, was nur
+der Suche von gerade eben haben wir einen *slice* der Geschichte erstellt, was nur
 darauf ausgelegt ist, mein Computerwissen zu erzeugen. Wenn wir also wissen
 wollen, was dieses wissen ist, können wir einfach den Ablauf dieser
-Lernereignisse simulieren und schauen was raus kommt.
+Lernereignisse simulieren und so das Wissen berechnen.
 
 In der echten Welt ist das schwierig, aber in einem Programm steht ja ganz genau
-drin, was passiert. Und genau das tut mein Werkzeug. Es nimmt sich das *slice*
-und simuliert die Ausführung um (ich wechsle hier wieder die Analogien)
+drin, was passiert. Und genau das tut mein Werkzeug. Es nimmt sich den *slice*
+und simuliert die Ausführung, um (ich wechsle hier wieder die Analogien)
 feststellen zu können, welche (Arten von) Typen *effektiv* in dem `Hefter`
 landen könnten.
 
-Diese Technik nennt sich "Symbolic Execution", also Symbolische Ausführung. Sie
+Diese Technik nennt sich "Symbolic Execution", also symbolische Ausführung. Sie
 ist sehr rechenintensiv, weshalb wir vorher das *slicing* anwenden, um das
-Programm stark zu vereinfachen auf nur die interessanten Teile.
+Programm auf die Berechnung einiger interssanter Werte zu reduzieren.
 
-## Das erste Jahr
+## 📅 Das erste Jahr
+
 
 Mittlerweile habe ich mit meinem Dokotorvater einen Plan aufgestellt, was im
 ersten Jahr so passieren wird.
@@ -228,7 +239,7 @@ etwas früher, einfach nur so.
 
 Auf die Idee bin ich bei der "Kickstart your PhD" Veranstaltung gekommen. Die
 war zwar jetzt nicht so super interessant und hilfreich, hat aber Denkanstöße
-bewirkt. Kurz darauf hatte ich mein 2. Treffen mit Stephen, meinem Doktorvater
+bewirkt. Kurz darauf hatte ich mein 2. Treffen mit Stephen, meinem Doktorvater,
 und im Gespräch hat sich dann dieser Plan ganz natürlich ergeben.
 
 Diese Woche gab es auch noch mal eine Einführung für PhD Studenten in der School
@@ -264,6 +275,14 @@ davon interessieren würde. Das klingt schon mal ganz nice, zumal ich gehört
 habe, dass solche Praktika in der Regel ganz gut bezahlt werden.
 
 Ach ja und als letztes wollte ich noch erwähnen, dass es hier (fast) jeden
-Dienstag um halb vier Kuchen gibt. :D
+Dienstag um halb vier Kuchen gibt. 🍰💟
 
 Leider hab ich davon kein Foto gemacht ...
+
+Und damit bin ich am Ende. Heute war ein bisschen starker Tobak, aber ich hoffe
+das hilft euch ein bisschen besser zu verstehen, was ich in nächster Zeit so
+versuchen werde zu tun.
+
+🇪🇺🇬🇧 Heute ist Brexit Tag, oder wie es in der Kaffeeküche schon sarkastisch genannt
+wurde "Independence Day". Ich grüße euch also alle jetzt offiziell von außerhalb
+der EU. 😢 👋 🇬🇧🇪🇺
