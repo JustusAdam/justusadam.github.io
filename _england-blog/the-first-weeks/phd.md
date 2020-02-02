@@ -160,7 +160,7 @@ denen ich etwas gelernt habe, **und dann**, für jeden der Menschen, die mir
 etwas beigebracht haben heraussuchen wann **sie** etwas gelernt haben und so
 weiter, bis alle Ursprünge meines Wissens gefunden worden wären.[^5]
 
-[^5]: Das beispiel ist nicht ganz richtig, da es keinen gut definierten Ursprung
+[^5]: Das Beispiel ist nicht ganz richtig, da es keinen gut definierten Ursprung
     für Wissen gibt, während ein Programm definitiv einen wohl definierten
     Beginn hat (nämlich wenn man es startet). Die suche nach dem Wissen würde
     also nie enden, während die Suche im Programm spätestens dann endet, wenn
@@ -170,7 +170,7 @@ In diesem Beispiel ist mein Computerwissen die möglichen Typen von Daten, die i
 `Hefter` gelandet sein könnten und die Chronologie ist das ganze Programm. Mit
 der Suche von gerade eben haben wir einen *slice* der Geschichte erstellt, was nur
 darauf ausgelegt ist, mein Computerwissen zu erzeugen. Wenn wir also wissen
-wollen, was dieses wissen ist, können wir einfach den Ablauf dieser
+wollen, was dieses Wissen ist, können wir einfach den Ablauf dieser
 Lernereignisse simulieren und so das Wissen berechnen.
 
 In der echten Welt ist das schwierig, aber in einem Programm steht ja ganz genau
