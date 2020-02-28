@@ -2,6 +2,8 @@
 title: marvin, a paranoid bot
 github_link: JustusAdam/marvin
 languages: Haskell
+documentation:
+    link: https://marvin.readthedocs.org
 ---
 
 [![Travis](https://travis-ci.org/JustusAdam/marvin.svg?branch=master)](https://travis-ci.org/JustusAdam/marvin)
