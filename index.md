@@ -15,7 +15,7 @@ for languages with weak type systems, such as C or Java.
 
 - [A list of publications I worked on](/bib/)
 - [My profile on Google Scholar]({{site.scholar_link}})
-- [Reading about my masters thesis](/projects/masters-thesis/)
+- [Reading about my masters thesis](/projects/masters-thesis.html)
 - [My page on the University of Kent website](https://www.cs.kent.ac.uk/people/rpg/ja679/)
 
 ### What I am currently working on
