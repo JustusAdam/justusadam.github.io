@@ -99,18 +99,15 @@ nicht passiert, terminiert das Programm. Das ist eine unangenehme Überraschung
 für einen Benutzer, wenn plötzlich, ohne Vorwarnung, das Programm abstürzt.
 
 Allerdings sind die Java Fehler noch harmlos. In C beispielsweise wird das
-Programm gar nicht *merken*, dass es einen falschen Cast gemacht hat. Es wird
-sehr wahrscheinlich die Daten korrumpieren[^k] und andere Programmteile werden
-sie nicht mehr korrekt verwenden können. Das ist im Prinzip passiert genau das
+Programm gar nicht *merken*, dass es einen falschen Cast gemacht hat. Es wird,
+höchst wahrscheinlich, die Daten einfach hinnehmen und andere Programmteile,
+die die daraus entstehenden Daten weiter verwenden wollen, werden jene zerstören
+oder sie nicht korrekt lesen können. Im Prinzip passiert genau das
 was man erwarten würde. Die `beschreibe` Operation tut einfach so, als hätte sie
 ein `Papier` vor sich und fängt an auf der Folie herum zu kritzeln. Die Folie
 ist danach natürlich nicht mehr zu gebrauchen, was das Programm aber ebenfalls
-nicht merkt, sondern es wir einfach nicht mehr lesen können was in der Folie
+nicht merkt, sondern es wird einfach nicht mehr lesen können was in der Folie
 ist, weil die Kritzeleien das Darunterliegende zu unleserlich machen.
-
-[^k]: Ich habe keine bessere Übersetzung dafür gefunden. Es heißt im prinzip nur
-    so viel, dass die Daten in einen Zustand gebracht werden, in dem sie nicht
-    sein sollten oder nicht sein dürfen.
 
 ### 🎓 Inhalt des PhD
 
@@ -123,7 +120,7 @@ solche Fehler direkt melden kann, anstatt erst später wenn das Programm schon
 läuft.
 
 [^w]: Mit Werkzeug ist hier natürlich auch ein Programm gemein. Programme, die
-    Programme analysieren, ja, soetwas gibt es in meiner Informatik-Unterkategorie
+    Programme analysieren, ja, so etwas gibt es in meiner Informatik-Unterkategorie
     dauernd :D
 
 Ich sollte vielleicht dazu sagen, dass solche *casts* vor allem bei älteren
@@ -166,22 +163,22 @@ weiter, bis alle Ursprünge meines Wissens gefunden worden wären.[^5]
     also nie enden, während die Suche im Programm spätestens dann endet, wenn
     wir am Start ankommen.
 
-In diesem Beispiel ist mein Computerwissen die möglichen Typen von Daten, die im
+In diesem Beispiel repräsentiert mein Computerwissen die möglichen Typen von Daten, die im
 `Hefter` gelandet sein könnten und die Chronologie ist das ganze Programm. Mit
-der Suche von gerade eben haben wir einen *slice* der Geschichte erstellt, was nur
-darauf ausgelegt ist, mein Computerwissen zu erzeugen. Wenn wir also wissen
+der Suche von gerade eben haben wir einen *slice* der Geschichte erstellt, der nur
+darauf ausgelegt ist, mein Computerwissen zu erzeugen. Wenn wir also herausfinden
 wollen, was dieses Wissen ist, können wir einfach den Ablauf dieser
 Lernereignisse simulieren und so das Wissen berechnen.
 
 In der echten Welt ist das schwierig, aber in einem Programm steht ja ganz genau
 drin, was passiert. Und genau das tut mein Werkzeug. Es nimmt sich den *slice*
 und simuliert die Ausführung, um (ich wechsle hier wieder die Analogien)
-feststellen zu können, welche (Arten von) Typen *effektiv* in dem `Hefter`
+feststellen zu können, welche Typen *effektiv* in dem `Hefter`
 landen könnten.
 
 Diese Technik nennt sich "Symbolic Execution", also symbolische Ausführung. Sie
 ist sehr rechenintensiv, weshalb wir vorher das *slicing* anwenden, um das
-Programm auf die Berechnung einiger interssanter Werte zu reduzieren.
+Programm auf die Berechnung einiger interessanter Werte zu reduzieren.
 
 ## 📅 Das erste Jahr
 
@@ -261,7 +258,7 @@ erfahren. Nicht das es irgendjemanden interessiert, da ich ja eh schon hier
 genommen wurde, aber am Ende ist es eine 1.4 für den gesamten Master geworden.
 Das ist schon ganz nett. Ich bin Justus und ich bin ein alter Streber und Angeber![^3]
 
-[^3]: Kommentar des Lektors
+[^3]: Anmerkung des Lektors
 
 Und jetzt hab ich noch ein paar ganz spannende Neuigkeiten. Es steht zwar noch
 nicht 100% fest, aber es sieht wohl ganz so aus als würde ich über den Sommer
