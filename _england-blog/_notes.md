@@ -30,3 +30,4 @@
 - selbstgemachtes Müsli
   - Hab zunächst die Menge an Haferflocken unterschätzt, weil die hier alle als
     porrige feiner gerollt werden.
+- Indisches curry
