@@ -30,7 +30,7 @@ uploaded assets on the releases page.
 
 If you just want to see the configuration I use and figure the rest out for
 yourself, take a look at the section [Configuration](#configuration). [After
-that] (#explanation) I'll explain in more detail the individual steps taken in
+that](#explanation) I'll explain in more detail the individual steps taken in
 the configuration and I'll close with some [Caveats](#caveats) that apply to
 this method.
 
@@ -167,8 +167,8 @@ Windows shell to translate the commands. If you know what these commands would
 look like on Windows, [let me know](mailto:dev@justus.science).
 
 [^1]: Not quite true, we only run on their latest versions. You can run on more
-versions, but I haven't yet discovered how to get the version identifier during
-the build to include in the asset name.
+    versions, but I haven't yet discovered how to get the version identifier during
+    the build to include in the asset name.
 
 ### Checkout 
 
@@ -222,12 +222,13 @@ recommend packaging it as a archive here. This reduces the download times.
 ### Dealing with `data-files` (Haskell specific)
 
 Some Haskell libraries and executables rely on additional `data-files` and the
-`Paths_package_name` module, [managed by
-cabal](https://cabal.readthedocs.io/en/3.4/cabal-package.html#accessing-data-files-from-package-code).
-**If you get an error that a certain file could not be opened when running the
-binary you uploaded as a asset, this is likely the reason.** Especially if the
-path is something like `/home/runner/.stack/snapshots/<a long hash
+`Paths_package_name` module, [managed by cabal][data-dirs]. **If you get an
+error that a certain file could not be opened when running the binary you
+uploaded as a asset, this is likely the reason.** Especially if the path is
+something like `/home/runner/.stack/snapshots/<a long hash
 value>/package-1.0.5/...`.
+
+[data-dirs]: https://cabal.readthedocs.io/en/3.4/cabal-package.html#accessing-data-files-from-package-code
 
 There are two components to fixing this error.
 
@@ -239,7 +240,7 @@ I describe how to do both of those shortly, but you may also like to look at
 which is a Haskell script that does both and copies the files to a directory
 (`vendor-data/package-name`).
 
-#### Finding assets
+#### 1. Finding assets
 
 If the missing assets are from your project itself you can skip this step and
 move on.
@@ -247,17 +248,19 @@ move on.
 When stack or cabal was building your project it will have stored asset files of
 all libraries and `ghc-pkg` knows where. To find the data directory of a library
 (say `filestore`) use the command `ghc-pkg field filestore data-dir`. If you are
-using stack you should prepend `stack exec --` before this command. This returns
-a string of the form `"data-dir: /home/user/...\n"`. So you need to strip off
-the `"data-dir: "` prefix, as well as the trailing `\n`.
+using stack you should prepend `stack exec --` before this command to make sure
+you query the correct package database. This returns a string of the form
+`"data-dir: /home/user/...\n"`. So you need to strip off the `"data-dir: "`
+prefix, as well as the trailing `\n`.
 
-#### Overwriting cabal paths
+#### 1. Overwriting cabal paths
 
 Libraries that use the `data-dir` functionality interact with is typically using
 the `Paths_<package name>` generated module. You can overwrite any paths set in
 this module using environment variables. For instance, if I wanted to set the
 `data-file` path for the `filestore` package to `"foo/bar"`, I have to set the
-variable `filestore_datadir=foo/bar`.
+variable `filestore_datadir=foo/bar`. This is documented [here][data-dirs] in
+the cabal manual.
 
 My solution for doing this automatically ist to not directly call the compiled
 binary, but instead providing a shell script that sets these variables before
