@@ -80,7 +80,7 @@ it's low-effort enough for virtually anyone to just start using it. Hence this
 call to ... Actions 😜
 
 If you're interested, my PR with the changes to the gitit workflows can be found
-[here](https://github.com/jgm/gitit/issues/missing).
+[here](https://github.com/jgm/gitit/pull/662).
 
 ## Configuration
 
@@ -218,6 +218,52 @@ Build the project the usual way.
 
 If you have additional assets you need to distribute with your executable I
 recommend packaging it as a archive here. This reduces the download times.
+
+### Dealing with `data-files` (Haskell specific)
+
+Some Haskell libraries and executables rely on additional `data-files` and the
+`Paths_package_name` module, [managed by
+cabal](https://cabal.readthedocs.io/en/3.4/cabal-package.html#accessing-data-files-from-package-code).
+**If you get an error that a certain file could not be opened when running the
+binary you uploaded as a asset, this is likely the reason.** Especially if the
+path is something like `/home/runner/.stack/snapshots/<a long hash
+value>/package-1.0.5/...`.
+
+There are two components to fixing this error.
+
+1. You must identify the files to include and
+2. Overwrite the paths cabal has baked into the program
+
+I describe how to do both of those shortly, but you may also like to look at
+[this gist](https://gist.github.com/JustusAdam/5904249d909e975edb612e5eea581ba1)
+which is a Haskell script that does both and copies the files to a directory
+(`vendor-data/package-name`).
+
+#### Finding assets
+
+If the missing assets are from your project itself you can skip this step and
+move on.
+
+When stack or cabal was building your project it will have stored asset files of
+all libraries and `ghc-pkg` knows where. To find the data directory of a library
+(say `filestore`) use the command `ghc-pkg field filestore data-dir`. If you are
+using stack you should prepend `stack exec --` before this command. This returns
+a string of the form `"data-dir: /home/user/...\n"`. So you need to strip off
+the `"data-dir: "` prefix, as well as the trailing `\n`.
+
+#### Overwriting cabal paths
+
+Libraries that use the `data-dir` functionality interact with is typically using
+the `Paths_<package name>` generated module. You can overwrite any paths set in
+this module using environment variables. For instance, if I wanted to set the
+`data-file` path for the `filestore` package to `"foo/bar"`, I have to set the
+variable `filestore_datadir=foo/bar`.
+
+My solution for doing this automatically ist to not directly call the compiled
+binary, but instead providing a shell script that sets these variables before
+calling the actual program, forwarding any arguments. You can see an example of
+such a script
+[here](https://github.com/JustusAdam/gitit/blob/4e5e522c673411eba4c02ec33dcf5528cdcb4312/unix-proxy.sh).
 
 ### Upload
 
