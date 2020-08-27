@@ -85,6 +85,7 @@ If you're interested, my PR with the changes to the gitit workflows can be found
 ## Configuration
 
 {% highlight yaml %}
+{% raw %}
 name: Create Assets
 
 on:
@@ -132,6 +133,7 @@ jobs:
         asset_path: ./program.tar.gz
         asset_name: program-${{ runner.os }}.tar.gz
         asset_content_type: application/tar.gz
+{% endraw %}
 {% endhighlight %}
 
 ## Explanation
@@ -139,6 +141,7 @@ jobs:
 ### Header and build config
 
 {% highlight yaml %}
+{% raw %}
 name: Create Assets
 
 on:
@@ -151,6 +154,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest]
+{% endraw %}
 {% endhighlight %}
 
 Standard header. We name the workflow and configure the trigger using the `on`
@@ -184,6 +188,7 @@ out the repo](https://docs.github.com/en/actions/configuring-and-managing-workfl
 ### [Caching](https://docs.github.com/en/actions/configuring-and-managing-workflows/caching-dependencies-to-speed-up-workflows)
 
 {% highlight yaml %}
+{% raw %}
     - name: Cache programs and libraries
       uses: actions/cache@v2
       env:
@@ -195,6 +200,7 @@ out the repo](https://docs.github.com/en/actions/configuring-and-managing-workfl
           ${{ runner.os }}-ca-${{ env.cache-name }}-
           ${{ runner.os }}-ca-
           ${{ runner.os }}-
+{% endraw %}
 {% endhighlight %}
 
 I've left this in here, but I'm sad to say it doesn't work for me. For some
@@ -271,6 +277,7 @@ such a script
 ### Upload
 
 {% highlight yaml %}
+{% raw %}
     - name: Upload assets
       id: upload-release-asset 
       uses: actions/upload-release-asset@v1
@@ -281,6 +288,7 @@ such a script
         asset_path: ./program.tar.gz
         asset_name: program-${{ runner.os }}.tar.gz
         asset_content_type: application/tar.gz
+{% endraw %}
 {% endhighlight %}
 
 This is where the convenience of Actions really comes in. We can use the
