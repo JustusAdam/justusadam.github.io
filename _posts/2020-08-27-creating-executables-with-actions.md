@@ -84,7 +84,7 @@ If you're interested, my PR with the changes to the gitit workflows can be found
 
 ## Configuration
 
-```yaml
+{% highlight yaml %}
 name: Create Assets
 
 on:
@@ -132,13 +132,13 @@ jobs:
         asset_path: ./program.tar.gz
         asset_name: program-${{ runner.os }}.tar.gz
         asset_content_type: application/tar.gz
-```
+{% endhighlight %}
 
 ## Explanation
 
 ### Header and build config
 
-```yaml
+{% highlight yaml %}
 name: Create Assets
 
 on:
@@ -151,7 +151,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest]
-```
+{% endhighlight %}
 
 Standard header. We name the workflow and configure the trigger using the `on`
 clause. While you can choose several triggers, you can only upload assets for
@@ -172,10 +172,10 @@ the build to include in the asset name.
 
 ### Checkout 
 
-```yaml
+{% highlight yaml %}
     steps:
     - uses: actions/checkout@v2
-```
+{% endhighlight %}
 
 The steps list the various commands we'd like to run. They can either call on
 actions (`uses` key) or sun shell commands (`run` key). This action here [checks
@@ -183,7 +183,7 @@ out the repo](https://docs.github.com/en/actions/configuring-and-managing-workfl
 
 ### [Caching](https://docs.github.com/en/actions/configuring-and-managing-workflows/caching-dependencies-to-speed-up-workflows)
 
-```yaml
+{% highlight yaml %}
     - name: Cache programs and libraries
       uses: actions/cache@v2
       env:
@@ -195,7 +195,7 @@ out the repo](https://docs.github.com/en/actions/configuring-and-managing-workfl
           ${{ runner.os }}-ca-${{ env.cache-name }}-
           ${{ runner.os }}-ca-
           ${{ runner.os }}-
-```
+{% endhighlight %}
 
 I've left this in here, but I'm sad to say it doesn't work for me. For some
 reason the key lookup always fails. If anyone has an idea why [let me
@@ -203,7 +203,7 @@ know](mailto:dev@justus.science).
 
 ### Building
 
-```yaml
+{% highlight yaml %}
     - name: Build the project
       run: stack build
         
@@ -212,7 +212,7 @@ know](mailto:dev@justus.science).
         export PROGRAM=chbwa
         cp `stack exec -- which $PROGRAM` $PROGRAM
         tar -cavf program.tar.gz $PROGRAM
-```
+{% endhighlight %}
 
 Build the project the usual way.
 
@@ -267,7 +267,7 @@ such a script
 
 ### Upload
 
-```yaml
+{% highlight yaml %}
     - name: Upload assets
       id: upload-release-asset 
       uses: actions/upload-release-asset@v1
@@ -278,7 +278,7 @@ such a script
         asset_path: ./program.tar.gz
         asset_name: program-${{ runner.os }}.tar.gz
         asset_content_type: application/tar.gz
-```
+{% endhighlight %}
 
 This is where the convenience of Actions really comes in. We can use the
 predefined
