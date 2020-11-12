@@ -1,3 +1,27 @@
+- title: Type checking beyond type checkers, via Slice & Run
+  date: "2020-11-19"
+  authors:
+    - Justus Adam
+    - Stephen Kell
+  publication: 11th Workshop on Tools for Automatic Program Analysis
+  preprint: /pdfs/tapas2020.pdf
+  abstract: |
+    Type checkers are the most commonly used form of static analysis, but their
+    design is coupled to the rest of the language, making it hard or impossible
+    to bring new kinds of reasoning to existing unmodified code.
+
+    We propose a novel approach to checking advanced type invariants and
+    properties in unmodified source code, while retaining the speed and ease of
+    simple syntax directed type checkers. The insight is that by combining a
+    relatively deep program analysis (symbolic execution) with an unusual choice
+    of program abstraction (based on program slicing), it appears possible to
+    reconstitute type-checking as a special case of a more general analysis,
+    which the abstraction reduces mostly to 'type-level' reasoning, largely
+    discarding the 'value-level' work of the program.
+
+    We implement a first simple prototype that demonstrates this idea by
+    checking the safety of generic pointers in C, potentially bringing benefits
+    roughly comparable with Milner's polymorphism.
 - title: Ohua-powered, Semi-transparent UDF’s in the Noria Database
   date: "2019-12-12"
   institution: Technische Universität Dresden
