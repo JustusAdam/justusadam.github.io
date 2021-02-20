@@ -6,10 +6,10 @@ layout: default
 
 Hello there,
 
-My name is Justus Adam and I am a PhD student at the [School of
-Computing](https://cs.kent.ac.uk) at the [University of
-Kent](https://kent.ac.uk.de). I work on stronger type-based program analysis
-for languages with weak type systems, such as C or Java.
+My name is Justus Adam and I am a research assistant at the [Chair for Compiler
+Construction](https://cfaed.tu-dresden.de/ccc-about) at [TU
+Dresden](https://tu-dresden.de) and I mainly work on implicit parallel
+programming.
 
 ## Stuff you may be interested in
 
@@ -17,14 +17,7 @@ for languages with weak type systems, such as C or Java.
 - [My profile on Google Scholar]({{site.scholar_link}})
 - <div itemscope itemtype="https://schema.org/Person"><a itemprop="sameAs" content="https://orcid.org/0000-0003-4046-534X" href="https://orcid.org/0000-0003-4046-534X" target="orcid.widget" rel="me noopener noreferrer" style="vertical-align:top;"><img src="https://orcid.org/sites/default/files/images/orcid_16x16.png" style="width:1em;margin-right:.5em;" alt="ORCID iD icon">Me on orchid.org</a></div>
 - [Reading about my masters thesis](/projects/masters-thesis.html)
-- [My page on the University of Kent website](https://www.cs.kent.ac.uk/people/rpg/ja679/)
 - [ACM Digial Library Profile](https://dl.acm.org/profile/99659244337)
-
-### What I am currently working on
-
-I finished my masters degree with the start of 2020 and I am now doing a PhD
- with [Stephen R. Kell](https://www.cs.kent.ac.uk/people/staff/srk21/) at the
- University of Kent in Canterbury.
 
 ### Open Source Software
 
