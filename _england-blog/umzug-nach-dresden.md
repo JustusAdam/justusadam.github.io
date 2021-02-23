@@ -1,7 +1,7 @@
 ---
-title: Umziehen mit Pandemie, Brexit und Blizzard
+title: "Umziehen mit Pandemie, Brexit und Blizzard"
 author: Justus Adam
-published: false
+published: true
 date: "2021-02-22"
 ---
 
