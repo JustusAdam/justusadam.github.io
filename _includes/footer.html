@@ -54,7 +54,11 @@
       {% for legal in site.legal %}
         <span class="footer-col"><a href="{{ legal.url | prepend: site.baseurl }}">{{ legal.title }}</a></span>
       {% endfor %}
-      <div class="copyright">&copy; 2015-2020 Justus Adam</div>
+      {% if site.copyright %}
+        <div class="copyright">
+            {{ site.copyright }}
+        </div>
+      {% endif %}
     </div>
   </div>
 

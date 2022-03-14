@@ -8,6 +8,7 @@ url: "http://justus.science" # the base hostname & protocol for your site
 twitter_username: justusadam_
 github_username:  justusadam
 scholar_link: https://scholar.google.de/citations?user=Tabbno4AAAAJ
+copyright: "&copy; 2015-2022 Justus Adam"
 
 exclude:
   - _purescript

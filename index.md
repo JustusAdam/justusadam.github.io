@@ -6,9 +6,11 @@ layout: default
 
 Hello there,
 
-My name is Justus Adam and I am a PhD student at the [Department of Computer
-Science](https://cs.brown.edu){:target="_blank"} at [Brown University](https://brown.edu){:target="_blank"}. I
-mostly work within the [Systems Research Group](https://systems.cs.brown.edu){:target="_blank"}.
+My name is Justus Adam and I am a PhD student advised by [Malte
+Schwarzkopf](http://cs.brown.edu/people/malte/){:target="_blank"} at the [Department of Computer
+Science](https://cs.brown.edu){:target="_blank"} at [Brown
+University](https://brown.edu){:target="_blank"}. I mostly work within the
+[Systems Research Group](https://systems.cs.brown.edu){:target="_blank"}.
 
 
 ## Stuff you may be interested in
@@ -35,7 +37,7 @@ mostly work within the [Systems Research Group](https://systems.cs.brown.edu){:t
 ## About me
 
 I studied computer science at the TU Dresden starting in 2013. In 2016 I
-finished my Bachelors degree [^1] and in early 2020 my Masters.
+finished my Bachelors degree[^1] and in early 2020 my Masters[^2].
 
 My undergraduate studies were mostly concerned with the architecture of
 distributed systems and I also have a passion for functional programming and
@@ -51,6 +53,7 @@ me on a ski slope. I enjoy playing video games, making music and learning how to
 solve the big issues of our time, like inequality and climate change.
 
 [^1]: Link to my [Bachelors thesis](https://cfaed.tu-dresden.de/files/user/sertel/BachelorsThesis-Justus-Adam.pdf)
+[^2]: Link to my [Masters thesis](/pdfs/thesis.pdf)
 [^4]: [Slides](/pdfs/forschungsprojekt.pdf) for the topic introduction presentation of for my masters thesis
 [^5]: [PDF](/slides/mt-intermediate-defence.pdf) or
     [PowerPoint](/slides/mt-intermediate-defence.pptx) versions of the slides

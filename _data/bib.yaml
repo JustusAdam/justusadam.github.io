@@ -4,6 +4,7 @@
     - Justus Adam
     - Stephen Kell
   publication: 11th Workshop on Tools for Automatic Program Analysis
+  link: https://dl.acm.org/doi/abs/10.1145/3427764.3428324
   preprint: /pdfs/tapas2020.pdf
   abstract: |
     Type checkers are the most commonly used form of static analysis, but their
