@@ -7,10 +7,12 @@ layout: default
 Hello there,
 
 My name is Justus Adam and I am a PhD student advised by [Malte
-Schwarzkopf](http://cs.brown.edu/people/malte/){:target="_blank"} at the [Department of Computer
-Science](https://cs.brown.edu){:target="_blank"} at [Brown
-University](https://brown.edu){:target="_blank"}. I mostly work within the
-[Systems Research Group](https://systems.cs.brown.edu){:target="_blank"}.
+Schwarzkopf](http://cs.brown.edu/people/malte/){:target="_blank"} at the
+[Department of Computer Science](https://cs.brown.edu){:target="_blank"} at
+[Brown University](https://brown.edu){:target="_blank"}. I am part of the of the
+_[Efficient and Trustworthy Operating Systems](https://etos.cs.brown.edu)_
+(ETOS) group which is part of [Systems Research at
+Brown](https://systems.cs.brown.edu){:target="_blank"}.
 
 
 ## Stuff you may be interested in
@@ -33,6 +35,7 @@ University](https://brown.edu){:target="_blank"}. I mostly work within the
 
 - [Twitter](https://twitter.com/justusadam_){:target="_blank"}
 - [Instagram](https://instagram.com/justusadam_){:target="_blank"}
+- A [blog I am writing](/usa){:target="_blank"} about my time in the USA and my PhD
 - [A few blog posts I wrote about england](/england-blog)
 - [Archive of a technical blog I used to write](/blog). I haven't posted anything in a long time thought
 

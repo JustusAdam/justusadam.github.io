@@ -1,5 +1,6 @@
 ---
 title: Projects
+weight: 25
 permalink: /projects/
 layout: post
 ---
