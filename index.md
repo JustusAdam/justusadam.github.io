@@ -33,6 +33,8 @@ University](https://brown.edu){:target="_blank"}. I mostly work within the
 
 - [Twitter](https://twitter.com/justusadam_){:target="_blank"}
 - [Instagram](https://instagram.com/justusadam_){:target="_blank"}
+- [A few blog posts I wrote about england](/england-blog)
+- [Archive of a technical blog I used to write](/blog). I haven't posted anything in a long time thought
 
 ## About me
 
