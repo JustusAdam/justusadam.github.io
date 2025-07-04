@@ -34,7 +34,9 @@
     and its markers are easy to maintain as code evolves.
   preprint: /pdfs/paralegal.pdf
   link: https://www.usenix.org/conference/osdi25/presentation/adam
+  date: "2025-07-09"
 - title: "K9db: Privacy-Compliant Storage For Web Applications By Construction"
+  date: "2023-07-10"
   authors:
     - Kinan Dak Albab
     - Ishan Sharma
