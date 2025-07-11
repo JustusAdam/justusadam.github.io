@@ -1,0 +1,52 @@
+<style type="text/css">
+    .abstract {
+        display: none;
+        padding-left: 2em;
+        font-family: serif;
+    }
+    input:checked + .abstract {
+        display: block;
+    }
+</style>
+
+{% set pubs = load_data(path="data/bib.yaml", format="yaml") |
+sort(attribute='date') | reverse %}
+<ul>
+    {% for p in pubs %}
+
+    <li>
+        {{ p.date }}:
+        <strong>
+            {% if p.link %}
+            <a href="{{p.link}}">{{ p.title }}</a>
+            {% else %} {{ p.title }} {% endif %} {% if p.pdf %}<a
+                style="font-size: small"
+                href="{{p.pdf}}"
+                >[pdf]</a
+            >{% endif %} {% if p.preprint %}<a
+                style="font-size: small"
+                href="{{p.preprint}}"
+                >[preprint]</a
+            >{% endif %}
+        </strong>
+
+        <div style="margin-bottom: 15px; padding-left: 1em">
+            <p>
+                <small>
+                    {{p.note | default(value= "") | safe}} {{ p.authors |
+                    join(sep=", ") }} {% if p.publication %} in
+                    <i>{{p.publication }}</i> {% elif p.institution %} at
+                    <i>{{ p.institution }}</i>
+                    {% endif %}
+                </small>
+            </p>
+            {{ p.comment | default(value="") | markdown | safe }} {% if
+            p.abstract %} Show abstract:
+            <input type="checkbox" value="selected" />
+            <div class="abstract">{{ p.abstract | markdown | safe }}</div>
+            {% endif %}
+        </div>
+    </li>
+
+    {% endfor %}
+</ul>

@@ -18,10 +18,16 @@ highlight_code = true
 
 [extra]
 theme = "auto"
-menu = [
-    { name = "/bib", url = "/bib", weight = 0 },
-    # Configure menu bar here
-]
+
+[[extra.menu]]
+name = "/bib"
+url = "/bib"
+weight = 0
+
+[[extra.menu]]
+name = "/blog"
+url = "/blog"
+weight = 1
 
 [[extra.socials]]
 name = "github"
