@@ -1,28 +1,10 @@
 +++
-template = "home.html"
-
-[extra]
-name = "Justus Adam"
-
-[[extra.links]]
-name = "GitHub"
-icon = "github"
-url = "https://github.com/JustusAdam"
-
-[[extra.links]]
-name = "Bluesky"
-icon = "bluesky"
-url = "https://justusadam.bsky.social"
-
-[[extra.links]]
-name = "Instagram"
-icon = "instagram"
-url = "https://instagram.com/justusadam_"
+template = "homepage.html"
+title = "Hello There,"
 +++
 
 <img alt="A picture of me" src="/me.jpg" width="40%" align="right" style="margin-left: 10pt;" />
 
-Hello there,
 
 My name is Justus Adam and I am a PhD student advised by <a target="_blank" href="http://cs.brown.edu/people/malte/">Malte Schwarzkopf </a> at the
 <a href="https://cs.brown.edu" target="_blank">Department of Computer Science</a> at
@@ -43,6 +25,7 @@ Brown</a>.
 
 ### Open Source Software
 
+- [Paralegal](https://github.com/brownsys/paralegal), a static analyzer for privacy policies in Rust projects
 - [My GitHub account](https://github.com/JustusAdam)
 - [My Hackage user profile](https://hackage.haskell.org/user/justus)
 - The Ohua [project](https://ohua-dev.github.io) and [organization on
@@ -50,7 +33,7 @@ Brown</a>.
 
 ### Personal stuff
 
-- [A few blog posts I wrote about england](/england-blog)
+- [A few blog posts I wrote about my time in England](/england-blog)
 - [Archive of a technical blog I used to write](/blog). I haven't posted anything in a long time thought
 
 ## About me

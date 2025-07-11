@@ -7,7 +7,9 @@ compile_sass = true
 # Whether to build a search index to be used later on by a JavaScript library
 build_search_index = true
 
-theme = "serene"
+theme = "apollo"
+
+title = "Justus' Website 3.0"
 
 [markdown]
 # Whether to do syntax highlighting
@@ -15,19 +17,33 @@ theme = "serene"
 highlight_code = true
 
 [extra]
-force_theme = false
+theme = "auto"
+menu = [
+    { name = "/bib", url = "/bib", weight = 0 },
+    # Configure menu bar here
+]
 
-not_found_error_text = """This is not the page you're looking for!
+[[extra.socials]]
+name = "github"
+url = "https://github.com/JustusAdam"
+icon = "github"
 
-The page you wanted to access does not seem to exist, or at least not anymore.
+[[extra.socials]]
+name = "bluesky"
+url = "https://justusadam.bsky.social"
+icon = "bluesky"
 
-Move along traveler. May you have a more successful journey from here on.
-"""
+[[extra.socials]]
+name = "scholar"
+url = "https://scholar.google.de/citations?user=Tabbno4AAAAJ"
+icon = "google-scholar"
 
-not_found_recover_text = "<< back home >>"
+[[extra.socials]]
+name = "orcid"
+url = "https://orcid.org/0000-0003-4046-534X"
+icon = "orcid"
 
-sections = []
-
-reaction = false
-
-footer_copyright = "2025 - Justus Adam"
+[[extra.socials]]
+name = "instagram"
+url = "https://instagram.com/justusadam_"
+icon = "instagram"
