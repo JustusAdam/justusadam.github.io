@@ -1,0 +1,33 @@
+# The URL the site will be built for
+base_url = "https://justus.science"
+
+# Whether to automatically compile all Sass files in the sass directory
+compile_sass = true
+
+# Whether to build a search index to be used later on by a JavaScript library
+build_search_index = true
+
+theme = "serene"
+
+[markdown]
+# Whether to do syntax highlighting
+# Theme can be customised by setting the `highlight_theme` variable to a theme supported by Zola
+highlight_code = true
+
+[extra]
+force_theme = false
+
+not_found_error_text = """This is not the page you're looking for!
+
+The page you wanted to access does not seem to exist, or at least not anymore.
+
+Move along traveler. May you have a more successful journey from here on.
+"""
+
+not_found_recover_text = "<< back home >>"
+
+sections = []
+
+reaction = false
+
+footer_copyright = "2025 - Justus Adam"
