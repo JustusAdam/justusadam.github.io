@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  {% include "includes/head.html" %}
+
+  <body>
+
+    {% include "includes/header.html" %}
+
+    <div class="page-content">
+      <div class="wrapper">
+        {% block page_content %}
+        {% endblock %}
+      </div>
+    </div>
+
+    {% include "includes/footer.html" %}
+    <script type="text/javascript" src="{{ config.base_url ~ "/coffee/olderizr.js" }}"></script>
+    <script type="text/javascript" src="{{ config.base_url ~ "/javascript/easteregg.js" }}"></script>
+  </body>
+
+</html>

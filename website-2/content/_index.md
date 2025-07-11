@@ -1,5 +1,4 @@
 +++
-template = "homepage.html"
 title = "Hello There,"
 +++
 

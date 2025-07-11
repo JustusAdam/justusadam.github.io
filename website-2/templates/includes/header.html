@@ -1,0 +1,27 @@
+{% if not page %}
+{% set page = section %}
+{% endif %}
+<header class="site-header">
+
+  <div class="wrapper">
+      {% if config.extra.page_logo.default %}
+	  <img class="page-logo" src="{{ config.extra.page_logo.default }}" alt="Page logo"/>
+	  {% endif %}
+
+    <a class="site-title" href="{{ config.base_url }}/">{{ config.title }}</a>
+
+    <nav class="site-nav">
+      <div class="trigger">
+        {% set index = get_section(path="_index.md", metadata_only=true) %}
+        {% set pages = index.pages  %}
+        {% for page in pages %}
+          {% if page.title %}
+          <a class="page-link" href="{{ config.base_url ~ page.url }}">{{ page.title }}</a>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </nav>
+
+  </div>
+
+</header>
