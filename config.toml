@@ -11,10 +11,13 @@ title = "Justus' Website 3.0"
 
 description = "Hello, my name is Justus Adam. I am a computer science student and this is my personal website."
 
+
 [markdown]
 # Whether to do syntax highlighting
 # Theme can be customised by setting the `highlight_theme` variable to a theme supported by Zola
 highlight_code = true
+highlight_theme = "css"
+bottom_footnotes = true
 
 [extra]
 copyright = "© 2015-2025 Justus Adam"
@@ -24,11 +27,6 @@ email = "me@justus.science"
 name = "Bib"
 url = "/bib"
 weight = 0
-
-[[extra.menu]]
-name = "Blog"
-url = "/blog"
-weight = 1
 
 [[extra.socials]]
 name = "github"

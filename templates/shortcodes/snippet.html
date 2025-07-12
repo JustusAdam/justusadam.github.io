@@ -1,0 +1,27 @@
+{% set snippets = load_data(path="data/snippets.yaml") %}
+{% set snippet = snippets[category][name] %}
+
+{% set snippet_path = "snippets/" ~ prog_lang ~ "/" ~ snippet.path %}
+
+{% set code = load_data(path=snippet_path) %}
+{% set code = "```" ~ prog_lang ~ "
+" ~ code ~ "```" %}
+{{ code | markdown | safe }}
+<div class="snippet-meta light-font">
+  {% if snippet.show_name and snippet.show_name == false %}
+    <div>
+      <small class="right">{{ snippet.name }}</small>
+    </div>
+    <div class="clearfix"></div>
+  {% endif %}
+  {% if snippet.link_source %}
+    <div>
+      <small class="right">
+        <em>
+          This snippets source on <a href="{{ site.snippet_base_url }}/{{ snippet_path }}">GitHub</a>
+        </em>
+      </small>
+    </div>
+  {% endif %}
+  <div class="clearfix"></div>
+</div>

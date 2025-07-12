@@ -5,8 +5,6 @@ description: >
     HTTP library that I could find. So here is how it's done.
 ---
 
-{% assign snippets = site.data.snippets.http %}
-
 ## Prelude
 
 I've recently needed to make a basic, authenticated HTTP request in Haskell, however I found it difficult to find examples and documentation on the web so I thought I'd share my findings with the world in the form of a blog post (and a [gist][]).
@@ -37,7 +35,7 @@ The quickest one of these to get started is using the `getRequest` function from
 
 Which means a basic request starts like this
 
-{% include haskell-snippet.html snippet=snippets.start %}
+{{ snippet(prog_lang="haskell", category="http", name="start")}}
 
 ## Handling URI's
 
@@ -51,7 +49,7 @@ Getting those URI's into a `Request` can be done by for example `defaultGetReque
 
 Sending requests with actual (x-www-urlencoded) payload is, as I discovered with joy, similarly easy with the Browser module. It provides a function called `formToRequest` which takes a `Form` and `URI`, returning a `Request` and a data constructor for `Form` which takes a `RequestMethod` for which the constructors are simply `POST`, `GET` etc and a list of 2-Tuples of Strings for the payload values.
 
-{% include haskell-snippet.html snippet=snippets.form %}
+{{ snippet(prog_lang="haskell", category="http", name="form")}}
 
 ## Requests with Authentication
 
@@ -76,11 +74,11 @@ You can however set your own generator function with the `setAuthorityGen` funct
 
 A very simple authenticated request could look something like this.
 
-{% gist 9f1b3da2fadef823ff8b %}
+{{ gist(id="9f1b3da2fadef823ff8b") }}
 
 Another version of the provider function, for multiple URI's would be by hardcoding an association list of them and fetching from the list. Like in the example below.
 
-{% include haskell-snippet.html snippet=snippets.list_auth %}
+{{ snippet(prog_lang="haskell", category="http", name="list_auth")}}
 
 
 ## Sending literal JSON
@@ -94,4 +92,4 @@ The JSON standard requires the text to be unicode encoded. However when using st
 [warp]: https://hackage.haskell.org/package/warp
 [aeson]: https://hackage.haskell.org/package/aeson
 
-{% include haskell-snippet.html snippet=snippets.utf8 %}
+{{ snippet(prog_lang="haskell", category="http", name="utf8")}}

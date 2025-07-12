@@ -84,14 +84,13 @@ If you're interested, my PR with the changes to the gitit workflows can be found
 
 ## Configuration
 
-{% highlight yaml %}
-{% raw %}
+```yaml
 name: Create Assets
 
 on:
   release:
     types: [published]
-    
+
 jobs:
   build:
     runs-on: ${{ matrix.os }}
@@ -101,7 +100,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-      
+
     - name: Cache programs and libraries
       uses: actions/cache@v2
       env:
@@ -116,15 +115,15 @@ jobs:
 
     - name: Build the project
       run: stack build
-        
+
     - name: Tar and strip the binary
       run: |
         export PROGRAM=chbwa
         cp `stack exec -- which $PROGRAM` $PROGRAM
         tar -cavf program.tar.gz $PROGRAM
-        
+
     - name: Upload assets
-      id: upload-release-asset 
+      id: upload-release-asset
       uses: actions/upload-release-asset@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -133,29 +132,26 @@ jobs:
         asset_path: ./program.tar.gz
         asset_name: program-${{ runner.os }}.tar.gz
         asset_content_type: application/tar.gz
-{% endraw %}
-{% endhighlight %}
+```
 
 ## Explanation
 
 ### Header and build config
 
-{% highlight yaml %}
-{% raw %}
+```yaml
 name: Create Assets
 
 on:
   release:
     types: [published]
-    
+
 jobs:
   build:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest]
-{% endraw %}
-{% endhighlight %}
+```
 
 Standard header. We name the workflow and configure the trigger using the `on`
 clause. While you can choose several triggers, you can only upload assets for
@@ -174,12 +170,12 @@ look like on Windows, [let me know](mailto:dev@justus.science).
     versions, but I haven't yet discovered how to get the version identifier during
     the build to include in the asset name.
 
-### Checkout 
+### Checkout
 
-{% highlight yaml %}
-    steps:
-    - uses: actions/checkout@v2
-{% endhighlight %}
+```yaml
+steps:
+- uses: actions/checkout@v2
+```
 
 The steps list the various commands we'd like to run. They can either call on
 actions (`uses` key) or sun shell commands (`run` key). This action here [checks
@@ -187,21 +183,19 @@ out the repo](https://docs.github.com/en/actions/configuring-and-managing-workfl
 
 ### [Caching](https://docs.github.com/en/actions/configuring-and-managing-workflows/caching-dependencies-to-speed-up-workflows)
 
-{% highlight yaml %}
-{% raw %}
-    - name: Cache programs and libraries
-      uses: actions/cache@v2
-      env:
-        cache-name: cache-tools-and-libraries
-      with:
-        path: ~/.stack
-        key: ${{ runner.os }}-ca-${{ env.cache-name }}-${{ hashFiles('**/stack.yaml.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-ca-${{ env.cache-name }}-
-          ${{ runner.os }}-ca-
-          ${{ runner.os }}-
-{% endraw %}
-{% endhighlight %}
+```yaml
+- name: Cache programs and libraries
+  uses: actions/cache@v2
+  env:
+    cache-name: cache-tools-and-libraries
+  with:
+    path: ~/.stack
+    key: ${{ runner.os }}-ca-${{ env.cache-name }}-${{ hashFiles('**/stack.yaml.lock') }}
+    restore-keys: |
+      ${{ runner.os }}-ca-${{ env.cache-name }}-
+      ${{ runner.os }}-ca-
+      ${{ runner.os }}-
+```
 
 I've left this in here, but I'm sad to say it doesn't work for me. For some
 reason the key lookup always fails. If anyone has an idea why [let me
@@ -209,16 +203,16 @@ know](mailto:dev@justus.science).
 
 ### Building
 
-{% highlight yaml %}
-    - name: Build the project
-      run: stack build
-        
-    - name: Tar and strip the binary
-      run: |
-        export PROGRAM=chbwa
-        cp `stack exec -- which $PROGRAM` $PROGRAM
-        tar -cavf program.tar.gz $PROGRAM
-{% endhighlight %}
+```yaml
+- name: Build the project
+  run: stack build
+
+- name: Tar and strip the binary
+  run: |
+    export PROGRAM=chbwa
+    cp `stack exec -- which $PROGRAM` $PROGRAM
+    tar -cavf program.tar.gz $PROGRAM
+```
 
 Build the project the usual way.
 
@@ -276,20 +270,18 @@ such a script
 
 ### Upload
 
-{% highlight yaml %}
-{% raw %}
-    - name: Upload assets
-      id: upload-release-asset 
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        upload_url: ${{ github.event.release.upload_url }}
-        asset_path: ./program.tar.gz
-        asset_name: program-${{ runner.os }}.tar.gz
-        asset_content_type: application/tar.gz
-{% endraw %}
-{% endhighlight %}
+```yaml
+- name: Upload assets
+  id: upload-release-asset
+  uses: actions/upload-release-asset@v1
+  env:
+    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  with:
+    upload_url: ${{ github.event.release.upload_url }}
+    asset_path: ./program.tar.gz
+    asset_name: program-${{ runner.os }}.tar.gz
+    asset_content_type: application/tar.gz
+```
 
 This is where the convenience of Actions really comes in. We can use the
 predefined
