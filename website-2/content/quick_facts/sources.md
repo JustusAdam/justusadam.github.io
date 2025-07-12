@@ -1,5 +1,6 @@
 ---
 weight: 30
+render: false
 ---
 
 The [Markdown](http://daringfireball.net/projects/markdown/syntax){:target="_blank"} sources for this site are on [GitHub](https://github.com/JustusAdam/justusadam.github.io){:target="_blank"} and open for you to read, and submit improvement suggestions to.

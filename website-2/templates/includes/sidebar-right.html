@@ -1,0 +1,9 @@
+<div class="sidebar-right sidebar right column-4 widescreen-only">
+  <p>Did you know ...</p>
+  <ul class="fact-list smaller">
+    {% set quick_facts = get_section(path="quick_facts/_index.md") %}
+    {% for fact in quick_facts.pages %}
+      <li{% if forloop.last %} class="last"{% endif %}>{{ fact.content | safe }}</li>
+    {% endfor %}
+  </ul>
+</div>

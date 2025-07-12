@@ -1,0 +1,62 @@
+{% extends "default.html" %}
+
+{% block page_content %}
+<div class="home">
+
+  <div class="content left column-8 fullscreen-on-palm">
+    <h1 class="page-heading">Posts</h1>
+
+
+    <ul class="post-list">
+      {% if paginator %}
+        {% set pages = paginator.pages %}
+      {% else %}
+        {% set pages = section.pages %}
+      {% endif %}
+
+      {% for post in pages %}
+        <li>
+          {% if post.date %}
+            <span class="post-meta">{{ post.date | date(format="%b %-d, %Y") }}</span>
+          {% endif %}
+
+          <h2 style="margin-bottom: 10px">
+            <a class="post-link" href="{{ config.base_url ~ post.path }}">{{ post.title }}</a>
+          </h2>
+          {% if post.description %}
+            {% set desc = post.description %}
+          {% else %}
+            {% set desc = post.summary %}
+          {% endif %}
+          {% if desc %}
+            <p class="small light-font">
+              {{ desc | striptags | truncate(length=20) }}
+            </p>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+
+    {% if paginator %}
+        <div class="pagination-navigation">
+        {% if paginator.previous %}
+            <div class="left">
+            <a class="previous pagination-link" href="{{ paginator.previous }}">&#10554; &nbsp;&nbsp; Previous</a>
+            </div>
+        {% endif %}
+        {% if paginator.next %}
+            <div class="right">
+            <a class="next pagination-link" href="{{ paginator.next }}">Next &nbsp;&nbsp; &#10555;</a>
+            </div>
+        {% endif %}
+        </div>
+    {% endif %}
+
+  </div>
+
+  {% include "includes/sidebar-right.html" %}
+  <div class="clearfix"></div>
+
+  <p class="rss-subscribe">subscribe <a href="{{ config.base_url ~ "/atom.xml" }}">via RSS</a></p>
+</div>
+{% endblock %}
