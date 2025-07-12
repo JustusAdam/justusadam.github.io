@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>A sweetass sidebar in Jekyll</title>
+  <meta name="description" content="Hello, my name is Justus Adam. I am a computer science student and this is my personal website.">
+
+  <script src="//cdn.rawgit.com/bramstein/fontfaceobserver/master/fontfaceobserver.js" async="async" defer="defer"></script>
+  
+  <link rel="stylesheet" href="https://justus.science/main.css">
+  
+  <link rel="canonical" href="https://justus.science/blog/a-sweetass-sidebar/">
+  
+</head>
+
+
+  <body>
+
+    
+<header class="site-header">
+
+  <div class="wrapper">
+      
+
+    <a class="site-title" href="https:&#x2F;&#x2F;justus.science/">Justus&#x27; Website 3.0</a>
+
+    <nav class="site-nav">
+      <div class="trigger">
+        
+        
+          
+          <a class="page-link" href="https://justus.science/bib">Bib</a>
+          
+        
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        
+
+<div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">A sweetass sidebar in Jekyll</h1>
+  </header>
+
+  <article class="post-content">
+    
+    <p>So the <a href="//jekyllrb.com">Jekyll</a> default installation using <code>jekyll new</code> is, albeit beautiful, a little bit bare bones, which is probably deliberate.</p>
+<h2 id="adding-a-sidebar">Adding a sidebar</h2>
+<p>Mostly I felt like there was a lot of unused space on the index page, so I started to customize the index.html and added a <code>sidebar-right.html</code> file to include in the index page (modular is always good).</p>
+<pre data-lang="html" class="language-html z-code"><code class="language-html" data-lang="html"><span class="z-text z-html z-basic"><span class="z-meta z-tag z-block z-any z-html"><span class="z-punctuation z-definition z-tag z-begin z-html">&lt;</span><span class="z-entity z-name z-tag z-block z-any z-html">div</span> <span class="z-meta z-attribute-with-value z-class z-html"><span class="z-entity z-other z-attribute-name z-class z-html">class</span><span class="z-punctuation z-separator z-key-value z-html">=</span><span class="z-string z-quoted z-double z-html"><span class="z-punctuation z-definition z-string z-begin z-html">&quot;</span></span><span class="z-string z-quoted z-double z-html"><span class="z-meta z-class-name z-html">sidebar-right</span> <span class="z-meta z-class-name z-html">sidebar</span><span class="z-punctuation z-definition z-string z-end z-html">&quot;</span></span></span><span class="z-punctuation z-definition z-tag z-end z-html">&gt;</span></span><span class="z-meta z-tag z-block z-any z-html"><span class="z-punctuation z-definition z-tag z-begin z-html">&lt;/</span><span class="z-entity z-name z-tag z-block z-any z-html">div</span><span class="z-punctuation z-definition z-tag z-end z-html">&gt;</span></span>
+</span></code></pre>
+<p>And I added some content in the form of short FAQ-like messages titled "Did you know ...".</p>
+<pre data-lang="html" class="language-html z-code"><code class="language-html" data-lang="html"><span class="z-text z-html z-basic"><span class="z-meta z-tag z-block z-any z-html"><span class="z-punctuation z-definition z-tag z-begin z-html">&lt;</span><span class="z-entity z-name z-tag z-block z-any z-html">div</span> <span class="z-meta z-attribute-with-value z-class z-html"><span class="z-entity z-other z-attribute-name z-class z-html">class</span><span class="z-punctuation z-separator z-key-value z-html">=</span><span class="z-string z-quoted z-double z-html"><span class="z-punctuation z-definition z-string z-begin z-html">&quot;</span></span><span class="z-string z-quoted z-double z-html"><span class="z-meta z-class-name z-html">sidebar-right</span> <span class="z-meta z-class-name z-html">sidebar</span> <span class="z-meta z-class-name z-html">right</span> <span class="z-meta z-class-name z-html">column-4</span><span class="z-punctuation z-definition z-string z-end z-html">&quot;</span></span></span><span class="z-punctuation z-definition z-tag z-end z-html">&gt;</span></span>
+</span><span class="z-text z-html z-basic">  <span class="z-meta z-tag z-block z-any z-html"><span class="z-punctuation z-definition z-tag z-begin z-html">&lt;</span><span class="z-entity z-name z-tag z-block z-any z-html">p</span><span class="z-punctuation z-definition z-tag z-end z-html">&gt;</span></span>Did you know ...<span class="z-meta z-tag z-block z-any z-html"><span class="z-punctuation z-definition z-tag z-begin z-html">&lt;/</span><span class="z-entity z-name z-tag z-block z-any z-html">p</span><span class="z-punctuation z-definition z-tag z-end z-html">&gt;</span></span>
+</span><span class="z-text z-html z-basic">  <span class="z-meta z-tag z-block z-any z-html"><span class="z-punctuation z-definition z-tag z-begin z-html">&lt;</span><span class="z-entity z-name z-tag z-block z-any z-html">ul</span> <span class="z-meta z-attribute-with-value z-class z-html"><span class="z-entity z-other z-attribute-name z-class z-html">class</span><span class="z-punctuation z-separator z-key-value z-html">=</span><span class="z-string z-quoted z-double z-html"><span class="z-punctuation z-definition z-string z-begin z-html">&quot;</span></span><span class="z-string z-quoted z-double z-html"><span class="z-meta z-class-name z-html">fact-list</span> <span class="z-meta z-class-name z-html">smaller</span><span class="z-punctuation z-definition z-string z-end z-html">&quot;</span></span></span><span class="z-punctuation z-definition z-tag z-end z-html">&gt;</span></span>
+</span><span class="z-text z-html z-basic">    ...
+</span><span class="z-text z-html z-basic">  <span class="z-meta z-tag z-block z-any z-html"><span class="z-punctuation z-definition z-tag z-begin z-html">&lt;/</span><span class="z-entity z-name z-tag z-block z-any z-html">ul</span><span class="z-punctuation z-definition z-tag z-end z-html">&gt;</span></span>
+</span><span class="z-text z-html z-basic"><span class="z-meta z-tag z-block z-any z-html"><span class="z-punctuation z-definition z-tag z-begin z-html">&lt;/</span><span class="z-entity z-name z-tag z-block z-any z-html">div</span><span class="z-punctuation z-definition z-tag z-end z-html">&gt;</span></span>
+</span></code></pre>
+<p>But I wasn't satisfied. There were a lot of big and ugly <code>&lt;a&gt;</code> tags in there  and the whole thing felt so ... static. Actually writing a <code>&lt;ul&gt;</code> element by hand in html felt just ... wrong. Fortunately I had just learnt about <a href="https://jekyllrb.com/docs/collections/">jekyll collections</a> and was using them to create some <a href="/projects/">project pages</a>. So I created a new collection called 'quick_facts' and refactored the messages into individual <code>.md</code>'s containing markdown source for the messages, plus the YAML Front Matter and added this little line instead of the giant blobs of text from before.</p>
+<pre data-lang="html" class="language-html z-code"><code class="language-html" data-lang="html"><span class="z-text z-html z-basic"><span class="z-meta z-tag z-block z-any z-html"><span class="z-punctuation z-definition z-tag z-begin z-html">&lt;</span><span class="z-entity z-name z-tag z-block z-any z-html">ul</span> <span class="z-meta z-attribute-with-value z-class z-html"><span class="z-entity z-other z-attribute-name z-class z-html">class</span><span class="z-punctuation z-separator z-key-value z-html">=</span><span class="z-string z-quoted z-double z-html"><span class="z-punctuation z-definition z-string z-begin z-html">&quot;</span></span><span class="z-string z-quoted z-double z-html"><span class="z-meta z-class-name z-html">fact-list</span> <span class="z-meta z-class-name z-html">smaller</span><span class="z-punctuation z-definition z-string z-end z-html">&quot;</span></span></span><span class="z-punctuation z-definition z-tag z-end z-html">&gt;</span></span>
+</span><span class="z-text z-html z-basic">  {% for fact in site.quick_facts %}
+</span><span class="z-text z-html z-basic">
+</span><span class="z-text z-html z-basic">    <span class="z-meta z-tag z-other z-html"><span class="z-punctuation z-definition z-tag z-begin z-html">&lt;</span></span><span class="z-meta z-tag z-other z-html"><span class="z-entity z-name z-tag z-other z-html">li{%</span> <span class="z-meta z-attribute-with-value z-html"><span class="z-entity z-other z-attribute-name z-html">if</span> </span><span class="z-meta z-attribute-with-value z-html"><span class="z-entity z-other z-attribute-name z-html">forloop.last</span> </span><span class="z-meta z-attribute-with-value z-html"><span class="z-entity z-other z-attribute-name z-html">%}</span> </span><span class="z-meta z-attribute-with-value z-class z-html"><span class="z-entity z-other z-attribute-name z-class z-html">class</span><span class="z-punctuation z-separator z-key-value z-html">=</span><span class="z-string z-quoted z-double z-html"><span class="z-punctuation z-definition z-string z-begin z-html">&quot;</span></span><span class="z-string z-quoted z-double z-html"><span class="z-meta z-class-name z-html">last</span><span class="z-punctuation z-definition z-string z-end z-html">&quot;</span></span></span><span class="z-meta z-attribute-with-value z-html"><span class="z-entity z-other z-attribute-name z-html">{%</span> </span><span class="z-meta z-attribute-with-value z-html"><span class="z-entity z-other z-attribute-name z-html">endif</span> </span><span class="z-meta z-attribute-with-value z-html"><span class="z-entity z-other z-attribute-name z-html">%}</span></span><span class="z-punctuation z-definition z-tag z-end z-html">&gt;</span></span>{{ fact.output }}<span class="z-meta z-tag z-inline z-any z-html"><span class="z-punctuation z-definition z-tag z-begin z-html">&lt;/</span><span class="z-entity z-name z-tag z-inline z-any z-html">li</span><span class="z-punctuation z-definition z-tag z-end z-html">&gt;</span></span>
+</span><span class="z-text z-html z-basic">
+</span><span class="z-text z-html z-basic">  {% endfor %}
+</span><span class="z-text z-html z-basic"><span class="z-meta z-tag z-block z-any z-html"><span class="z-punctuation z-definition z-tag z-begin z-html">&lt;/</span><span class="z-entity z-name z-tag z-block z-any z-html">ul</span><span class="z-punctuation z-definition z-tag z-end z-html">&gt;</span></span>
+</span></code></pre>
+<p>The <code>if forloop.last</code> block adds a 'last' class to the last element to allow me to add some pretty separators using <code>border-bottom</code>.</p>
+<p>Now if I want to edit a message, instead of digging around in lines upon lines of raw html code I can go straight to the message file containing some nice markdown source.
+The best feature in my eyes though is that if I want to add, replace or delete I just have to add/replace/delete <code>.md</code> files in the <code>_quick_facts</code> directory and it'll process them automatically.</p>
+<h2 id="displaying-excerpts-and-descriptions">Displaying excerpts and descriptions</h2>
+<p>On the website I've had before I was using <a href="//drupal.org">Drupal</a> which by default displayed a kind of teaser on the overviews. I liked that so I replicated it in Jekyll.</p>
+<p>But I wanted to do more, or more precisely I didn't realize at first that Jekyll offers an <code>excerpt</code> attribute on he document objects and so I added something of my own making.</p>
+<pre data-lang="html" class="language-html z-code"><code class="language-html" data-lang="html"><span class="z-text z-html z-basic">{% if post.description %}
+</span><span class="z-text z-html z-basic"><span class="z-meta z-tag z-block z-any z-html"><span class="z-punctuation z-definition z-tag z-begin z-html">&lt;</span><span class="z-entity z-name z-tag z-block z-any z-html">p</span> <span class="z-meta z-attribute-with-value z-class z-html"><span class="z-entity z-other z-attribute-name z-class z-html">class</span><span class="z-punctuation z-separator z-key-value z-html">=</span><span class="z-string z-quoted z-double z-html"><span class="z-punctuation z-definition z-string z-begin z-html">&quot;</span></span><span class="z-string z-quoted z-double z-html"><span class="z-meta z-class-name z-html">small</span> <span class="z-meta z-class-name z-html">light-font</span><span class="z-punctuation z-definition z-string z-end z-html">&quot;</span></span></span><span class="z-punctuation z-definition z-tag z-end z-html">&gt;</span></span>
+</span><span class="z-text z-html z-basic">  {{ post.description | truncate: 100, &#39;...&#39; }}
+</span><span class="z-text z-html z-basic"><span class="z-meta z-tag z-block z-any z-html"><span class="z-punctuation z-definition z-tag z-begin z-html">&lt;/</span><span class="z-entity z-name z-tag z-block z-any z-html">p</span><span class="z-punctuation z-definition z-tag z-end z-html">&gt;</span></span>
+</span></code></pre>
+<p>Which would, if a document object had a <code>description</code> attribute print the first 100 characters of it in a smaller, lighter font.</p>
+<p>However I discovered that the document objects actually have an <code>excerpt</code> attribute which will generate a teaser based on the content itself, so I combined the two. Furthermore I found out that you can simply add your own custom variables to the <code>_config.yml</code> which will then be available via the <code>site</code> attribute, so I refactored the teaser length such that it is set in the main config as <code>quick_view_length</code>. And here's the final result:</p>
+<pre data-lang="html" class="language-html z-code"><code class="language-html" data-lang="html"><span class="z-text z-html z-basic">{% if post.description %}
+</span><span class="z-text z-html z-basic">  {% assign desc = post.description %}
+</span><span class="z-text z-html z-basic">{% else %}
+</span><span class="z-text z-html z-basic">  {% assign desc = post.excerpt | remove: &#39;<span class="z-meta z-tag z-block z-any z-html"><span class="z-punctuation z-definition z-tag z-begin z-html">&lt;</span><span class="z-entity z-name z-tag z-block z-any z-html">p</span><span class="z-punctuation z-definition z-tag z-end z-html">&gt;</span></span>&#39; | remove: &#39;<span class="z-meta z-tag z-block z-any z-html"><span class="z-punctuation z-definition z-tag z-begin z-html">&lt;/</span><span class="z-entity z-name z-tag z-block z-any z-html">p</span><span class="z-punctuation z-definition z-tag z-end z-html">&gt;</span></span>&#39; %}
+</span><span class="z-text z-html z-basic">{% endif %}
+</span><span class="z-text z-html z-basic">  <span class="z-meta z-tag z-block z-any z-html"><span class="z-punctuation z-definition z-tag z-begin z-html">&lt;</span><span class="z-entity z-name z-tag z-block z-any z-html">p</span> <span class="z-meta z-attribute-with-value z-class z-html"><span class="z-entity z-other z-attribute-name z-class z-html">class</span><span class="z-punctuation z-separator z-key-value z-html">=</span><span class="z-string z-quoted z-double z-html"><span class="z-punctuation z-definition z-string z-begin z-html">&quot;</span></span><span class="z-string z-quoted z-double z-html"><span class="z-meta z-class-name z-html">small</span> <span class="z-meta z-class-name z-html">light-font</span><span class="z-punctuation z-definition z-string z-end z-html">&quot;</span></span></span><span class="z-punctuation z-definition z-tag z-end z-html">&gt;</span></span>
+</span><span class="z-text z-html z-basic">    {{ desc | truncate: site.quick_view_length, &#39;...&#39; }}
+</span><span class="z-text z-html z-basic">  <span class="z-meta z-tag z-block z-any z-html"><span class="z-punctuation z-definition z-tag z-begin z-html">&lt;/</span><span class="z-entity z-name z-tag z-block z-any z-html">p</span><span class="z-punctuation z-definition z-tag z-end z-html">&gt;</span></span>
+</span></code></pre>
+<p>Now it will either print the first paragraph of the page (jekyll's default <code>excerpt</code> style) or a custom description, if you provide one, perhaps if the first paragraph is not very representative of the rest of the content.</p>
+<p>You can check out how it looks on the <a href="/">homepage</a>.</p>
+
+    
+  </article>
+
+</div>
+
+      </div>
+    </div>
+
+    <footer class="site-footer">
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Justus&#x27; Website 3.0</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col  footer-col-1">
+        <ul class="contact-list">
+          <li>Justus&#x27; Website 3.0</li>
+          
+          <li><a href="mailto:me@justus.science">me@justus.science</a></li>
+          
+        </ul>
+      </div>
+
+      
+      <div class="footer-col  footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https:&#x2F;&#x2F;github.com&#x2F;JustusAdam">
+              <span class="icon">
+                <img width="15em" src="/icons/social/github.svg" />
+              </span>
+
+              <span class="username">github</span>
+            </a>
+          </li>
+          
+          <li>
+            <a href="https:&#x2F;&#x2F;justusadam.bsky.social">
+              <span class="icon">
+                <img width="15em" src="/icons/social/bluesky.svg" />
+              </span>
+
+              <span class="username">bluesky</span>
+            </a>
+          </li>
+          
+          <li>
+            <a href="https:&#x2F;&#x2F;scholar.google.de&#x2F;citations?user=Tabbno4AAAAJ">
+              <span class="icon">
+                <img width="15em" src="/icons/social/google-scholar.svg" />
+              </span>
+
+              <span class="username">scholar</span>
+            </a>
+          </li>
+          
+          <li>
+            <a href="https:&#x2F;&#x2F;orcid.org&#x2F;0000-0003-4046-534X">
+              <span class="icon">
+                <img width="15em" src="/icons/social/orcid.svg" />
+              </span>
+
+              <span class="username">orcid</span>
+            </a>
+          </li>
+          
+          <li>
+            <a href="https:&#x2F;&#x2F;instagram.com&#x2F;justusadam_">
+              <span class="icon">
+                <img width="15em" src="/icons/social/instagram.svg" />
+              </span>
+
+              <span class="username">instagram</span>
+            </a>
+          </li>
+          
+
+        </ul>
+      </div>
+      
+
+      <div class="footer-col  footer-col-3">
+        <p class="text">Hello, my name is Justus Adam. I am a computer science student and this is my personal website.</p>
+      </div>
+    </div>
+
+    <div class="small footer-col-wrapper legal-section">
+      
+      
+        <span class="footer-col"><a href="https://justus.science/legal/imprint/">Impressum</a></span>
+      
+        <span class="footer-col"><a href="https://justus.science/legal/license/">License</a></span>
+      
+        <span class="footer-col"><a href="https://justus.science/legal/disclaimer/">Haftungsausschluss</a></span>
+      
+      
+        <div class="copyright">
+            © 2015-2025 Justus Adam
+        </div>
+      
+    </div>
+  </div>
+
+  <script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+
+</footer>
+
+  </body>
+
+</html>

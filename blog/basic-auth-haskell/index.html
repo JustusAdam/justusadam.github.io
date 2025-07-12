@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Basic authenticated http requests and forms in Haskell</title>
+  <meta name="description" content="Hello, my name is Justus Adam. I am a computer science student and this is my personal website.">
+
+  <script src="//cdn.rawgit.com/bramstein/fontfaceobserver/master/fontfaceobserver.js" async="async" defer="defer"></script>
+  
+  <link rel="stylesheet" href="https://justus.science/main.css">
+  
+  <link rel="canonical" href="https://justus.science/blog/basic-auth-haskell/">
+  
+</head>
+
+
+  <body>
+
+    
+<header class="site-header">
+
+  <div class="wrapper">
+      
+
+    <a class="site-title" href="https:&#x2F;&#x2F;justus.science/">Justus&#x27; Website 3.0</a>
+
+    <nav class="site-nav">
+      <div class="trigger">
+        
+        
+          
+          <a class="page-link" href="https://justus.science/bib">Bib</a>
+          
+        
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        
+
+<div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Basic authenticated http requests and forms in Haskell</h1>
+  </header>
+
+  <article class="post-content">
+    
+    <h2 id="prelude">Prelude</h2>
+<p>I've recently needed to make a basic, authenticated HTTP request in Haskell, however I found it difficult to find examples and documentation on the web so I thought I'd share my findings with the world in the form of a blog post (and a <a href="https://gist.github.com/JustusAdam/9f1b3da2fadef823ff8b">gist</a>).</p>
+<p>First of all, in order to use http in Haskell you'll want to use the right library. Fortunately for me I already knew a library which is sort of the standard library for Haskell when it comes to http (client side). The aptly named <a href="https://hackage.haskell.org/package/HTTP">HTTP</a> library.</p>
+<p>The Hackage page for the <a href="https://hackage.haskell.org">hackage</a> page for the <a href="https://hackage.haskell.org/package/HTTP">HTTP</a> library albeit being helpful does not provide very many examples on how to use it and more importantly does not provide a lot of guidance for beginners when it comes to choosing the right submodule for a particular task.</p>
+<p>I the past I've mostly dealt with the very basic Network.HTTP package. Which is reasonably easy to understand and totally sufficient for simple, unauthenticated <strong>GET</strong> requests. However if you want to do more complicated things like for example auth or cookies it is too low level. For those more complicated requests you'll want to use the Network.Browser module, which seems a bit intimidating at first.</p>
+<p>Network.Browser defines the BrowserAction Monad, which is basically IO combined with (Browser)State. All further actions are then defined on this BrowserAction.</p>
+<h2 id="browser-basics">Browser basics</h2>
+<p>The main action with the BrowserAction Monad, outside of BrowserAction, is the <code>browse</code> function. This function evaluates the BrowserAction and returns whatever contents it is holding, very much like IO. This is the usual entry and exit point for Browser related computation in the <a href="https://hackage.haskell.org/package/HTTP">HTTP</a> library.</p>
+<p>The basic function for performing requests is the <code>request</code> function, which given a <code>Request</code> object performs the request, ending again inside a BrowserAction.</p>
+<p><code>Request</code> objects can either be created by hand, or with the utility functions from <code>Network.HTTP</code> or by using the utility functions in <code>Network.HTTP.Browser</code> itself.</p>
+<p>The quickest one of these to get started is using the <code>getRequest</code> function from <code>Network.HTTP</code>, it just takes a <code>String</code> and returns a <code>Request</code>.</p>
+<p>Which means a basic request starts like this</p>
+
+
+
+
+
+
+
+<pre data-lang="haskell" class="language-haskell z-code"><code class="language-haskell" data-lang="haskell"><span class="z-source z-haskell"><span class="z-meta z-import z-haskell"><span class="z-keyword z-other z-haskell">import</span> <span class="z-support z-other z-module z-haskell">Network.HTTP.Browser</span></span>
+</span><span class="z-source z-haskell">
+</span><span class="z-source z-haskell">
+</span><span class="z-source z-haskell">main <span class="z-keyword z-operator z-haskell">=</span>
+</span><span class="z-source z-haskell">  browse <span class="z-keyword z-operator z-haskell">$</span>
+</span><span class="z-source z-haskell">    request <span class="z-keyword z-operator z-haskell">$</span> getRequest <span class="z-string z-quoted z-double z-haskell"><span class="z-punctuation z-definition z-string z-begin z-haskell">&quot;</span>http://github.com<span class="z-punctuation z-definition z-string z-end z-haskell">&quot;</span></span>
+</span></code></pre>
+
+<div class="snippet-meta light-font">
+  
+  
+  <div class="clearfix"></div>
+</div>
+<h2 id="handling-uri-s">Handling URI's</h2>
+<p>If you want to be slightly more fancy and safe with your requests, instead of using the <code>getRequest</code> function you can first parse your URI using the <code>Network.URI</code> module from the <a href="https://hackage.haskell.org/package/network-uri">network-uri</a> package (which is what <code>getRequest</code> does internally). This module provides several ways of parsing URI's that return either Maybe's, Either's or throwing exceptions, if you're okay with throwing exceptions. But they all return <code>URI</code> type objects.</p>
+<p>Getting those URI's into a <code>Request</code> can be done by for example <code>defaultGetRequest</code> which takes a <code>URI</code> and returns a Request that the Browser can carry out.</p>
+<h2 id="requests-with-forms">Requests with forms</h2>
+<p>Sending requests with actual (x-www-urlencoded) payload is, as I discovered with joy, similarly easy with the Browser module. It provides a function called <code>formToRequest</code> which takes a <code>Form</code> and <code>URI</code>, returning a <code>Request</code> and a data constructor for <code>Form</code> which takes a <code>RequestMethod</code> for which the constructors are simply <code>POST</code>, <code>GET</code> etc and a list of 2-Tuples of Strings for the payload values.</p>
+
+
+
+
+
+
+
+<pre data-lang="haskell" class="language-haskell z-code"><code class="language-haskell" data-lang="haskell"><span class="z-source z-haskell"><span class="z-meta z-import z-haskell"><span class="z-keyword z-other z-haskell">import</span> <span class="z-support z-other z-module z-haskell">Network.HTTP.Browser</span></span>
+</span><span class="z-source z-haskell">
+</span><span class="z-source z-haskell">
+</span><span class="z-source z-haskell">main <span class="z-keyword z-operator z-haskell">=</span>
+</span><span class="z-source z-haskell">  browse <span class="z-keyword z-operator z-haskell">$</span>
+</span><span class="z-source z-haskell">    formToRequest <span class="z-keyword z-operator z-haskell">$</span>
+</span><span class="z-source z-haskell">      <span class="z-constant z-other z-haskell">Form</span>
+</span><span class="z-source z-haskell">        <span class="z-constant z-other z-haskell">POST</span>
+</span><span class="z-source z-haskell">        (fromJust <span class="z-keyword z-operator z-haskell">$</span> parseURI <span class="z-string z-quoted z-double z-haskell"><span class="z-punctuation z-definition z-string z-begin z-haskell">&quot;</span>http://github.com/register/new<span class="z-punctuation z-definition z-string z-end z-haskell">&quot;</span></span>)
+</span><span class="z-source z-haskell">        [ (<span class="z-string z-quoted z-double z-haskell"><span class="z-punctuation z-definition z-string z-begin z-haskell">&quot;</span>name<span class="z-punctuation z-definition z-string z-end z-haskell">&quot;</span></span><span class="z-punctuation z-separator z-comma z-haskell">,</span> <span class="z-string z-quoted z-double z-haskell"><span class="z-punctuation z-definition z-string z-begin z-haskell">&quot;</span>Guido<span class="z-punctuation z-definition z-string z-end z-haskell">&quot;</span></span>)
+</span><span class="z-source z-haskell">        <span class="z-punctuation z-separator z-comma z-haskell">,</span> (<span class="z-string z-quoted z-double z-haskell"><span class="z-punctuation z-definition z-string z-begin z-haskell">&quot;</span>occupation<span class="z-punctuation z-definition z-string z-end z-haskell">&quot;</span></span><span class="z-punctuation z-separator z-comma z-haskell">,</span> <span class="z-string z-quoted z-double z-haskell"><span class="z-punctuation z-definition z-string z-begin z-haskell">&quot;</span>Plumber<span class="z-punctuation z-definition z-string z-end z-haskell">&quot;</span></span>)
+</span><span class="z-source z-haskell">        <span class="z-punctuation z-separator z-comma z-haskell">,</span> (<span class="z-string z-quoted z-double z-haskell"><span class="z-punctuation z-definition z-string z-begin z-haskell">&quot;</span>email<span class="z-punctuation z-definition z-string z-end z-haskell">&quot;</span></span><span class="z-punctuation z-separator z-comma z-haskell">,</span> <span class="z-string z-quoted z-double z-haskell"><span class="z-punctuation z-definition z-string z-begin z-haskell">&quot;</span>guido@python.org<span class="z-punctuation z-definition z-string z-end z-haskell">&quot;</span></span>)
+</span><span class="z-source z-haskell">        ]
+</span></code></pre>
+
+<div class="snippet-meta light-font">
+  
+  
+  <div class="clearfix"></div>
+</div>
+<h2 id="requests-with-authentication">Requests with Authentication</h2>
+<p>Even though it took me a relatively long time to figure out how to do authentication with this library, it is actually relatively simple.
+The BrowserAction will actually handle most of the hard authentication work for you, provided the webpage you're visiting communicates in the canonical way, using HTTP error codes.</p>
+<p>When performing the POST or GET request with the <code>request</code> function the Browser action will check the returned status code and take action depending on the code. The two codes that are of interest are 200 (Status OK) and 401 (Unauthorized).
+In case of 200 the server has computed the resource you requested and BrowserAction will simply return the body of the request. In case of 401 the server requests you to authenticate to it.</p>
+<p>If the server requests the authentication, BrowserAction will attempt to satisfy the authentication by fetching a Username, Password combination from a generator function and sending a request for authentication to the server, retrying the original request afterwards.
+The type signature for the generator function is <code>URI -&gt; String -&gt; IO (Maybe (String, String))</code> and by default is equivalent to <code>\_ _ -&gt; return Nothing</code> aka there will be no authentication for any URI.
+You can however set your own generator function with the <code>setAuthorityGen</code> function in the BrowserAction.</p>
+<h4 id="a-few-things-to-note-about-the-generator-function">A few things to note about the generator function</h4>
+<ul>
+<li>The two arguments provided are the full URI for the requested resource and the so called realm, which is a message the server sends to unauthorized clients.
+Thus your generator function can return different Username, Password combinations depending on the URI.</li>
+<li>The generator function returns a maybe. If you don't recognize the URI that it is trying to authenticate for you don't have to provide any credentials by simply returning <code>Nothing</code></li>
+<li>The return type of the generator function is an IO computation, which means you may read the credentials from a file or request them from a different server.</li>
+</ul>
+<h4 id="how-does-this-look-in-practice">How does this look in practice?</h4>
+<p>A very simple authenticated request could look something like this.</p>
+<script src="https://gist.github.com/JustusAdam/9f1b3da2fadef823ff8b.js"></script>
+<p>Another version of the provider function, for multiple URI's would be by hardcoding an association list of them and fetching from the list. Like in the example below.</p>
+
+
+
+
+
+
+
+<pre data-lang="haskell" class="language-haskell z-code"><code class="language-haskell" data-lang="haskell"><span class="z-source z-haskell"><span class="z-meta z-import z-haskell"><span class="z-keyword z-other z-haskell">import</span> <span class="z-support z-other z-module z-haskell">HTTP.Browser</span></span>
+</span><span class="z-source z-haskell"><span class="z-meta z-import z-haskell"><span class="z-keyword z-other z-haskell">import</span> <span class="z-support z-other z-module z-haskell">Control.Arrow</span> <span class="z-meta z-declaration z-exports z-haskell">(<span class="z-entity z-name z-function z-haskell">second</span>)</span></span>
+</span><span class="z-source z-haskell">
+</span><span class="z-source z-haskell">
+</span><span class="z-source z-haskell">authList <span class="z-keyword z-operator z-haskell">=</span> map (second (fromJust <span class="z-keyword z-operator z-haskell">.</span> parseURI))  <span class="z-comment z-line z-double-dash z-haskell"><span class="z-punctuation z-definition z-comment z-haskell">--</span> makes the strings into URI&#39;s
+</span></span><span class="z-source z-haskell">  [ (<span class="z-string z-quoted z-double z-haskell"><span class="z-punctuation z-definition z-string z-begin z-haskell">&quot;</span>http://google.com<span class="z-punctuation z-definition z-string z-end z-haskell">&quot;</span></span>  <span class="z-punctuation z-separator z-comma z-haskell">,</span> (<span class="z-string z-quoted z-double z-haskell"><span class="z-punctuation z-definition z-string z-begin z-haskell">&quot;</span>walter<span class="z-punctuation z-definition z-string z-end z-haskell">&quot;</span></span><span class="z-punctuation z-separator z-comma z-haskell">,</span> <span class="z-string z-quoted z-double z-haskell"><span class="z-punctuation z-definition z-string z-begin z-haskell">&quot;</span>12.24.1975<span class="z-punctuation z-definition z-string z-end z-haskell">&quot;</span></span>))
+</span><span class="z-source z-haskell">  <span class="z-punctuation z-separator z-comma z-haskell">,</span> (<span class="z-string z-quoted z-double z-haskell"><span class="z-punctuation z-definition z-string z-begin z-haskell">&quot;</span>http://facebook.com<span class="z-punctuation z-definition z-string z-end z-haskell">&quot;</span></span><span class="z-punctuation z-separator z-comma z-haskell">,</span> (<span class="z-string z-quoted z-double z-haskell"><span class="z-punctuation z-definition z-string z-begin z-haskell">&quot;</span>MarkZuckerberg<span class="z-punctuation z-definition z-string z-end z-haskell">&quot;</span></span><span class="z-punctuation z-separator z-comma z-haskell">,</span> <span class="z-string z-quoted z-double z-haskell"><span class="z-punctuation z-definition z-string z-begin z-haskell">&quot;</span>IamTheFounder<span class="z-punctuation z-definition z-string z-end z-haskell">&quot;</span></span>))
+</span><span class="z-source z-haskell">  <span class="z-punctuation z-separator z-comma z-haskell">,</span> (<span class="z-string z-quoted z-double z-haskell"><span class="z-punctuation z-definition z-string z-begin z-haskell">&quot;</span>http://reddit.com<span class="z-punctuation z-definition z-string z-end z-haskell">&quot;</span></span>  <span class="z-punctuation z-separator z-comma z-haskell">,</span> (<span class="z-string z-quoted z-double z-haskell"><span class="z-punctuation z-definition z-string z-begin z-haskell">&quot;</span>StephenHawking<span class="z-punctuation z-definition z-string z-end z-haskell">&quot;</span></span><span class="z-punctuation z-separator z-comma z-haskell">,</span> <span class="z-string z-quoted z-double z-haskell"><span class="z-punctuation z-definition z-string z-begin z-haskell">&quot;</span>BlackHole<span class="z-punctuation z-definition z-string z-end z-haskell">&quot;</span></span>))
+</span><span class="z-source z-haskell">  ]
+</span><span class="z-source z-haskell">
+</span><span class="z-source z-haskell">
+</span><span class="z-source z-haskell">main <span class="z-keyword z-operator z-haskell">=</span>
+</span><span class="z-source z-haskell">  browse <span class="z-keyword z-operator z-haskell">$</span> <span class="z-keyword z-control z-haskell">do</span>
+</span><span class="z-source z-haskell">    setAuthorityGen (const <span class="z-keyword z-operator z-haskell">.</span> return <span class="z-keyword z-operator z-haskell">.</span> flip lookup authList)
+</span><span class="z-source z-haskell">    request <span class="z-keyword z-operator z-haskell">$</span> getRequest <span class="z-string z-quoted z-double z-haskell"><span class="z-punctuation z-definition z-string z-begin z-haskell">&quot;</span>http://github.com<span class="z-punctuation z-definition z-string z-end z-haskell">&quot;</span></span>
+</span></code></pre>
+
+<div class="snippet-meta light-font">
+  
+  
+  <div class="clearfix"></div>
+</div>
+<h2 id="sending-literal-json">Sending literal JSON</h2>
+<p>I've also recently had the pleasure to be in a situation where I've wanted to create some very simple json, for which the proper way (via the <a href="https://hackage.haskell.org/package/aeson">aeson</a> library) would have felt like overkill,</p>
+<p>I wanted to create the output with just string concatenation and then send it to the client. Unfortunately the <a href="https://hackage.haskell.org/package/warp">warp</a> library, which is sort of the standard web server library for Haskell, uses ByteStrings for output. Now if you do things the canonical way, the <a href="https://hackage.haskell.org/package/aeson">aeson</a> way it'll create a unicode encoded ByteString for you and there's nothing to worry about.</p>
+<p>The JSON standard requires the text to be unicode encoded. However when using string literals and concatenation it becomes quite obvious that ByteString is inherently not meant for unicode. So in order to get a Unicode encoded String you'll have create <code>Text</code> rather than a <code>String</code> and then specifically encode it as a unicode ByteString. You can do this by importing the <code>Data.Text.Encoding</code> module or the <code>Data.Text.Lazy.Encoding</code> module if you, like me, are dealing with <a href="https://hackage.haskell.org/package/warp">warp</a> and need a lazy ByteString for output and then simply use the <code>encodeUtf8</code> function on your <code>Text</code>.</p>
+
+
+
+
+
+
+
+<pre data-lang="haskell" class="language-haskell z-code"><code class="language-haskell" data-lang="haskell"><span class="z-source z-haskell"><span class="z-meta z-preprocessor z-haskell">{-# <span class="z-keyword z-other z-preprocessor z-haskell">LANGUAGE</span> OverloadedStrings #-}</span>
+</span><span class="z-source z-haskell">
+</span><span class="z-source z-haskell"><span class="z-meta z-import z-haskell"><span class="z-keyword z-other z-haskell">import</span> <span class="z-support z-other z-module z-haskell">Data.Text.Lazy</span></span>
+</span><span class="z-source z-haskell"><span class="z-meta z-import z-haskell"><span class="z-keyword z-other z-haskell">import</span> <span class="z-support z-other z-module z-haskell">Data.Text.Lazy.Encoding</span></span>
+</span><span class="z-source z-haskell"><span class="z-meta z-import z-haskell"><span class="z-keyword z-other z-haskell">import</span> <span class="z-support z-other z-module z-haskell">Network.Warp</span></span>
+</span><span class="z-source z-haskell">
+</span><span class="z-source z-haskell">
+</span><span class="z-source z-haskell">warpApplication respond request <span class="z-keyword z-operator z-haskell">=</span>
+</span><span class="z-source z-haskell">  respond <span class="z-keyword z-operator z-haskell">$</span> respondLBS <span class="z-keyword z-operator z-haskell">$</span> encodeUtf8 <span class="z-string z-quoted z-double z-haskell"><span class="z-punctuation z-definition z-string z-begin z-haskell">&quot;</span>{<span class="z-constant z-character z-escape z-haskell">\&quot;</span>text<span class="z-constant z-character z-escape z-haskell">\&quot;</span>: <span class="z-constant z-character z-escape z-haskell">\&quot;</span>My json response<span class="z-constant z-character z-escape z-haskell">\&quot;</span>}<span class="z-punctuation z-definition z-string z-end z-haskell">&quot;</span></span>
+</span><span class="z-source z-haskell">
+</span><span class="z-source z-haskell">
+</span><span class="z-source z-haskell">main <span class="z-keyword z-operator z-haskell">=</span> run warpApplication
+</span></code></pre>
+
+<div class="snippet-meta light-font">
+  
+  
+  <div class="clearfix"></div>
+</div>
+
+    
+  </article>
+
+</div>
+
+      </div>
+    </div>
+
+    <footer class="site-footer">
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Justus&#x27; Website 3.0</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col  footer-col-1">
+        <ul class="contact-list">
+          <li>Justus&#x27; Website 3.0</li>
+          
+          <li><a href="mailto:me@justus.science">me@justus.science</a></li>
+          
+        </ul>
+      </div>
+
+      
+      <div class="footer-col  footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https:&#x2F;&#x2F;github.com&#x2F;JustusAdam">
+              <span class="icon">
+                <img width="15em" src="/icons/social/github.svg" />
+              </span>
+
+              <span class="username">github</span>
+            </a>
+          </li>
+          
+          <li>
+            <a href="https:&#x2F;&#x2F;justusadam.bsky.social">
+              <span class="icon">
+                <img width="15em" src="/icons/social/bluesky.svg" />
+              </span>
+
+              <span class="username">bluesky</span>
+            </a>
+          </li>
+          
+          <li>
+            <a href="https:&#x2F;&#x2F;scholar.google.de&#x2F;citations?user=Tabbno4AAAAJ">
+              <span class="icon">
+                <img width="15em" src="/icons/social/google-scholar.svg" />
+              </span>
+
+              <span class="username">scholar</span>
+            </a>
+          </li>
+          
+          <li>
+            <a href="https:&#x2F;&#x2F;orcid.org&#x2F;0000-0003-4046-534X">
+              <span class="icon">
+                <img width="15em" src="/icons/social/orcid.svg" />
+              </span>
+
+              <span class="username">orcid</span>
+            </a>
+          </li>
+          
+          <li>
+            <a href="https:&#x2F;&#x2F;instagram.com&#x2F;justusadam_">
+              <span class="icon">
+                <img width="15em" src="/icons/social/instagram.svg" />
+              </span>
+
+              <span class="username">instagram</span>
+            </a>
+          </li>
+          
+
+        </ul>
+      </div>
+      
+
+      <div class="footer-col  footer-col-3">
+        <p class="text">Hello, my name is Justus Adam. I am a computer science student and this is my personal website.</p>
+      </div>
+    </div>
+
+    <div class="small footer-col-wrapper legal-section">
+      
+      
+        <span class="footer-col"><a href="https://justus.science/legal/imprint/">Impressum</a></span>
+      
+        <span class="footer-col"><a href="https://justus.science/legal/license/">License</a></span>
+      
+        <span class="footer-col"><a href="https://justus.science/legal/disclaimer/">Haftungsausschluss</a></span>
+      
+      
+        <div class="copyright">
+            © 2015-2025 Justus Adam
+        </div>
+      
+    </div>
+  </div>
+
+  <script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+
+</footer>
+
+  </body>
+
+</html>

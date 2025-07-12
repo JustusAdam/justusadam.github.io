@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Haskell on Travis CI</title>
+  <meta name="description" content="Hello, my name is Justus Adam. I am a computer science student and this is my personal website.">
+
+  <script src="//cdn.rawgit.com/bramstein/fontfaceobserver/master/fontfaceobserver.js" async="async" defer="defer"></script>
+  
+  <link rel="stylesheet" href="https://justus.science/main.css">
+  
+  <link rel="canonical" href="https://justus.science/blog/travis/">
+  
+</head>
+
+
+  <body>
+
+    
+<header class="site-header">
+
+  <div class="wrapper">
+      
+
+    <a class="site-title" href="https:&#x2F;&#x2F;justus.science/">Justus&#x27; Website 3.0</a>
+
+    <nav class="site-nav">
+      <div class="trigger">
+        
+        
+          
+          <a class="page-link" href="https://justus.science/bib">Bib</a>
+          
+        
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        
+
+<div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Haskell on Travis CI</h1>
+  </header>
+
+  <article class="post-content">
+    
+    <p>Building Haskell code on <a href="https://travis-ci.org">travis</a> is a bit complicated. Haskell happens to be one of the less well supported languages on <a href="https://travis-ci.org">travis</a>.</p>
+<p><a href="https://travis-ci.org">Travis</a> ships with an older version of ghc (I think its 7.8) and cabal. But many projects either rely on newer versions of ghc, such as <a href="https://github.com/JustusAdam/elm-init">elm-init</a> or want to be compatible with older ghc, such as <a href="https://github.com/JustusAdam/ja-base-extra">ja-base-extra</a>. This requires building with either a different version of ghc or multiple ghc/base library versions.</p>
+<p>There's a wonderful project by a github user named @hvr. The project itself is called <a href="https://github.com/hvr/multi-ghc-travis">multi-ghc-travis</a> and provides an example <a href="https://github.com/hvr/multi-ghc-travis/blob/master/.travis.yml">.travis.yml</a> which configures a matrix of build environments for travis based on as many ghc and cabal versions as you require by manually downloading and installing the necessary ghc ppa's on the build VM.</p>
+<p>This is great and all, however bears a downside as it requires root privileges in the VM to add ppa's and install packages, which prohibits use of the new and faster, container based travis architecture.</p>
+<p>There has been some nice development in container customization lately and as a result there's now a container compatible way of customizing your Haskell build environment on travis as this <a href="https://github.com/hvr/multi-ghc-travis#travisyml-for-container-based-infrastructure">section</a> of the <a href="https://github.com/hvr/multi-ghc-travis">README</a> shows.</p>
+<p>The even nicer thing is that the repository also provides you with a Haskell script that automatically creates the new-style .travis.yml from your <strong>tested-with</strong> section in your <strong>.cabal</strong> file. Simply provide the script with a <strong>.cabal</strong> file and pipe the output into a file called .travis.yml and you're pretty much set.</p>
+<p>Now I found it rather difficult to find information on how the <strong>tested-with</strong> section in a <strong>.cabal</strong> file should look. The <a href="https://www.haskell.org/cabal/users-guide/developing-packages.html#package-properties">cabal documentation</a> simply states that it contain <em>list compiler</em>.</p>
+<p>Searching further I found that <em>compiler</em> is supposed to be the short name of a compiler, such as <em>ghc</em> version bounds for that compiler. Those version bounds are very similar to those of dependencies. Resulting in a field which looks something like this:</p>
+<pre class="z-code"><code><span class="z-text z-plain">tested-with:
+</span><span class="z-text z-plain">    GHC &gt;= 7.0 &amp;&amp; &lt; 7.10,
+</span><span class="z-text z-plain">    LHC &gt;= 0.6 &amp;&amp; &lt; 0.8
+</span></code></pre>
+<p>That's all I've got for now. If you've got something to add <a href="https://twitter.com/justusadam_">catch me on twitter</a>.</p>
+
+    
+  </article>
+
+</div>
+
+      </div>
+    </div>
+
+    <footer class="site-footer">
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Justus&#x27; Website 3.0</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col  footer-col-1">
+        <ul class="contact-list">
+          <li>Justus&#x27; Website 3.0</li>
+          
+          <li><a href="mailto:me@justus.science">me@justus.science</a></li>
+          
+        </ul>
+      </div>
+
+      
+      <div class="footer-col  footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https:&#x2F;&#x2F;github.com&#x2F;JustusAdam">
+              <span class="icon">
+                <img width="15em" src="/icons/social/github.svg" />
+              </span>
+
+              <span class="username">github</span>
+            </a>
+          </li>
+          
+          <li>
+            <a href="https:&#x2F;&#x2F;justusadam.bsky.social">
+              <span class="icon">
+                <img width="15em" src="/icons/social/bluesky.svg" />
+              </span>
+
+              <span class="username">bluesky</span>
+            </a>
+          </li>
+          
+          <li>
+            <a href="https:&#x2F;&#x2F;scholar.google.de&#x2F;citations?user=Tabbno4AAAAJ">
+              <span class="icon">
+                <img width="15em" src="/icons/social/google-scholar.svg" />
+              </span>
+
+              <span class="username">scholar</span>
+            </a>
+          </li>
+          
+          <li>
+            <a href="https:&#x2F;&#x2F;orcid.org&#x2F;0000-0003-4046-534X">
+              <span class="icon">
+                <img width="15em" src="/icons/social/orcid.svg" />
+              </span>
+
+              <span class="username">orcid</span>
+            </a>
+          </li>
+          
+          <li>
+            <a href="https:&#x2F;&#x2F;instagram.com&#x2F;justusadam_">
+              <span class="icon">
+                <img width="15em" src="/icons/social/instagram.svg" />
+              </span>
+
+              <span class="username">instagram</span>
+            </a>
+          </li>
+          
+
+        </ul>
+      </div>
+      
+
+      <div class="footer-col  footer-col-3">
+        <p class="text">Hello, my name is Justus Adam. I am a computer science student and this is my personal website.</p>
+      </div>
+    </div>
+
+    <div class="small footer-col-wrapper legal-section">
+      
+      
+        <span class="footer-col"><a href="https://justus.science/legal/imprint/">Impressum</a></span>
+      
+        <span class="footer-col"><a href="https://justus.science/legal/license/">License</a></span>
+      
+        <span class="footer-col"><a href="https://justus.science/legal/disclaimer/">Haftungsausschluss</a></span>
+      
+      
+        <div class="copyright">
+            © 2015-2025 Justus Adam
+        </div>
+      
+    </div>
+  </div>
+
+  <script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+
+</footer>
+
+  </body>
+
+</html>

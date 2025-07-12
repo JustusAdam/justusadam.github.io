@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Publications</title>
+  <meta name="description" content="Hello, my name is Justus Adam. I am a computer science student and this is my personal website.">
+
+  <script src="//cdn.rawgit.com/bramstein/fontfaceobserver/master/fontfaceobserver.js" async="async" defer="defer"></script>
+  
+  <link rel="stylesheet" href="https://justus.science/main.css">
+  
+  <link rel="canonical" href="https://justus.science/bib/">
+  
+</head>
+
+
+  <body>
+
+    
+<header class="site-header">
+
+  <div class="wrapper">
+      
+
+    <a class="site-title" href="https:&#x2F;&#x2F;justus.science/">Justus&#x27; Website 3.0</a>
+
+    <nav class="site-nav">
+      <div class="trigger">
+        
+        
+          
+          <a class="page-link" href="https://justus.science/bib">Bib</a>
+          
+        
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        
+
+<div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Publications</h1>
+  </header>
+
+  <article class="post-content">
+    
+    <p>See also my <a href="https://scholar.google.de/citations?user=Tabbno4AAAAJ">Google Scholar user page</a></p>
+<style type="text/css">
+    .abstract {
+        display: none;
+        padding-left: 2em;
+        font-family: serif;
+    }
+    input:checked + .abstract {
+        display: block;
+    }
+</style>
+
+
+<ul>
+    
+
+    <li>
+        2025-07-09:
+        <strong>
+            
+            <a href="https:&#x2F;&#x2F;www.usenix.org&#x2F;conference&#x2F;osdi25&#x2F;presentation&#x2F;adam">Paralegal: Practical Static Analysis for Privacy Bugs</a>
+              <a
+                style="font-size: small"
+                href="&#x2F;pdfs&#x2F;paralegal.pdf"
+                >[preprint]</a
+            >
+        </strong>
+
+        <div style="margin-bottom: 15px; padding-left: 1em">
+            <p>
+                <small>
+                     Justus Adam, Carolyn Zech, Livia Zhu, Sreshtaa Rajesh, Nathan Harbison, Mithi Jethwa, Will Crichton, Malte Schwarzkopf, Shriram Krishnamurthi  in
+                    <i>19th USENIX Symposium on Operating Systems Design and Implementation (OSDI&#x27;25)</i> 
+                </small>
+            </p>
+            <p><a href="/pdfs/paralegal-poster.pdf">A poster</a> is also available for a quick overview</p>
+  Show abstract:
+            <input type="checkbox" value="selected" />
+            <div class="abstract"><p>Finding privacy bugs in software today usually requires onerous
+manual audits. Code analysis tools could help, but existing
+tools aren't sufficiently practical and ergonomic to be used.</p>
+<p>Paralegal is a static analysis tool to find privacy bugs in Rust
+programs. Key to Paralegal's practicality is its distribution of
+work between the program analyzer, privacy engineers, and
+application developers. Privacy engineers express a high-level
+privacy policy over markers, which application developers
+then apply to source code entities. Paralegal extracts a Program
+Dependence Graph (PDG) from the program, leveraging
+Rust's ownership type system to model the behavior of library
+code. Paralegal augments the PDG with the developers' markers
+and checks privacy policies against the marked PDG.</p>
+<p>In an evaluation on eight real-world applications, Paralegal
+found real privacy bugs, including two previously unknown
+ones. Paralegal supports a broader range of policies than information
+flow control (IFC) and CodeQL, a widely-used code
+analysis engine. Paralegal is fast enough to deploy interactively,
+and its markers are easy to maintain as code evolves.</p>
+</div>
+            
+        </div>
+    </li>
+
+    
+
+    <li>
+        2023-07-10:
+        <strong>
+            
+            <a href="https:&#x2F;&#x2F;www.usenix.org&#x2F;conference&#x2F;osdi23&#x2F;presentation&#x2F;albab">K9db: Privacy-Compliant Storage For Web Applications By Construction</a>
+              
+        </strong>
+
+        <div style="margin-bottom: 15px; padding-left: 1em">
+            <p>
+                <small>
+                     Kinan Dak Albab, Ishan Sharma, Justus Adam, Benjamin Klimnik, Aaron Jeyaraj, Raj Paul, Artem Agvanian, Leonhard Spiegelberg, Malte Schwarzkopf  in
+                    <i>17th USENIX Symposium on Operating Systems Design and Implementation (OSDI&#x27;23)</i> 
+                </small>
+            </p>
+             
+        </div>
+    </li>
+
+    
+
+    <li>
+        2020-11-19:
+        <strong>
+            
+            <a href="https:&#x2F;&#x2F;dl.acm.org&#x2F;doi&#x2F;abs&#x2F;10.1145&#x2F;3427764.3428324">Type checking beyond type checkers, via Slice &amp; Run</a>
+              <a
+                style="font-size: small"
+                href="&#x2F;pdfs&#x2F;tapas2020.pdf"
+                >[preprint]</a
+            >
+        </strong>
+
+        <div style="margin-bottom: 15px; padding-left: 1em">
+            <p>
+                <small>
+                     Justus Adam, Stephen Kell  in
+                    <i>11th Workshop on Tools for Automatic Program Analysis</i> 
+                </small>
+            </p>
+              Show abstract:
+            <input type="checkbox" value="selected" />
+            <div class="abstract"><p>Type checkers are the most commonly used form of static analysis, but their
+design is coupled to the rest of the language, making it hard or impossible
+to bring new kinds of reasoning to existing unmodified code.</p>
+<p>We propose a novel approach to checking advanced type invariants and
+properties in unmodified source code, while retaining the speed and ease of
+simple syntax directed type checkers. The insight is that by combining a
+relatively deep program analysis (symbolic execution) with an unusual choice
+of program abstraction (based on program slicing), it appears possible to
+reconstitute type-checking as a special case of a more general analysis,
+which the abstraction reduces mostly to 'type-level' reasoning, largely
+discarding the 'value-level' work of the program.</p>
+<p>We implement a first simple prototype that demonstrates this idea by
+checking the safety of generic pointers in C, potentially bringing benefits
+roughly comparable with Milner's polymorphism.</p>
+</div>
+            
+        </div>
+    </li>
+
+    
+
+    <li>
+        2019-12-12:
+        <strong>
+             Ohua-powered, Semi-transparent UDF&#x27;s in the Noria Database  <a
+                style="font-size: small"
+                href="&#x2F;pdfs&#x2F;thesis.pdf"
+                >[pdf]</a
+            > 
+        </strong>
+
+        <div style="margin-bottom: 15px; padding-left: 1em">
+            <p>
+                <small>
+                    Masters Thesis Justus Adam  at
+                    <i>Technische Universität Dresden</i>
+                    
+                </small>
+            </p>
+            <p><a href="/pdfs/noria-udfs-extended-abstract.pdf">2-page Extended Abstract</a> as short introduction</p>
+  Show abstract:
+            <input type="checkbox" value="selected" />
+            <div class="abstract"><p>The Structured Query Language (SQL) is the de facto standard for database
+programming. SQL is a declarative language, letting programmers write short
+queries easily and allowing for aggressive performance optimizations.</p>
+<p>However this style diverges greatly from the widely used sequential
+programming style. This makes complex queries hard to write and understand
+[21].</p>
+<p>SQL also does not allow for the use of state. Algorithms that use state to
+achieve efficiency are impossible to implement [12]. State can only be used
+in so called User Defined Functions (UDF) which come with a significant
+performance penalty, because the optimizations are no longer available.</p>
+<p>In this work we improve upon the integration of imperative User Defined
+Functions. We use a the parallelizing compiler Ohua to generate query
+fragments from the UDF's. These fragments run like native SQL queries and
+can benefit from database optimizations, such as parallelizing.</p>
+<p>The fragments contain operators generated by the compiler, which are state
+enabled. This allows us to express efficient stateful queries, as in [12].</p>
+</div>
+            
+        </div>
+    </li>
+
+    
+
+    <li>
+        2019-07-23:
+        <strong>
+            
+            <a href="https:&#x2F;&#x2F;doi.org&#x2F;10.1145&#x2F;3331545.3342600">STCLang: State Thread Composition as a Foundation for Monadic Dataflow Parallelism</a>
+              
+        </strong>
+
+        <div style="margin-bottom: 15px; padding-left: 1em">
+            <p>
+                <small>
+                     Sebastian Ertel, Justus Adam, Norman A. Rink, Andrés Goens, Jeronimo Castrillon  in
+                    <i>Proceedings of the 12th ACM SIGPLAN International Symposium on Haskell</i> 
+                </small>
+            </p>
+              Show abstract:
+            <input type="checkbox" value="selected" />
+            <div class="abstract"><p>Dataflow execution models are used to build highly scalable parallel
+systems. A programming model that targets parallel dataflow execution must
+answer the following question: How can parallelism between two dependent
+nodes in a dataflow graph be exploited? This is difficult when the dataflow
+language or programming model is implemented by a monad, as is common in the
+functional community, since expressing dependence between nodes by a monadic
+bind suggests sequential execution.</p>
+<p>Even in monadic constructs that explicitly separate state from computation,
+problems arise due to the need to reason about opaquely defined state.
+Specifically, when abstractions of the chosen programming model do not
+enable adequate reasoning about state, it is difficult to detect parallelism
+between composed stateful computations.</p>
+<p>In this paper, we propose a programming model that enables the composition
+of stateful computations and still exposes opportunities for
+parallelization. We also introduce smap, a higher-order function that can
+exploit parallelism in stateful computations. We present an implementation
+of our programming model and <code>smap</code> in Haskell and show that basic concepts
+from functional reactive programming can be built on top of our programming
+model with little effort. We compare these implementations to a
+state-of-the-art approach using monad-par and LVars to expose parallelism
+explicitly and reach the same level of performance, showing that our
+programming model successfully extracts parallelism that is present in an
+algorithm. Further evaluation shows that smap is expressive enough to
+implement parallel reductions and our programming model resolves
+short-comings of the stream-based programming model for current
+state-of-the-art big data processing systems.</p>
+</div>
+            
+        </div>
+    </li>
+
+    
+
+    <li>
+        2018-02-24:
+        <strong>
+            
+            <a href="https:&#x2F;&#x2F;cfaed.tu-dresden.de&#x2F;files&#x2F;Images&#x2F;people&#x2F;chair-cc&#x2F;publications&#x2F;1802_Ertel_PMAM.pdf">Supporting Fine-grained Dataflow Parallelism in Big Data Systems.</a>
+              
+        </strong>
+
+        <div style="margin-bottom: 15px; padding-left: 1em">
+            <p>
+                <small>
+                     Sebastian Ertel, Justus Adam, Jeronimo Castrillon  in
+                    <i>PMAM@ PPoPP</i> 
+                </small>
+            </p>
+              Show abstract:
+            <input type="checkbox" value="selected" />
+            <div class="abstract"><p>Big data systems scale with the number of cores in a cluster for the parts
+of an application that can be executed in data parallel fashion. It has been
+recently reported, however, that these systems fail to translate hardware
+improvements, such as increased network bandwidth, into a higher throughput.
+This is particularly the case for applications that have inherent
+sequential, computationally intensive phases. In this paper, we analyze the
+data processing cores of state-of-the-art big data systems to find the cause
+for these scalability problems. We identify design patterns in the code that
+are suitable for pipeline and task-level parallelism, potentially increasing
+application performance. As a proof of concept, we rewrite parts of the
+Hadoop MapReduce framework in an implicit parallel language that exploits
+this parallelism without adding code complexity. Our experiments on a data
+analytics workload show throughput speedups of up to 3.5x.</p>
+</div>
+            
+        </div>
+    </li>
+
+    
+
+    <li>
+        2018-02-24:
+        <strong>
+            
+            <a href="https:&#x2F;&#x2F;dl.acm.org&#x2F;citation.cfm?id=3179505">Compiling for concise code and efficient I&#x2F;O</a>
+              
+        </strong>
+
+        <div style="margin-bottom: 15px; padding-left: 1em">
+            <p>
+                <small>
+                     Sebastian Ertel, Andrés Goens, Justus Adam, Jeronimo Castrillon  in
+                    <i>Proceedings of the 27th International Conference on Compiler Construction</i> 
+                </small>
+            </p>
+              Show abstract:
+            <input type="checkbox" value="selected" />
+            <div class="abstract"><p>Large infrastructures of Internet companies, such as Facebook and Twitter,
+are composed of several layers of micro-services. While this modularity
+provides scalability to the system, the I/O associated with each service
+request strongly impacts its performance. In this context, writing concise
+programs which execute I/O efficiently is especially challenging. In this
+paper, we introduce Ÿauhau, a novel compile-time solution. Ÿauhau reduces
+the number of I/O calls through rewrites on a simple expression language. To
+execute I/O concurrently, it lowers the expression language to a dataflow
+representation. Our approach can be used alongside an existing programming
+language, permitting the use of legacy code. We describe an implementation
+in the JVM and use it to evaluate our approach. Experiments show that Ÿauhau
+can significantly improve I/O, both in terms of the number of I/O calls and
+concurrent execution. Ÿauhau outperforms state-of-the-art approaches with
+similar goals.</p>
+</div>
+            
+        </div>
+    </li>
+
+    
+
+    <li>
+        2018:
+        <strong>
+            
+            <a href="https:&#x2F;&#x2F;cfaed.tu-dresden.de&#x2F;files&#x2F;Images&#x2F;people&#x2F;chair-cc&#x2F;publications&#x2F;1801_Goens_MULTIRPOG.pdf">Level Graphs</a>
+              
+        </strong>
+
+        <div style="margin-bottom: 15px; padding-left: 1em">
+            <p>
+                <small>
+                     Andrés Goens, Sebastian Ertel, Justus Adam, Jeronimo Castrillon 
+                </small>
+            </p>
+              Show abstract:
+            <input type="checkbox" value="selected" />
+            <div class="abstract"><p>Benchmarks are needed in order to test compiler and language-based
+approaches to optimize concurrency. These have tobe varied, yield
+reproducible results and allow comparisonbetween different approaches. In
+this paper, we propose aframework for generating synthetic benchmarks that
+aims atattaining these goals. Based on generating code from randomgraphs,
+our framework operates at a high level of abstraction.We test our
+benchmarking framework with a usecase, wherewe compare three
+state-of-the-art systems to optimize I/Oconcurrency in microservice-based
+software architectures.We show how using our benchmarks we can reliably
+comparebetween approaches, and even between the same approachusing different
+coding styles.</p>
+</div>
+            
+        </div>
+    </li>
+
+    
+
+    <li>
+        2017-05-09:
+        <strong>
+            
+            <a href="https:&#x2F;&#x2F;cfaed.tu-dresden.de&#x2F;files&#x2F;user&#x2F;sertel&#x2F;BachelorsThesis-Justus-Adam.pdf">Control Flow and Side Effects support in a Framework for automatic I&#x2F;O batching</a>
+              
+        </strong>
+
+        <div style="margin-bottom: 15px; padding-left: 1em">
+            <p>
+                <small>
+                    Bachelors Thesis Justus Adam  at
+                    <i>Technische Universität Dresden</i>
+                    
+                </small>
+            </p>
+              Show abstract:
+            <input type="checkbox" value="selected" />
+            <div class="abstract"><p>The largest source of latency for many modern systems, particularly
+services, is the inherent latency of I/O operations. Disk I/O, database
+access and network bound communication is frequent, especially in data
+processing systems and distributed service infrastructures. Making I/O
+efficient is cumbersome, involves asynchronous programming and caching and
+hinders modularity when attempting to perform batch jobs. There have been a
+few solutions proposed to automate this, first and foremost Haxl, a Haskell
+library. We proposed an alternate, improved implementation called Ÿauhau. It
+leverages dataflow to produce even better performance while being
+independent from any particular code writing style in a minimal Embedded
+Domain-Specific Language (EDSL). In this thesis we first explore the
+techniques used by Ÿauhau to make I/O more efficient. Secondly we identify,
+explain and solve issues in Ÿauhau arising from control flow. Furthermore we
+suggest new optimisations for the compiler and implement safety guards for
+handling side effects.</p>
+</div>
+            
+        </div>
+    </li>
+
+    
+</ul>
+
+    
+  </article>
+
+</div>
+
+      </div>
+    </div>
+
+    <footer class="site-footer">
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Justus&#x27; Website 3.0</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col  footer-col-1">
+        <ul class="contact-list">
+          <li>Justus&#x27; Website 3.0</li>
+          
+          <li><a href="mailto:me@justus.science">me@justus.science</a></li>
+          
+        </ul>
+      </div>
+
+      
+      <div class="footer-col  footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https:&#x2F;&#x2F;github.com&#x2F;JustusAdam">
+              <span class="icon">
+                <img width="15em" src="/icons/social/github.svg" />
+              </span>
+
+              <span class="username">github</span>
+            </a>
+          </li>
+          
+          <li>
+            <a href="https:&#x2F;&#x2F;justusadam.bsky.social">
+              <span class="icon">
+                <img width="15em" src="/icons/social/bluesky.svg" />
+              </span>
+
+              <span class="username">bluesky</span>
+            </a>
+          </li>
+          
+          <li>
+            <a href="https:&#x2F;&#x2F;scholar.google.de&#x2F;citations?user=Tabbno4AAAAJ">
+              <span class="icon">
+                <img width="15em" src="/icons/social/google-scholar.svg" />
+              </span>
+
+              <span class="username">scholar</span>
+            </a>
+          </li>
+          
+          <li>
+            <a href="https:&#x2F;&#x2F;orcid.org&#x2F;0000-0003-4046-534X">
+              <span class="icon">
+                <img width="15em" src="/icons/social/orcid.svg" />
+              </span>
+
+              <span class="username">orcid</span>
+            </a>
+          </li>
+          
+          <li>
+            <a href="https:&#x2F;&#x2F;instagram.com&#x2F;justusadam_">
+              <span class="icon">
+                <img width="15em" src="/icons/social/instagram.svg" />
+              </span>
+
+              <span class="username">instagram</span>
+            </a>
+          </li>
+          
+
+        </ul>
+      </div>
+      
+
+      <div class="footer-col  footer-col-3">
+        <p class="text">Hello, my name is Justus Adam. I am a computer science student and this is my personal website.</p>
+      </div>
+    </div>
+
+    <div class="small footer-col-wrapper legal-section">
+      
+      
+        <span class="footer-col"><a href="https://justus.science/legal/imprint/">Impressum</a></span>
+      
+        <span class="footer-col"><a href="https://justus.science/legal/license/">License</a></span>
+      
+        <span class="footer-col"><a href="https://justus.science/legal/disclaimer/">Haftungsausschluss</a></span>
+      
+      
+        <div class="copyright">
+            © 2015-2025 Justus Adam
+        </div>
+      
+    </div>
+  </div>
+
+  <script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+
+</footer>
+
+  </body>
+
+</html>
