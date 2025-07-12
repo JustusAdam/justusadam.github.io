@@ -19,15 +19,14 @@ sort(attribute='date') | reverse %}
         <strong>
             {% if p.link %}
             <a href="{{p.link}}">{{ p.title }}</a>
-            {% else %} {{ p.title }} {% endif %} {% if p.pdf %}<a
-                style="font-size: small"
-                href="{{p.pdf}}"
-                >[pdf]</a
-            >{% endif %} {% if p.preprint %}<a
-                style="font-size: small"
-                href="{{p.preprint}}"
-                >[preprint]</a
-            >{% endif %}
+            {% else %} {{ p.title }}
+            {% endif %}
+
+            {% if p.other_links %}
+                {% for key, value in p.other_links %}
+                <a style="font-size: small" href="{{value}}">[{{key}}]</a>
+                {% endfor %}
+            {% endif %}
         </strong>
 
         <div style="margin-bottom: 15px; padding-left: 1em">

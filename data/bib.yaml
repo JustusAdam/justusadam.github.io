@@ -10,8 +10,6 @@
     - Malte Schwarzkopf
     - Shriram Krishnamurthi
   publication: 19th USENIX Symposium on Operating Systems Design and Implementation (OSDI'25)
-  comment: |
-    [A poster](/pdfs/paralegal-poster.pdf) is also available for a quick overview
   abstract: |
     Finding privacy bugs in software today usually requires onerous
     manual audits. Code analysis tools could help, but existing
@@ -34,8 +32,11 @@
     flow control (IFC) and CodeQL, a widely-used code
     analysis engine. Paralegal is fast enough to deploy interactively,
     and its markers are easy to maintain as code evolves.
-  preprint: /pdfs/paralegal.pdf
   link: https://www.usenix.org/conference/osdi25/presentation/adam
+  other_links:
+    poster: /pdfs/paralegal-poster.pdf
+    artifact: https://github.com/brownsys/paralegal-osdi-2025-artifact
+    preprint: /pdfs/paralegal.pdf
   date: "2025-07-09"
 - title: "K9db: Privacy-Compliant Storage For Web Applications By Construction"
   date: "2023-07-10"
@@ -51,7 +52,7 @@
     - Malte Schwarzkopf
   publication: 17th USENIX Symposium on Operating Systems Design and Implementation (OSDI'23)
   link: https://www.usenix.org/conference/osdi23/presentation/albab
-  description: |
+  abstract: |
     Data privacy laws like the EU's GDPR grant users new rights, such as the right to request access to and deletion of their data. Manual compliance with these requests is error-prone and imposes costly burdens especially on smaller organizations, as non-compliance risks steep fines.
 
     K9db is a new, MySQL-compatible database that complies with privacy laws by construction. The key idea is to make the data ownership and sharing semantics explicit in the storage system. This requires K9db to capture and enforce applications' complex data ownership and sharing semantics, but in exchange simplifies privacy compliance. Using a small set of schema annotations, K9db infers storage organization, generates procedures for data retrieval and deletion, and reports compliance errors if an application risks violating the GDPR.
@@ -64,7 +65,8 @@
     - Stephen Kell
   publication: 11th Workshop on Tools for Automatic Program Analysis
   link: https://dl.acm.org/doi/abs/10.1145/3427764.3428324
-  preprint: /pdfs/tapas2020.pdf
+  other_links:
+    preprint: /pdfs/tapas2020.pdf
   abstract: |
     Type checkers are the most commonly used form of static analysis, but their
     design is coupled to the rest of the language, making it hard or impossible
@@ -87,8 +89,9 @@
   institution: Technische Universität Dresden
   authors: [Justus Adam]
   note: Masters Thesis
-  pdf: /pdfs/thesis.pdf
-  comment: "[2-page Extended Abstract](/pdfs/noria-udfs-extended-abstract.pdf) as short introduction"
+  other_links:
+    pdf: /pdfs/thesis.pdf
+    "extended abstract": /pdfs/noria-udfs-extended-abstract.pdf
   abstract: |
     The Structured Query Language (SQL) is the de facto standard for database
     programming. SQL is a declarative language, letting programmers write short
