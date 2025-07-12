@@ -1,0 +1,22 @@
+{% if not page %}
+{% set page = section %}
+{% endif %}
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>{% if page.title %}{{ page.title }}{% else %}{{ config.title }}{% endif %}</title>
+  <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate(length=160) }}{% else %}{{ config.description }}{% endif %}">
+
+  <script src="//cdn.rawgit.com/bramstein/fontfaceobserver/master/fontfaceobserver.js" async="async" defer="defer"></script>
+  {% if config.extra.page_logo.small %}
+  <link rel="shortcut icon" href="{{ config.extra.page_logo.small }}">
+  {% endif %}
+  <link rel="stylesheet" href="{{ config.base_url ~ "/main.css" }}">
+  {% set canonical = page.path | replace(from='index.html',to='') %}
+  <link rel="canonical" href="{{ config.base_url ~ canonical }}">
+  {% if page.feed %}
+  <link rel="alternate" type="application/rss+xml" title="{{ config.title ~ subtitle }}" href="{{ config.base_url ~ page.feed }}" />
+  {% endif %}
+</head>

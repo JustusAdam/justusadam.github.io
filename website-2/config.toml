@@ -7,8 +7,6 @@ compile_sass = true
 # Whether to build a search index to be used later on by a JavaScript library
 build_search_index = true
 
-theme = "apollo"
-
 title = "Justus' Website 3.0"
 
 [markdown]
@@ -17,7 +15,7 @@ title = "Justus' Website 3.0"
 highlight_code = true
 
 [extra]
-theme = "auto"
+legal = []
 
 [[extra.menu]]
 name = "/bib"

@@ -1,0 +1,56 @@
+<footer class="site-footer">
+  <div class="wrapper">
+
+    <h2 class="footer-heading">{{ config.title }}</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col  footer-col-1">
+        <ul class="contact-list">
+          <li>{{ config.title }}</li>
+          {% if config.extra.email %}
+          <li><a href="mailto:{{ config.extra.email }}">{{ config.extra.email }}</a></li>
+          {% endif %}
+        </ul>
+      </div>
+
+      {% if config.extra.socials %}
+      <div class="footer-col  footer-col-2">
+        <ul class="social-media-list">
+          {% for s in config.extra.socials %}
+          <li>
+            <a href="{{ s.url }}">
+              <span class="icon">
+                <svg viewBox="0 0 16 16" src="icon/{{ s.icon }}.svg" />
+              </span>
+
+              <span class="username">{{ s.name }}</span>
+            </a>
+          </li>
+          {% endfor %}
+
+        </ul>
+      </div>
+      {% endif %}
+
+      <div class="footer-col  footer-col-3">
+        <p class="text">{{ config.description }}</p>
+      </div>
+    </div>
+
+    <div class="small footer-col-wrapper legal-section">
+      {% for legal in config.extra.legal %}
+        <span class="footer-col"><a href="{{ config.base_url ~ legal.url }}">{{ legal.title }}</a></span>
+      {% endfor %}
+      {% if config.copyright %}
+        <div class="copyright">
+            {{ config.copyright }}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+
+  <script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+
+</footer>
