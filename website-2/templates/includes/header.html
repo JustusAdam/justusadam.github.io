@@ -12,11 +12,10 @@
 
     <nav class="site-nav">
       <div class="trigger">
-        {% set index = get_section(path="_index.md", metadata_only=true) %}
-        {% set pages = index.pages  %}
-        {% for page in pages %}
-          {% if page.title %}
-          <a class="page-link" href="{{ config.base_url ~ page.url }}">{{ page.title }}</a>
+        {% set pages = config.extra.menu %}
+        {% for p in pages %}
+          {% if p.name %}
+          <a class="page-link" href="{{ config.base_url ~ p.url }}">{{ p.name }}</a>
           {% endif %}
         {% endfor %}
       </div>

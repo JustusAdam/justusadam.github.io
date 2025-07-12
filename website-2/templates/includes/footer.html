@@ -20,7 +20,7 @@
           <li>
             <a href="{{ s.url }}">
               <span class="icon">
-                <svg viewBox="0 0 16 16" src="icon/{{ s.icon }}.svg" />
+                <img width="15em" src="icons/social/{{ s.icon }}.svg" />
               </span>
 
               <span class="username">{{ s.name }}</span>
@@ -38,12 +38,13 @@
     </div>
 
     <div class="small footer-col-wrapper legal-section">
-      {% for legal in config.extra.legal %}
-        <span class="footer-col"><a href="{{ config.base_url ~ legal.url }}">{{ legal.title }}</a></span>
+      {% set legal_section = get_section(path="legal/_index.md") %}
+      {% for legal in legal_section.pages %}
+        <span class="footer-col"><a href="{{ config.base_url ~ legal.path }}">{{ legal.title }}</a></span>
       {% endfor %}
-      {% if config.copyright %}
+      {% if config.extra.copyright %}
         <div class="copyright">
-            {{ config.copyright }}
+            {{ config.extra.copyright }}
         </div>
       {% endif %}
     </div>

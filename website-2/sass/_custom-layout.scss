@@ -29,12 +29,22 @@ tt, code, kbd, samp {
   }
 }
 
-.footnotes {
+.footnote-definition {
   @extend .small;
 
+  > p {
+    display: inline;
+  }
+}
+
+.footnote-definition:first-of-type {
   margin-top: 70px;
   padding-top: 30px;
   border-top: 1px solid $grey-color;
+}
+
+.footnote-definition-label {
+  display: inline;
 }
 
 .github-repo-overview .repository {

@@ -9,9 +9,12 @@ $base-line-height: 1.5;
 
 $spacing-unit:     30px;
 
+$burned-orange:    #e36d25;
+$blue:             #2a7ae2;
+
 $text-color:       #111;
 $background-color: #fdfdfd;
-$brand-color:      #2a7ae2;
+$brand-color:      $burned-orange;
 
 $grey-color:       #828282;
 $grey-color-light: lighten($grey-color, 40%);
