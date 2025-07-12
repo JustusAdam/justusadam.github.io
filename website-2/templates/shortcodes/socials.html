@@ -1,0 +1,12 @@
+
+<ul class="social-media-list">
+{% for s in config.extra.socials %}
+<li style="display: inline-block;">
+    <a href="{{ s.url }}">
+        <span class="icon">
+            <img width="15em" src="icons/social/{{ s.icon }}.svg" />
+        </span>
+    </a>
+</li>
+{% endfor %}
+</ul>
