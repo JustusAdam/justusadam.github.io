@@ -35,5 +35,3 @@ I enjoy playing video games, making music and learning about the big issues of o
 
 - [A few blog posts I wrote about my time in England](/england-blog)
 - [Archive of a technical blog I used to write](/blog). I haven't posted anything in a long time thought
-
-Free Palestine. 🇵🇸
