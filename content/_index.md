@@ -27,6 +27,10 @@ I contributed to **Ohua**, a parallelizing compiler. Among other things I implem
 
 You may also be interested in the [list](/bib) of scientific publications I was involved in.
 
+### Misc tools
+
+- Online renderings of BQL's kernel schema are [here](/bql)
+
 ### Personal stuff
 
 In my spare time I like to climb and boulder, both indoors and outdoors. During
