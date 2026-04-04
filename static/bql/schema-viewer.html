@@ -1,0 +1,934 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hook Schema Browser</title>
+    <style>
+        :root {
+            --bg: #f4efe6;
+            --paper: #fffaf1;
+            --ink: #1d1a16;
+            --muted: #6d655c;
+            --line: #d8cebe;
+            --accent: #0b5fff;
+            --accent-soft: #dce9ff;
+            --ok: #155f3b;
+            --ok-soft: #d7f1e2;
+            --warn: #8a4f07;
+            --warn-soft: #ffe8cb;
+            --radius: 12px;
+            --shadow: 0 8px 32px rgba(52, 42, 27, 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            color: var(--ink);
+            background:
+                radial-gradient(1200px 500px at 10% -10%, #f7dcc4 0%, transparent 60%),
+                radial-gradient(900px 450px at 90% 0%, #e3ebff 0%, transparent 55%),
+                var(--bg);
+            font-family: "IBM Plex Sans", "Avenir Next", "Segoe UI", sans-serif;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .layout {
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 18px;
+            padding: 18px;
+            height: 100vh;
+            min-height: 0;
+        }
+
+        .panel {
+            background: var(--paper);
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            min-height: 0;
+        }
+
+        .sidebar {
+            display: grid;
+            grid-template-rows: auto auto 1fr;
+        }
+
+        .panel-head {
+            padding: 14px 14px 12px;
+            border-bottom: 1px solid var(--line);
+            background: linear-gradient(180deg, #fffdf8 0%, #fff8eb 100%);
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 1rem;
+            letter-spacing: 0.02em;
+        }
+
+        .sub {
+            margin-top: 6px;
+            color: var(--muted);
+            font-size: 0.86rem;
+        }
+
+        .search-wrap {
+            padding: 12px 14px;
+            border-bottom: 1px solid var(--line);
+            display: grid;
+            gap: 8px;
+        }
+
+        input[type="search"],
+        select {
+            width: 100%;
+            border: 1px solid #cfc1ae;
+            background: #fffdf8;
+            border-radius: 9px;
+            padding: 9px 10px;
+            color: var(--ink);
+            font-size: 0.92rem;
+        }
+
+        .hook-list {
+            overflow: auto;
+            padding: 8px;
+            display: grid;
+            gap: 6px;
+            align-content: start;
+        }
+
+        .hook-btn {
+            border: 1px solid transparent;
+            border-radius: 10px;
+            background: transparent;
+            text-align: left;
+            color: var(--ink);
+            width: 100%;
+            padding: 9px 10px;
+            cursor: pointer;
+            transition: background-color 120ms ease, border-color 120ms ease;
+            font-size: 0.88rem;
+            line-height: 1.35;
+        }
+
+        .hook-btn:hover {
+            background: #f7f0e4;
+            border-color: #d9cdbb;
+        }
+
+        .hook-btn.active {
+            background: var(--accent-soft);
+            border-color: #9dc0ff;
+        }
+
+        .main {
+            display: grid;
+            grid-template-rows: auto auto auto 1fr auto;
+            min-height: 0;
+        }
+
+        .summary {
+            padding: 14px;
+            border-bottom: 1px solid var(--line);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .hook-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-right: 12px;
+        }
+
+        .chip {
+            display: inline-flex;
+            border: 1px solid #d8d2c8;
+            background: #fffdf7;
+            border-radius: 999px;
+            padding: 4px 10px;
+            font-size: 0.78rem;
+            color: #3e372f;
+        }
+
+        .controls {
+            padding: 12px 14px;
+            border-bottom: 1px solid var(--line);
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 10px;
+        }
+
+        .group-chips {
+            padding: 12px 14px;
+            border-bottom: 1px solid var(--line);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+        }
+
+        .group-chip {
+            border: 1px solid #cec4b5;
+            background: #fffcf5;
+            border-radius: 999px;
+            padding: 4px 10px;
+            font-size: 0.76rem;
+            cursor: pointer;
+        }
+
+        .group-chip.active {
+            background: var(--ok-soft);
+            border-color: #96d1b0;
+            color: var(--ok);
+            font-weight: 600;
+        }
+
+        .table-wrap {
+            overflow: auto;
+            padding: 0 0 4px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.88rem;
+        }
+
+        thead th {
+            position: sticky;
+            top: 0;
+            background: #fff8ec;
+            border-bottom: 1px solid var(--line);
+            text-align: left;
+            padding: 10px 10px;
+            z-index: 1;
+        }
+
+        tbody td {
+            border-bottom: 1px solid #eee4d5;
+            padding: 9px 10px;
+            vertical-align: top;
+        }
+
+        tbody tr {
+            cursor: pointer;
+        }
+
+        tbody tr:hover {
+            background: #fdf5e9;
+        }
+
+        tbody tr.open {
+            background: #fcf1e2;
+        }
+
+        .mono {
+            font-family: "IBM Plex Mono", "SFMono-Regular", Menlo, Consolas, monospace;
+            font-size: 0.84rem;
+        }
+
+        .usage-dot {
+            color: #937f67;
+            margin-right: 4px;
+        }
+
+        .usage-colon {
+            color: #937f67;
+            margin-right: 6px;
+        }
+
+        .expand-toggle,
+        .expand-spacer {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 18px;
+            height: 18px;
+            margin-right: 6px;
+            border: 1px solid #cdbca7;
+            border-radius: 4px;
+            background: #fffdf8;
+            color: var(--ink);
+            font: inherit;
+            line-height: 1;
+            vertical-align: middle;
+            flex: 0 0 auto;
+        }
+
+        .expand-toggle {
+            cursor: pointer;
+            padding: 0;
+        }
+
+        .expand-spacer {
+            border-color: transparent;
+            background: transparent;
+        }
+
+        .detail-row td {
+            background: #fff9ef;
+            border-bottom: 1px solid #eadfcf;
+            font-size: 0.82rem;
+            color: #453a2d;
+            padding-top: 6px;
+            padding-bottom: 10px;
+        }
+
+        .detail-box {
+            border-left: 3px solid #d9c8b0;
+            padding-left: 10px;
+            display: grid;
+            gap: 4px;
+        }
+
+        .footer-note {
+            padding: 10px 14px;
+            border-top: 1px solid var(--line);
+            color: var(--muted);
+            font-size: 0.78rem;
+            background: #fffaf1;
+        }
+
+        .empty {
+            padding: 16px;
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 980px) {
+            body {
+                height: auto;
+                overflow: auto;
+            }
+
+            .layout {
+                grid-template-columns: 1fr;
+                height: auto;
+                min-height: auto;
+            }
+
+            .panel.sidebar {
+                max-height: 45vh;
+            }
+
+            .controls {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="layout">
+        <aside class="panel sidebar">
+            <div class="panel-head">
+                <h1>Hook Browser</h1>
+                <div class="sub" id="hookCountText">Loading hooks...</div>
+            </div>
+            <div class="search-wrap">
+                <input id="hookSearch" type="search" placeholder="Search hooks..." />
+            </div>
+            <div id="hookList" class="hook-list"></div>
+        </aside>
+
+        <main class="panel main">
+            <div class="summary" id="summary"></div>
+
+            <div class="controls">
+                <input id="fieldSearch" type="search" placeholder="Filter fields, types, groups..." />
+                <select id="typeFilter">
+                    <option value="all">All type families</option>
+                    <option value="primitive">Primitive</option>
+                    <option value="pointer">Pointer</option>
+                    <option value="struct">Struct</option>
+                    <option value="array">Array / FixedString</option>
+                    <option value="union">Union</option>
+                    <option value="other">Other object type</option>
+                </select>
+            </div>
+
+            <div class="group-chips" id="groupChips"></div>
+
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width: 24%;">SLOT</th>
+                            <th style="width: 24%;">FIELD</th>
+                            <th style="width: 34%;">TYPE</th>
+                            <th style="width: 18%;">GROUP</th>
+                        </tr>
+                    </thead>
+                    <tbody id="fieldBody"></tbody>
+                </table>
+            </div>
+
+            <div class="footer-note">Rows read left-to-right as usage: T.&lt;slot&gt;.&lt;field&gt; : &lt;type&gt;</div>
+        </main>
+    </div>
+
+    <script>
+        (function () {
+            const defaultSchemaUrl = '{{ get_url(path=page.extra.schema_path | default(value="small-schema.json")) | safe }}';
+            const schemaUrl = resolveSchemaUrl(defaultSchemaUrl);
+
+            function resolveSchemaUrl(defaultUrl) {
+                const params = new URLSearchParams(window.location.search);
+                const provided = params.get("schema");
+
+                if (!provided) {
+                    return defaultUrl;
+                }
+
+                try {
+                    return new URL(provided, window.location.href).toString();
+                } catch (error) {
+                    return defaultUrl;
+                }
+            }
+
+            init();
+
+            async function init() {
+                let schema;
+                try {
+                    const response = await fetch(schemaUrl, { cache: "no-store" });
+                    if (!response.ok) {
+                        throw new Error("HTTP " + response.status + " " + response.statusText);
+                    }
+                    schema = await response.json();
+                } catch (error) {
+                    renderFatal("Failed to load schema JSON from " + schemaUrl + ": " + String(error));
+                    return;
+                }
+
+                const hooks = schema.hooks || {};
+                const groups = schema.groups || {};
+
+                const state = {
+                    hookNames: Object.keys(hooks).sort(),
+                    selectedHook: null,
+                    hookQuery: "",
+                    fieldQuery: "",
+                    typeFilter: "all",
+                    groupFilter: "all",
+                    openRowKey: null,
+                    expandedPaths: new Set()
+                };
+
+                const hookCountText = document.getElementById("hookCountText");
+                const hookSearch = document.getElementById("hookSearch");
+                const hookList = document.getElementById("hookList");
+                const summary = document.getElementById("summary");
+                const fieldSearch = document.getElementById("fieldSearch");
+                const typeFilter = document.getElementById("typeFilter");
+                const groupChips = document.getElementById("groupChips");
+                const fieldBody = document.getElementById("fieldBody");
+
+                hookSearch.addEventListener("input", function () {
+                    state.hookQuery = hookSearch.value.toLowerCase();
+                    renderHookList();
+                });
+
+                fieldSearch.addEventListener("input", function () {
+                    state.fieldQuery = fieldSearch.value.toLowerCase();
+                    state.openRowKey = null;
+                    renderCurrentHook();
+                });
+
+                typeFilter.addEventListener("change", function () {
+                    state.typeFilter = typeFilter.value;
+                    state.openRowKey = null;
+                    renderCurrentHook();
+                });
+
+                function renderFatal(message) {
+                    document.body.innerHTML = '<main style="max-width:900px;margin:40px auto;padding:20px;border:1px solid #d8cebe;border-radius:12px;background:#fffaf1;font-family:IBM Plex Sans,Avenir Next,sans-serif;"><h2 style="margin-top:0;">Schema Viewer Error</h2><p>' + escapeHtml(message) + '</p></main>';
+                }
+
+                function renderHookList() {
+                    const filtered = state.hookNames.filter(function (name) {
+                        return !state.hookQuery || name.toLowerCase().includes(state.hookQuery);
+                    });
+
+                    hookCountText.textContent = filtered.length + " of " + state.hookNames.length + " hooks";
+
+                    if (filtered.length === 0) {
+                        hookList.innerHTML = '<div class="empty">No hooks match this filter.</div>';
+                        return;
+                    }
+
+                    hookList.innerHTML = "";
+                    const fragment = document.createDocumentFragment();
+
+                    filtered.forEach(function (hookName) {
+                        const btn = document.createElement("button");
+                        btn.type = "button";
+                        btn.className = "hook-btn" + (hookName === state.selectedHook ? " active" : "");
+                        btn.textContent = hookName;
+                        btn.addEventListener("click", function () {
+                            state.selectedHook = hookName;
+                            state.groupFilter = "all";
+                            state.openRowKey = null;
+                            state.expandedPaths = new Set();
+                            renderHookList();
+                            renderCurrentHook();
+                        });
+                        fragment.appendChild(btn);
+                    });
+
+                    hookList.appendChild(fragment);
+                }
+
+                function classifyType(typeValue) {
+                    if (typeof typeValue === "string") {
+                        return "primitive";
+                    }
+                    if (!typeValue || typeof typeValue !== "object") {
+                        return "other";
+                    }
+
+                    if (Object.prototype.hasOwnProperty.call(typeValue, "Pointer")) {
+                        return "pointer";
+                    }
+                    if (Object.prototype.hasOwnProperty.call(typeValue, "Struct")) {
+                        return "struct";
+                    }
+                    if (
+                        Object.prototype.hasOwnProperty.call(typeValue, "Int8Array") ||
+                        Object.prototype.hasOwnProperty.call(typeValue, "Uint8Array") ||
+                        Object.prototype.hasOwnProperty.call(typeValue, "FixedString") ||
+                        Object.prototype.hasOwnProperty.call(typeValue, "Int8Array") ||
+                        Object.prototype.hasOwnProperty.call(typeValue, "Int16Array") ||
+                        Object.prototype.hasOwnProperty.call(typeValue, "Int32Array") ||
+                        Object.prototype.hasOwnProperty.call(typeValue, "Uint16Array") ||
+                        Object.prototype.hasOwnProperty.call(typeValue, "Uint32Array")
+                    ) {
+                        return "array";
+                    }
+                    if (Object.prototype.hasOwnProperty.call(typeValue, "Union")) {
+                        return "union";
+                    }
+                    return "other";
+                }
+
+                function formatType(typeValue, options) {
+                    const isRecursive = options && options.recursive === true;
+
+                    if (typeof typeValue === "string") {
+                        return withRecursiveSuffix(typeValue, isRecursive);
+                    }
+                    if (!typeValue || typeof typeValue !== "object") {
+                        return withRecursiveSuffix(String(typeValue), isRecursive);
+                    }
+
+                    const entries = Object.entries(typeValue);
+                    if (entries.length === 0) {
+                        return withRecursiveSuffix("{}", isRecursive);
+                    }
+
+                    if (entries.length === 1) {
+                        const key = entries[0][0];
+                        const value = entries[0][1];
+                        if (key === "Pointer") {
+                            return withRecursiveSuffix(formatType(value) + " *", isRecursive);
+                        }
+                        if (key === "Struct") {
+                            return withRecursiveSuffix("struct " + String(value), isRecursive);
+                        }
+                        if (key === "Union") {
+                            return withRecursiveSuffix("union " + String(value), isRecursive);
+                        }
+                        if (key === "FixedString" && typeof value === "number") {
+                            return withRecursiveSuffix("char[" + String(value) + "]", isRecursive);
+                        }
+                        if (key.endsWith("Array") && typeof value === "number") {
+                            return withRecursiveSuffix(key + "[" + String(value) + "]", isRecursive);
+                        }
+                        if (typeof value === "number" || typeof value === "string") {
+                            return withRecursiveSuffix(key + "(" + String(value) + ")", isRecursive);
+                        }
+                        return withRecursiveSuffix(key + "(" + formatType(value) + ")", isRecursive);
+                    }
+
+                    const combined = entries
+                        .map(function (pair) {
+                            return pair[0] + ": " + formatType(pair[1]);
+                        })
+                        .join(" | ");
+
+                    return withRecursiveSuffix(combined, isRecursive);
+                }
+
+                function withRecursiveSuffix(typeText, isRecursive) {
+                    if (isRecursive) {
+                        return typeText + " (recursive, not expanded)";
+                    }
+                    return typeText;
+                }
+
+                function getStructTarget(typeValue) {
+                    if (!typeValue || typeof typeValue !== "object") {
+                        return null;
+                    }
+
+                    const entries = Object.entries(typeValue);
+                    if (entries.length !== 1) {
+                        return null;
+                    }
+
+                    const key = entries[0][0];
+                    const value = entries[0][1];
+
+                    if (key === "Struct" && typeof value === "string") {
+                        return value;
+                    }
+
+                    if (key === "Pointer") {
+                        return getStructTarget(value);
+                    }
+
+                    return null;
+                }
+
+                function resolveHookRows(hookName) {
+                    const hook = hooks[hookName];
+                    if (!hook) {
+                        return { rows: [], hook: null, groupsMap: {} };
+                    }
+
+                    const groupsMap = hook.groups || {};
+                    const rows = [];
+
+                    function appendGroupFields(slotPath, groupName, ancestry, depth) {
+                        const groupObj = groups[groupName];
+
+                        if (!groupObj || !groupObj.fields) {
+                            return;
+                        }
+
+                        Object.entries(groupObj.fields)
+                            .sort(function (a, b) {
+                                return a[0].localeCompare(b[0]);
+                            })
+                            .forEach(function (fieldEntry) {
+                                const fieldName = fieldEntry[0];
+                                const typeValue = fieldEntry[1];
+                                const structTarget = getStructTarget(typeValue);
+                                const targetExists = structTarget && groups[structTarget];
+                                const isRecursive = targetExists && ancestry.includes(structTarget);
+                                const pathKey = slotPath + "::" + fieldName + "::" + groupName;
+                                const typeText = formatType(typeValue, { recursive: isRecursive });
+
+                                const row = {
+                                    key: pathKey,
+                                    pathKey: pathKey,
+                                    slot: slotPath,
+                                    field: fieldName,
+                                    usage: "T." + slotPath + "." + fieldName,
+                                    groupName: groupName,
+                                    typeValue: typeValue,
+                                    typeText: typeText,
+                                    typeFamily: classifyType(typeValue),
+                                    depth: depth,
+                                    expandable: targetExists && !isRecursive,
+                                    childGroupName: structTarget,
+                                    childSlotPath: slotPath + "." + fieldName,
+                                    isRecursive: isRecursive
+                                };
+
+                                rows.push(row);
+
+                                if (state.expandedPaths.has(row.pathKey) && row.expandable) {
+                                    appendExpandedChildren(rows, row, ancestry);
+                                }
+                            });
+                    }
+
+                    Object.entries(groupsMap)
+                        .sort(function (a, b) {
+                            return a[0].localeCompare(b[0]);
+                        })
+                        .forEach(function (entry) {
+                            const slot = entry[0];
+                            const groupName = entry[1];
+                            appendGroupFields(slot, groupName, [groupName], 0);
+                        });
+
+                    return { rows: rows, hook: hook, groupsMap: groupsMap };
+                }
+
+                function appendExpandedChildren(rows, parentRow, ancestry) {
+                    const groupName = parentRow.childGroupName;
+                    const groupObj = groups[groupName];
+
+                    if (!groupObj || !groupObj.fields) {
+                        return;
+                    }
+
+                    Object.entries(groupObj.fields)
+                        .sort(function (a, b) {
+                            return a[0].localeCompare(b[0]);
+                        })
+                        .forEach(function (fieldEntry) {
+                            const fieldName = fieldEntry[0];
+                            const typeValue = fieldEntry[1];
+                            const structTarget = getStructTarget(typeValue);
+                            const targetExists = structTarget && groups[structTarget];
+                            const isRecursive = targetExists && ancestry.includes(structTarget);
+                            const childPath = parentRow.childSlotPath + "." + fieldName;
+                            const pathKey = childPath + "::" + fieldName + "::" + groupName;
+
+                            rows.push({
+                                key: pathKey,
+                                pathKey: pathKey,
+                                slot: childPath,
+                                field: fieldName,
+                                usage: "T." + childPath + "." + fieldName,
+                                groupName: groupName,
+                                typeValue: typeValue,
+                                typeText: formatType(typeValue, { recursive: isRecursive }),
+                                typeFamily: classifyType(typeValue),
+                                depth: parentRow.depth + 1,
+                                expandable: targetExists && !isRecursive,
+                                childGroupName: structTarget,
+                                childSlotPath: childPath,
+                                isRecursive: isRecursive
+                            });
+
+                            if (state.expandedPaths.has(pathKey) && targetExists && !isRecursive) {
+                                appendExpandedChildren(rows, rows[rows.length - 1], ancestry.concat(structTarget));
+                            }
+                        });
+                }
+
+                function renderGroupChips(groupsMap) {
+                    const entries = Object.entries(groupsMap || {});
+                    groupChips.innerHTML = "";
+
+                    if (entries.length === 0) {
+                        const span = document.createElement("span");
+                        span.className = "chip";
+                        span.textContent = "No groups";
+                        groupChips.appendChild(span);
+                        return;
+                    }
+
+                    const allBtn = document.createElement("button");
+                    allBtn.type = "button";
+                    allBtn.className = "group-chip" + (state.groupFilter === "all" ? " active" : "");
+                    allBtn.textContent = "All groups";
+                    allBtn.addEventListener("click", function () {
+                        state.groupFilter = "all";
+                        state.openRowKey = null;
+                        renderCurrentHook();
+                    });
+                    groupChips.appendChild(allBtn);
+
+                    entries
+                        .sort(function (a, b) {
+                            return a[0].localeCompare(b[0]);
+                        })
+                        .forEach(function (entry) {
+                            const slot = entry[0];
+                            const groupName = entry[1];
+                            const btn = document.createElement("button");
+                            btn.type = "button";
+                            btn.className = "group-chip" + (state.groupFilter === groupName ? " active" : "");
+                            btn.textContent = slot + " -> " + groupName;
+                            btn.title = "Only show rows from group " + groupName;
+                            btn.addEventListener("click", function () {
+                                state.groupFilter = groupName;
+                                state.openRowKey = null;
+                                renderCurrentHook();
+                            });
+                            groupChips.appendChild(btn);
+                        });
+                }
+
+                function rowMatchesFilters(row) {
+                    if (state.groupFilter !== "all" && row.groupName !== state.groupFilter) {
+                        return false;
+                    }
+
+                    if (state.typeFilter !== "all" && row.typeFamily !== state.typeFilter) {
+                        return false;
+                    }
+
+                    if (!state.fieldQuery) {
+                        return true;
+                    }
+
+                    const text = [row.slot, row.field, row.typeText, row.groupName, row.usage].join(" ").toLowerCase();
+                    return text.includes(state.fieldQuery);
+                }
+
+                function renderSummary(hook, rows, visibleRows) {
+                    summary.innerHTML = "";
+
+                    if (!hook) {
+                        summary.innerHTML = '<div class="empty">Select a hook from the sidebar to view its resolved fields.</div>';
+                        return;
+                    }
+
+                    const title = document.createElement("span");
+                    title.className = "hook-title";
+                    title.textContent = hook.name;
+
+                    const kind = document.createElement("span");
+                    kind.className = "chip";
+                    kind.textContent = "kind: " + hook.kind;
+
+                    const count = document.createElement("span");
+                    count.className = "chip";
+                    count.textContent = "fields: " + visibleRows.length + " / " + rows.length;
+
+                    const groupsCount = document.createElement("span");
+                    groupsCount.className = "chip";
+                    groupsCount.textContent = "groups: " + Object.keys(hook.groups || {}).length;
+
+                    const expandedCount = document.createElement("span");
+                    expandedCount.className = "chip";
+                    expandedCount.textContent = "expanded: " + state.expandedPaths.size;
+
+                    summary.appendChild(title);
+                    summary.appendChild(kind);
+                    summary.appendChild(count);
+                    summary.appendChild(groupsCount);
+                    summary.appendChild(expandedCount);
+                }
+
+                function renderFieldRows(visibleRows) {
+                    fieldBody.innerHTML = "";
+
+                    if (visibleRows.length === 0) {
+                        const tr = document.createElement("tr");
+                        const td = document.createElement("td");
+                        td.colSpan = 4;
+                        td.className = "empty";
+                        td.textContent = "No matching fields for this hook and filter set.";
+                        tr.appendChild(td);
+                        fieldBody.appendChild(tr);
+                        return;
+                    }
+
+                    const fragment = document.createDocumentFragment();
+
+                    visibleRows.forEach(function (row) {
+                        const tr = document.createElement("tr");
+                        tr.className = row.key === state.openRowKey ? "open" : "";
+                        tr.addEventListener("click", function () {
+                            state.openRowKey = state.openRowKey === row.key ? null : row.key;
+                            renderCurrentHook();
+                        });
+
+                        const slotTd = document.createElement("td");
+                        slotTd.className = "mono";
+                        slotTd.style.paddingLeft = (10 + row.depth * 18) + "px";
+                        if (row.expandable) {
+                            const expanded = state.expandedPaths.has(row.pathKey);
+                            slotTd.innerHTML =
+                                '<button type="button" class="expand-toggle" data-path="' + escapeHtml(row.pathKey) + '">' +
+                                (expanded ? "−" : "+") +
+                                '</button><span class="usage-dot">.</span>' +
+                                escapeHtml(row.slot);
+                        } else {
+                            slotTd.innerHTML = '<span class="expand-spacer"></span><span class="usage-dot">.</span>' + escapeHtml(row.slot);
+                        }
+
+                        const fieldTd = document.createElement("td");
+                        fieldTd.className = "mono";
+                        fieldTd.innerHTML = '<span class="usage-dot">.</span>' + escapeHtml(row.field);
+
+                        const typeTd = document.createElement("td");
+                        typeTd.className = "mono";
+                        typeTd.innerHTML = '<span class="usage-colon">:</span>' + escapeHtml(row.typeText);
+
+                        const groupTd = document.createElement("td");
+                        groupTd.className = "mono";
+                        groupTd.textContent = row.groupName;
+
+                        tr.appendChild(slotTd);
+                        tr.appendChild(fieldTd);
+                        tr.appendChild(typeTd);
+                        tr.appendChild(groupTd);
+                        fragment.appendChild(tr);
+
+                        const toggle = tr.querySelector(".expand-toggle");
+                        if (toggle) {
+                            toggle.addEventListener("click", function (event) {
+                                event.stopPropagation();
+                                if (state.expandedPaths.has(row.pathKey)) {
+                                    state.expandedPaths.delete(row.pathKey);
+                                } else {
+                                    state.expandedPaths.add(row.pathKey);
+                                }
+                                renderCurrentHook();
+                            });
+                        }
+
+                        if (state.openRowKey === row.key) {
+                            const detailTr = document.createElement("tr");
+                            detailTr.className = "detail-row";
+                            const detailTd = document.createElement("td");
+                            detailTd.colSpan = 4;
+
+                            const detailBox = document.createElement("div");
+                            detailBox.className = "detail-box";
+                            detailBox.innerHTML =
+                                '<div><strong>Usage</strong>: <span class="mono">' + escapeHtml(row.usage) + '</span></div>' +
+                                '<div><strong>Source</strong>: slot=<span class="mono">' + escapeHtml(row.slot) + '</span>, group=<span class="mono">' + escapeHtml(row.groupName) + '</span></div>' +
+                                '<div><strong>Raw type JSON</strong>: <span class="mono">' + escapeHtml(JSON.stringify(row.typeValue)) + '</span></div>';
+
+                            detailTd.appendChild(detailBox);
+                            detailTr.appendChild(detailTd);
+                            fragment.appendChild(detailTr);
+                        }
+                    });
+
+                    fieldBody.appendChild(fragment);
+                }
+
+                function renderCurrentHook() {
+                    if (!state.selectedHook) {
+                        summary.innerHTML = '<div class="empty">Select a hook from the sidebar to view its resolved fields.</div>';
+                        groupChips.innerHTML = '<span class="chip">No hook selected</span>';
+                        fieldBody.innerHTML = '<tr><td colspan="4" class="empty">Choose a hook to inspect its fields.</td></tr>';
+                        return;
+                    }
+
+                    const resolved = resolveHookRows(state.selectedHook);
+                    const rows = resolved.rows;
+                    const visibleRows = rows.filter(rowMatchesFilters);
+
+                    renderSummary(resolved.hook, rows, visibleRows);
+                    renderGroupChips(resolved.groupsMap);
+                    renderFieldRows(visibleRows);
+                }
+
+                function escapeHtml(value) {
+                    return String(value)
+                        .replace(/&/g, "&amp;")
+                        .replace(/</g, "&lt;")
+                        .replace(/>/g, "&gt;")
+                        .replace(/"/g, "&quot;")
+                        .replace(/'/g, "&#39;");
+                }
+
+                renderHookList();
+                renderCurrentHook();
+            }
+        })();
+    </script>
+</body>
+
+</html>

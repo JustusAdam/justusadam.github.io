@@ -5,4 +5,7 @@ title = "BQL Tools"
 
 Online hosted tools for dealing with BQL.
 
-- [Searchable database](small-schema.html) of the often used small schema
+## Schema browsers
+
+- [Small schema](schema-viewer.html?schema=schema/small-schema.json) 
+- [Base schema](schema-viewer.html?schema=schema/base-schema.json). Very large (180k hooks). Takes a moment to load
