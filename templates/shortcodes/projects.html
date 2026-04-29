@@ -1,0 +1,41 @@
+{% set data = load_data(path="data/projects.toml") %}
+
+{% for project in data.projects %}
+
+<h3>{{ project.title }}</h3>
+
+<div>
+
+    {{ project.description | markdown | safe }}
+
+    {% if project.poster %}
+    <p>For an overview of the project, take a look at our poster.</p>
+
+    <a href="/{{ project.poster }}" target="_blank">
+        <img src="/poster-thumbs/{{ project.key }}.jpg" alt="{{ project.title }} poster" style="max-width: 400px;">
+    </a>
+    {% endif %}
+
+</div>
+
+{% set pubs = load_data(path="data/bib.yaml", format="yaml") |
+sort(attribute='date') | reverse %}
+
+Associated publications
+
+<ul>
+    {% for p in pubs %}
+
+    {% if p.project is defined and p.project == project.key %}
+    <li>
+        {% if p.link %}
+        <a href="{{p.link}}" target="_blank">{{ p.title }}</a>
+        {% else %} {{ p.title }}
+        {% endif %}
+    </li>
+    {% endif %}
+
+    {% endfor %}
+</ul>
+
+{% endfor %}

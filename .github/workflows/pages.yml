@@ -12,6 +12,10 @@ jobs:
       - uses: taiki-e/install-action@v2
         with:
           tool: zola@0.19.1
+      - name: Install poppler (for poster thumbnails)
+        run: sudo apt-get install -y poppler-utils
+      - name: Generate poster thumbnails
+        run: python3 scripts/gen_poster_thumbs.py
       - name: build
         run: zola build
       - name: Upload static files as artifact

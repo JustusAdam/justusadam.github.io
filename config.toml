@@ -29,6 +29,11 @@ name = "Bib"
 url = "/bib"
 weight = 0
 
+[[extra.menu]]
+name = "Projects"
+url = "/projects"
+weight = 1
+
 [[extra.socials]]
 name = "github"
 url = "https://github.com/JustusAdam"

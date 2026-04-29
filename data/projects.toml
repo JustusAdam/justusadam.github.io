@@ -1,0 +1,16 @@
+[[projects]]
+key = "haven"
+title = "Haven: Constraining AI Agent's Tools"
+description = """
+AI is increasingly autonomous, exploring the environment and performing actions
+on behalf of their users via tool which begs the question how we can ensure that these
+actions are safe.
+
+An important component to this problem is ensuring that the AI selects the
+correct tool to use without being vulnerable to manipulation via e.g. prompt
+injection and much prior work explores just this territory. However, it is
+equally important to ensure that the tools themselves aren't compromised. For
+example, tools may advertise themselves to the AI as one thing but behave
+entirely differently.
+"""
+poster = "posters/Agent's Day Poster.pdf"
