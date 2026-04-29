@@ -14,3 +14,22 @@ example, tools may advertise themselves to the AI as one thing but behave
 entirely differently.
 """
 poster = "posters/Agent's Day Poster.pdf"
+
+[[projects]]
+key = "paralegal"
+title = "Paralegal: Practical Static Analysis for Privacy Bugs"
+poster = "pdfs/paralegal-poster.pdf"
+description = """
+Finding privacy bugs in software today usually requires onerous manual audits,
+because code analysis tools are either not practical enough, or do not provide
+guarantees (e.g. linters).
+
+Paralegal is a static analysis tool to find privacy bugs in Rust programs. Key
+to Paralegal's practicality is its distribution of work between the program
+analyzer, privacy engineers, and application developers. Privacy engineers
+express a high-level privacy policy over markers, which application developers
+then apply to source code entities. Paralegal extracts a Program Dependence
+Graph (PDG) from the program, leveraging Rust's ownership type system to model
+the behavior of library code. Paralegal augments the PDG with the developers'
+markers and checks privacy policies against the marked PDG.
+"""
