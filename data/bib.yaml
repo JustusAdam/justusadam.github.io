@@ -1,3 +1,34 @@
+- title: "Towards Practically-Secure Tools for AI Agents"
+  authors: 
+    - Justus Adam
+    - Yuchen Lu
+    - Deepti Raghavan
+    - Malte Schwarzkopf
+    - Nikos Vasilakis
+  publication: The 6th Workshop on Machine Learning and Systems (EuroMLSys'26)
+  abstract: |
+    Agentic AI applications rely on “tools” to operate on their environment.
+    Tools are external programs invoked in response to a model’s request. Today,
+    agentic applications must blindly trust that third party tool documentation
+    accurately describes a tool’s behavior. This risks tools accidentally
+    leaking, misusing, or destroying user data. 
+    
+    We present a new approach to protecting against unwanted behavior of tool
+    code. Our approach combines automated code analysis with dynamic,
+    fine-grained sandboxes that apply runtime policy checks. Code analysis
+    captures a complete picture of a tool’s “effects”, such as how it accesses
+    the network and file system. From those effects, it produces synopses:
+    coarse-grained descriptions of tool behavior.  Fine-grained sandboxes
+    provide runtime policy enforcement, and the code analysis verifies that the
+    untrusted tool code uses fine-grained sandboxes correctly. An
+    application-side policy enforcement layer then decides whether a tool call
+    requested by the model should be allowed, denied or restricted, depending on
+    the types of effects the tool performs and whether they are sandboxed. 
+    
+    Preliminary experiments with a real tool server demon strate that
+    our approach offers improved policy enforce ment outcomes and preserves
+    utility for users.
+  date: "2026-04-27"
 - title: "Paralegal: Practical Static Analysis for Privacy Bugs"
   authors:
     - "Justus Adam"

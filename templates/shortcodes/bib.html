@@ -1,10 +1,28 @@
 <style type="text/css">
+    .abstract-toggle {
+        display: none;
+    }
+    .abstract-toggle + label {
+        cursor: pointer;
+        user-select: none;
+        font-size: small;
+        color: #555;
+    }
+    .abstract-toggle + label::before {
+        content: '❯';
+        display: inline-block;
+        transition: transform 0.2s ease;
+        margin-right: 0.3em;
+    }
+    .abstract-toggle:checked + label::before {
+        transform: rotate(90deg);
+    }
     .abstract {
         display: none;
         padding-left: 2em;
         font-family: serif;
     }
-    input:checked + .abstract {
+    .abstract-toggle:checked ~ .abstract {
         display: block;
     }
 </style>
@@ -40,8 +58,9 @@ sort(attribute='date') | reverse %}
                 </small>
             </p>
             {{ p.comment | default(value="") | markdown | safe }} {% if
-            p.abstract %} Show abstract:
-            <input type="checkbox" value="selected" />
+            p.abstract %}
+            <input type="checkbox" class="abstract-toggle" id="abstract-{{ loop.index }}" />
+            <label for="abstract-{{ loop.index }}">Abstract</label>
             <div class="abstract">{{ p.abstract | markdown | safe }}</div>
             {% endif %}
         </div>

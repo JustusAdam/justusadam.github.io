@@ -37,5 +37,4 @@ In my spare time I like to climb and boulder, both indoors and outdoors. During
 the warmer months you'll find me hiking a mountain and during the colder ones on a ski slope if I can help it.
 I enjoy playing video games, making music and learning about the big issues of our time, like inequality and climate change.
 
-- [A few blog posts I wrote about my time in England](/england-blog)
 - [Archive of a technical blog I used to write](/blog). I haven't posted anything in a long time thought
