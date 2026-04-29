@@ -29,6 +29,7 @@
     our approach offers improved policy enforce ment outcomes and preserves
     utility for users.
   date: "2026-04-27"
+  link: https://doi.org/10.1145/3805621.3807645
 - title: "Paralegal: Practical Static Analysis for Privacy Bugs"
   authors:
     - "Justus Adam"

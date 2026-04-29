@@ -2,27 +2,32 @@
     .abstract-toggle {
         display: none;
     }
-    .abstract-toggle + label {
+
+    .abstract-toggle+label {
         cursor: pointer;
         user-select: none;
         font-size: small;
         color: #555;
     }
-    .abstract-toggle + label::before {
+
+    .abstract-toggle+label::before {
         content: '❯';
         display: inline-block;
         transition: transform 0.2s ease;
         margin-right: 0.3em;
     }
-    .abstract-toggle:checked + label::before {
+
+    .abstract-toggle:checked+label::before {
         transform: rotate(90deg);
     }
+
     .abstract {
         display: none;
         padding-left: 2em;
         font-family: serif;
     }
-    .abstract-toggle:checked ~ .abstract {
+
+    .abstract-toggle:checked~.abstract {
         display: block;
     }
 </style>
@@ -36,14 +41,14 @@ sort(attribute='date') | reverse %}
         {{ p.date }}:
         <strong>
             {% if p.link %}
-            <a href="{{p.link}}">{{ p.title }}</a>
+            <a href="{{p.link}}" target="_blank">{{ p.title }}</a>
             {% else %} {{ p.title }}
             {% endif %}
 
             {% if p.other_links %}
-                {% for key, value in p.other_links %}
-                <a style="font-size: small" href="{{value}}">[{{key}}]</a>
-                {% endfor %}
+            {% for key, value in p.other_links %}
+            <a style="font-size: small" href="{{value}}">[{{key}}]</a>
+            {% endfor %}
             {% endif %}
         </strong>
 
