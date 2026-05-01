@@ -1,0 +1,17 @@
+version = "0.2.1"
+content_dir = "./"
+build_dir = "build"
+formats = ["html"]
+
+[html.spine]
+vertebrae = [
+  "index.typ",
+  "bib.typ",
+  "projects.typ",
+  "bql.typ",
+  "blog/blog-index.typ",
+  "blog/*.typ",
+  "legal/imprint.typ",
+  "legal/license.typ",
+  "legal/disclaimer.typ",
+]
