@@ -1,554 +1,688 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="referrer" content="strict-origin-when-cross-origin">
-<title>NH State Campgrounds</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --bg: #faf7f2;
-    --paper: #ffffff;
-    --ink: #0f1f1d;
-    --ink-soft: #5a6a68;
-    --accent: #0d7377;       /* deep teal */
-    --accent-2: #ef6f5e;     /* coral */
-    --hot: #f59e0b;          /* mustard */
-    --line: #d4cfc4;
-    --rule: rgba(15,31,29,0.10);
-    --shadow: 0 1px 0 rgba(15,31,29,0.04), 0 8px 24px -16px rgba(15,31,29,0.2);
-  }
-  * { box-sizing: border-box; }
-  html, body { margin: 0; padding: 0; height: 100%; }
-  body {
-    background: var(--bg);
-    color: var(--ink);
-    font-family: 'Geist', system-ui, sans-serif;
-    font-size: 14px;
-    line-height: 1.5;
-    background-image:
-      radial-gradient(circle at 20% 10%, rgba(44,93,63,0.06) 0, transparent 40%),
-      radial-gradient(circle at 80% 80%, rgba(184,82,28,0.06) 0, transparent 40%);
-  }
-  .app {
-    display: grid;
-    grid-template-columns: 380px 1fr;
-    grid-template-rows: auto auto auto 1fr;
-    height: 100vh;
-  }
-  header {
-    grid-column: 1 / -1;
-    padding: 14px 22px 12px;
-    border-bottom: 1px solid var(--line);
-    background: var(--paper);
-    display: flex;
-    align-items: baseline;
-    gap: 18px;
-    flex-wrap: wrap;
-  }
-  header h1 {
-    font-family: 'Geist', sans-serif;
-    font-weight: 700;
-    font-size: 28px;
-    margin: 0;
-    letter-spacing: -0.025em;
-  }
-  header h1 .ampersand { font-weight: 400; color: var(--accent-2); }
-  .subtitle {
-    font-family: 'Geist Mono', monospace;
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: var(--ink-soft);
-  }
-  .controls {
-    margin-left: auto;
-    display: flex;
-    gap: 10px;
-    align-items: center;
-    flex-wrap: wrap;
-  }
-  .control {
-    display: flex;
-    flex-direction: column;
-    gap: 3px;
-  }
-  .control label {
-    font-family: 'Geist Mono', monospace;
-    font-size: 9.5px;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--ink-soft);
-  }
-  .tile-toggle { display: flex; border: 1px solid var(--line); background: #fcfaf4; }
-  .tile-opt {
-    font-family: 'Geist Mono', monospace;
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    padding: 6px 12px;
-    background: transparent;
-    border: none;
-    color: var(--ink);
-    cursor: pointer;
-  }
-  .tile-opt + .tile-opt { border-left: 1px solid var(--line); }
-  .tile-opt.active { background: var(--accent); color: #fcfaf4; }
-  input[type="text"], input[type="date"] {
-    font-family: 'Geist', sans-serif;
-    font-size: 13px;
-    padding: 7px 12px;
-    border: 1px solid var(--line);
-    background: #ffffff;
-    color: var(--ink);
-    border-radius: 8px;
-    min-width: 140px;
-  }
-  input[type="text"]:focus, input[type="date"]:focus {
-    outline: 2px solid var(--accent);
-    outline-offset: -1px;
-  }
-  .filters {
-    grid-column: 1 / -1;
-    padding: 8px 22px;
-    background: var(--paper);
-    border-bottom: 1px solid var(--rule);
-    display: flex;
-    gap: 6px;
-    flex-wrap: wrap;
-    align-items: center;
-  }
-  .filters .label {
-    font-family: 'Geist Mono', monospace;
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--ink-soft);
-    margin-right: 4px;
-  }
-  .pill {
-    font-family: 'Geist', sans-serif;
-    font-size: 12px;
-    font-weight: 500;
-    padding: 5px 13px;
-    border: 1px solid var(--line);
-    background: #ffffff;
-    color: var(--ink);
-    cursor: pointer;
-    border-radius: 999px;
-    transition: all 0.15s ease;
-    user-select: none;
-  }
-  .pill:hover { background: rgba(13,115,119,0.08); border-color: var(--accent); }
-  .pill.active {
-    background: var(--accent);
-    color: #ffffff;
-    border-color: var(--accent);
-  }
-  .pill .count { opacity: 0.7; margin-left: 4px; font-family: 'Geist Mono', monospace; font-size: 10px; }
-  .clear {
-    margin-left: auto;
-    font-family: 'Geist Mono', monospace;
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--ink-soft);
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 4px 6px;
-  }
-  .clear:hover { color: var(--accent-2); }
-  aside {
-    overflow-y: auto;
-    border-right: 1px solid var(--line);
-    background: var(--paper);
-  }
-  .results-meta {
-    padding: 10px 18px;
-    border-bottom: 1px solid var(--rule);
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    background: rgba(255,255,255,0.4);
-  }
-  .results-count {
-    font-family: 'Geist', sans-serif;
-    font-size: 17px;
-    font-weight: 600;
-  }
-  .results-meta .hint {
-    font-family: 'Geist Mono', monospace;
-    font-size: 9.5px;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--ink-soft);
-  }
-  .campground {
-    padding: 14px 18px;
-    border-bottom: 1px solid var(--rule);
-    cursor: pointer;
-    transition: background 0.12s ease;
-    position: relative;
-  }
-  .campground:hover { background: rgba(44,93,63,0.05); }
-  .campground.focused { background: rgba(44,93,63,0.1); }
-  .campground.focused::before {
-    content: '';
-    position: absolute;
-    left: 0; top: 0; bottom: 0;
-    width: 3px;
-    background: var(--accent-2);
-  }
-  .cg-name {
-    font-family: 'Geist', sans-serif;
-    font-size: 16px;
-    font-weight: 600;
-    margin: 0 0 2px;
-  }
-  .cg-amenities {
-    font-family: 'Geist Mono', monospace;
-    font-size: 10px;
-    color: var(--ink-soft);
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    margin: 4px 0 8px;
-  }
-  .amenity {
-    display: inline-block;
-    margin-right: 8px;
-  }
-  .amenity::before {
-    content: '◆';
-    color: var(--accent);
-    margin-right: 3px;
-  }
-  .reserve-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    font-family: 'Geist Mono', monospace;
-    font-size: 10.5px;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    padding: 5px 10px;
-    background: var(--ink);
-    color: var(--bg);
-    text-decoration: none;
-    border: 1px solid var(--ink);
-    transition: all 0.15s ease;
-  }
-  .reserve-btn:hover {
-    background: var(--accent-2);
-    border-color: var(--accent-2);
-  }
-  .leaflet-popup-content .reserve-btn,
-  .leaflet-popup-content .reserve-btn:hover {
-    color: #ffffff;
-  }
-  .reserve-btn .arrow { transition: transform 0.15s ease; }
-  .reserve-btn:hover .arrow { transform: translateX(2px); }
-  #map {
-    width: 100%;
-    height: 100%;
-    background: #d8d2c4;
-  }
-  .leaflet-popup-content-wrapper {
-    border-radius: 0;
-    background: var(--paper);
-    border: 1px solid var(--line);
-    box-shadow: var(--shadow);
-  }
-  .leaflet-popup-tip { background: var(--paper); border: 1px solid var(--line); }
-  .leaflet-popup-content {
-    margin: 14px 16px;
-    font-family: 'Geist', sans-serif;
-    min-width: 220px;
-  }
-  .popup-name {
-    font-family: 'Geist', sans-serif;
-    font-size: 17px;
-    font-weight: 600;
-    margin: 0 0 4px;
-    color: var(--ink);
-  }
-  .popup-amenities {
-    font-family: 'Geist Mono', monospace;
-    font-size: 10px;
-    color: var(--ink-soft);
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    margin: 6px 0 12px;
-    line-height: 1.6;
-  }
-  .marker-pin {
-    width: 18px; height: 18px;
-    border-radius: 50%;
-    border: 2px solid var(--paper);
-    background: var(--accent);
-    box-shadow: 0 2px 6px rgba(0,0,0,0.4);
-    transition: all 0.2s ease;
-  }
-  .marker-pin.active {
-    background: var(--accent-2);
-    transform: scale(1.4);
-  }
-  .info-banner {
-    grid-column: 1 / -1;
-    background: #fef6e7;
-    border-bottom: 1px solid var(--rule);
-    padding: 7px 22px;
-    font-size: 12px;
-    color: var(--ink-soft);
-    font-style: italic;
-  }
-  .info-banner strong { color: var(--ink); font-style: normal; }
-  @media (max-width: 800px) {
-    .app { grid-template-columns: 1fr; grid-template-rows: auto auto auto 40vh 60vh; }
-    aside { border-right: none; border-bottom: 1px solid var(--line); max-height: 40vh; }
-    header { padding: 10px 14px; }
-    header h1 { font-size: 20px; }
-    .controls { width: 100%; }
-    input[type="text"], input[type="date"] { min-width: 0; flex: 1; }
-  }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>NH State Campgrounds</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg: #faf7f2;
+      --paper: #ffffff;
+      --ink: #0f1f1d;
+      --ink-soft: #5a6a68;
+      --accent: #0d7377;
+      /* deep teal */
+      --accent-2: #ef6f5e;
+      /* coral */
+      --hot: #f59e0b;
+      /* mustard */
+      --line: #d4cfc4;
+      --rule: rgba(15, 31, 29, 0.10);
+      --shadow: 0 1px 0 rgba(15, 31, 29, 0.04), 0 8px 24px -16px rgba(15, 31, 29, 0.2);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Geist', system-ui, sans-serif;
+      font-size: 14px;
+      line-height: 1.5;
+      background-image:
+        radial-gradient(circle at 20% 10%, rgba(44, 93, 63, 0.06) 0, transparent 40%),
+        radial-gradient(circle at 80% 80%, rgba(184, 82, 28, 0.06) 0, transparent 40%);
+    }
+
+    .app {
+      display: grid;
+      grid-template-columns: 380px 1fr;
+      grid-template-rows: auto auto auto 1fr;
+      height: 100vh;
+    }
+
+    header {
+      grid-column: 1 / -1;
+      padding: 14px 22px 12px;
+      border-bottom: 1px solid var(--line);
+      background: var(--paper);
+      display: flex;
+      align-items: baseline;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    header h1 {
+      font-family: 'Geist', sans-serif;
+      font-weight: 700;
+      font-size: 28px;
+      margin: 0;
+      letter-spacing: -0.025em;
+    }
+
+    header h1 .ampersand {
+      font-weight: 400;
+      color: var(--accent-2);
+    }
+
+    .subtitle {
+      font-family: 'Geist Mono', monospace;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--ink-soft);
+    }
+
+    .controls {
+      margin-left: auto;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .control {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .control label {
+      font-family: 'Geist Mono', monospace;
+      font-size: 9.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--ink-soft);
+    }
+
+    .tile-toggle {
+      display: flex;
+      border: 1px solid var(--line);
+      background: #fcfaf4;
+    }
+
+    .tile-opt {
+      font-family: 'Geist Mono', monospace;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 6px 12px;
+      background: transparent;
+      border: none;
+      color: var(--ink);
+      cursor: pointer;
+    }
+
+    .tile-opt+.tile-opt {
+      border-left: 1px solid var(--line);
+    }
+
+    .tile-opt.active {
+      background: var(--accent);
+      color: #fcfaf4;
+    }
+
+    input[type="text"],
+    input[type="date"] {
+      font-family: 'Geist', sans-serif;
+      font-size: 13px;
+      padding: 7px 12px;
+      border: 1px solid var(--line);
+      background: #ffffff;
+      color: var(--ink);
+      border-radius: 8px;
+      min-width: 140px;
+    }
+
+    input[type="text"]:focus,
+    input[type="date"]:focus {
+      outline: 2px solid var(--accent);
+      outline-offset: -1px;
+    }
+
+    .filters {
+      grid-column: 1 / -1;
+      padding: 8px 22px;
+      background: var(--paper);
+      border-bottom: 1px solid var(--rule);
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .filters .label {
+      font-family: 'Geist Mono', monospace;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--ink-soft);
+      margin-right: 4px;
+    }
+
+    .pill {
+      font-family: 'Geist', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      padding: 5px 13px;
+      border: 1px solid var(--line);
+      background: #ffffff;
+      color: var(--ink);
+      cursor: pointer;
+      border-radius: 999px;
+      transition: all 0.15s ease;
+      user-select: none;
+    }
+
+    .pill:hover {
+      background: rgba(13, 115, 119, 0.08);
+      border-color: var(--accent);
+    }
+
+    .pill.active {
+      background: var(--accent);
+      color: #ffffff;
+      border-color: var(--accent);
+    }
+
+    .pill .count {
+      opacity: 0.7;
+      margin-left: 4px;
+      font-family: 'Geist Mono', monospace;
+      font-size: 10px;
+    }
+
+    .clear {
+      margin-left: auto;
+      font-family: 'Geist Mono', monospace;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--ink-soft);
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px 6px;
+    }
+
+    .clear:hover {
+      color: var(--accent-2);
+    }
+
+    aside {
+      overflow-y: auto;
+      border-right: 1px solid var(--line);
+      background: var(--paper);
+    }
+
+    .results-meta {
+      padding: 10px 18px;
+      border-bottom: 1px solid var(--rule);
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      background: rgba(255, 255, 255, 0.4);
+    }
+
+    .results-count {
+      font-family: 'Geist', sans-serif;
+      font-size: 17px;
+      font-weight: 600;
+    }
+
+    .results-meta .hint {
+      font-family: 'Geist Mono', monospace;
+      font-size: 9.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--ink-soft);
+    }
+
+    .campground {
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--rule);
+      cursor: pointer;
+      transition: background 0.12s ease;
+      position: relative;
+    }
+
+    .campground:hover {
+      background: rgba(44, 93, 63, 0.05);
+    }
+
+    .campground.focused {
+      background: rgba(44, 93, 63, 0.1);
+    }
+
+    .campground.focused::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: var(--accent-2);
+    }
+
+    .cg-name {
+      font-family: 'Geist', sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      margin: 0 0 2px;
+    }
+
+    .cg-amenities {
+      font-family: 'Geist Mono', monospace;
+      font-size: 10px;
+      color: var(--ink-soft);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin: 4px 0 8px;
+    }
+
+    .amenity {
+      display: inline-block;
+      margin-right: 8px;
+    }
+
+    .amenity::before {
+      content: '◆';
+      color: var(--accent);
+      margin-right: 3px;
+    }
+
+    .reserve-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-family: 'Geist Mono', monospace;
+      font-size: 10.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 5px 10px;
+      background: var(--ink);
+      color: var(--bg);
+      text-decoration: none;
+      border: 1px solid var(--ink);
+      transition: all 0.15s ease;
+    }
+
+    .reserve-btn:hover {
+      background: var(--accent-2);
+      border-color: var(--accent-2);
+    }
+
+    .leaflet-popup-content .reserve-btn,
+    .leaflet-popup-content .reserve-btn:hover {
+      color: #ffffff;
+    }
+
+    .reserve-btn .arrow {
+      transition: transform 0.15s ease;
+    }
+
+    .reserve-btn:hover .arrow {
+      transform: translateX(2px);
+    }
+
+    #map {
+      width: 100%;
+      height: 100%;
+      background: #d8d2c4;
+    }
+
+    .leaflet-popup-content-wrapper {
+      border-radius: 0;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+    }
+
+    .leaflet-popup-tip {
+      background: var(--paper);
+      border: 1px solid var(--line);
+    }
+
+    .leaflet-popup-content {
+      margin: 14px 16px;
+      font-family: 'Geist', sans-serif;
+      min-width: 220px;
+    }
+
+    .popup-name {
+      font-family: 'Geist', sans-serif;
+      font-size: 17px;
+      font-weight: 600;
+      margin: 0 0 4px;
+      color: var(--ink);
+    }
+
+    .popup-amenities {
+      font-family: 'Geist Mono', monospace;
+      font-size: 10px;
+      color: var(--ink-soft);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin: 6px 0 12px;
+      line-height: 1.6;
+    }
+
+    .marker-pin {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      border: 2px solid var(--paper);
+      background: var(--accent);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+      transition: all 0.2s ease;
+    }
+
+    .marker-pin.active {
+      background: var(--accent-2);
+      transform: scale(1.4);
+    }
+
+    .info-banner {
+      grid-column: 1 / -1;
+      background: #fef6e7;
+      border-bottom: 1px solid var(--rule);
+      padding: 7px 22px;
+      font-size: 12px;
+      color: var(--ink-soft);
+      font-style: italic;
+    }
+
+    .info-banner strong {
+      color: var(--ink);
+      font-style: normal;
+    }
+
+    @media (max-width: 800px) {
+      .app {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto 40vh 60vh;
+      }
+
+      aside {
+        border-right: none;
+        border-bottom: 1px solid var(--line);
+        max-height: 40vh;
+      }
+
+      header {
+        padding: 10px 14px;
+      }
+
+      header h1 {
+        font-size: 20px;
+      }
+
+      .controls {
+        width: 100%;
+      }
+
+      input[type="text"],
+      input[type="date"] {
+        min-width: 0;
+        flex: 1;
+      }
+    }
+  </style>
 </head>
+
 <body>
-<div class="app">
-  <header>
-    <div>
-      <h1>New Hampshire <span class="ampersand">&amp;</span> State Campgrounds</h1>
-      <div class="subtitle">26 campgrounds · click marker to reserve</div>
-    </div>
-    <div class="controls">
-      <div class="control">
-        <label for="q">Search</label>
-        <input type="text" id="q" placeholder="Name…" autocomplete="off">
+  <div class="app">
+    <header>
+      <div>
+        <h1>New Hampshire <span class="ampersand">&amp;</span> State Campgrounds</h1>
+        <div class="subtitle">26 campgrounds · click marker to reserve</div>
       </div>
-      <div class="control">
-        <label for="arrival">Arrival</label>
-        <input type="date" id="arrival">
-      </div>
-      <div class="control">
-        <label for="departure">Departure</label>
-        <input type="date" id="departure">
-      </div>
-      <div class="control">
-        <label>Tiles</label>
-        <div class="tile-toggle" role="group">
-          <button class="tile-opt active" data-tiles="topo">Topo</button>
-          <button class="tile-opt" data-tiles="osm">OSM</button>
+      <div class="controls">
+        <div class="control">
+          <label for="q">Search</label>
+          <input type="text" id="q" placeholder="Name…" autocomplete="off">
+        </div>
+        <div class="control">
+          <label for="arrival">Arrival</label>
+          <input type="date" id="arrival">
+        </div>
+        <div class="control">
+          <label for="departure">Departure</label>
+          <input type="date" id="departure">
+        </div>
+        <div class="control">
+          <label>Tiles</label>
+          <div class="tile-toggle" role="group">
+            <button class="tile-opt" data-tiles="topo">Topo</button>
+            <button class="tile-opt active" data-tiles="osm">OSM</button>
+          </div>
         </div>
       </div>
+    </header>
+    <div class="info-banner">
+      <strong>Note:</strong> live availability requires logging into ReserveAmerica directly. Setting dates above
+      pre-fills the official availability search — clicking <em>Reserve</em> takes you straight to that campground's
+      available sites for your dates.
     </div>
-  </header>
-  <div class="info-banner">
-    <strong>Note:</strong> live availability requires logging into ReserveAmerica directly. Setting dates above pre-fills the official availability search — clicking <em>Reserve</em> takes you straight to that campground's available sites for your dates.
-  </div>
-  <div class="filters">
-    <span class="label">Filters</span>
-    <button class="pill" data-filter="electric">Electric hookup</button>
-    <button class="pill" data-filter="full">Full hookup</button>
-    <button class="pill" data-filter="water">Water hookup</button>
-    <button class="pill" data-filter="pets">Pets allowed</button>
-    <button class="pill" data-filter="waterfront">Near water</button>
-    <button class="clear" id="clear">Clear all</button>
-  </div>
-  <aside>
-    <div class="results-meta">
-      <span class="results-count" id="count">26 campgrounds</span>
-      <span class="hint">Click to focus on map</span>
+    <div class="filters">
+      <span class="label">Filters</span>
+      <button class="pill" data-filter="electric">Electric hookup</button>
+      <button class="pill" data-filter="full">Full hookup</button>
+      <button class="pill" data-filter="water">Water hookup</button>
+      <button class="pill" data-filter="pets">Pets allowed</button>
+      <button class="pill" data-filter="waterfront">Near water</button>
+      <button class="clear" id="clear">Clear all</button>
     </div>
-    <div id="list"></div>
-  </aside>
-  <div id="map"></div>
-</div>
+    <aside>
+      <div class="results-meta">
+        <span class="results-count" id="count">26 campgrounds</span>
+        <span class="hint">Click to focus on map</span>
+      </div>
+      <div id="list"></div>
+    </aside>
+    <div id="map"></div>
+  </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
-<div id="errbox" style="display:none; position:fixed; bottom:0; left:0; right:0; max-height:40vh; overflow:auto; background:#2b1414; color:#ffb3b3; font-family:'JetBrains Mono',monospace; font-size:12px; padding:10px 14px; border-top:2px solid #ff6b6b; z-index:9999; white-space:pre-wrap;"></div>
-<script>
-(function() {
-  const box = document.getElementById('errbox');
-  function show(msg) {
-    box.style.display = 'block';
-    box.textContent += msg + '\n\n';
-  }
-  window.addEventListener('error', e => {
-    show(`[error] ${e.message}\n  at ${e.filename}:${e.lineno}:${e.colno}`);
-  });
-  window.addEventListener('unhandledrejection', e => {
-    show(`[promise] ${e.reason}`);
-  });
-  // Verify Leaflet loaded
-  window.addEventListener('DOMContentLoaded', () => {
-    if (typeof L === 'undefined') {
-      show('[fatal] Leaflet (L) failed to load — CDN blocked or network error.');
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+  <div id="errbox"
+    style="display:none; position:fixed; bottom:0; left:0; right:0; max-height:40vh; overflow:auto; background:#2b1414; color:#ffb3b3; font-family:'JetBrains Mono',monospace; font-size:12px; padding:10px 14px; border-top:2px solid #ff6b6b; z-index:9999; white-space:pre-wrap;">
+  </div>
+  <script>
+    (function () {
+      const box = document.getElementById('errbox');
+      function show(msg) {
+        box.style.display = 'block';
+        box.textContent += msg + '\n\n';
+      }
+      window.addEventListener('error', e => {
+        show(`[error] ${e.message}\n  at ${e.filename}:${e.lineno}:${e.colno}`);
+      });
+      window.addEventListener('unhandledrejection', e => {
+        show(`[promise] ${e.reason}`);
+      });
+      // Verify Leaflet loaded
+      window.addEventListener('DOMContentLoaded', () => {
+        if (typeof L === 'undefined') {
+          show('[fatal] Leaflet (L) failed to load — CDN blocked or network error.');
+        }
+      });
+    })();
+  </script>
+  <script>
+    // Data scraped from newhampshirestateparks.reserveamerica.com directory
+    // Coordinates: lon/lat from the official map links (4 missing coords approximated by town)
+    const CAMPGROUNDS = [
+      { id: 270003, name: "Bear Brook State Park", lat: 43.1141667, lon: -71.3275, electric: true, full: false, water: false, pets: true, waterfront: true },
+      { id: 270121, name: "Cannon Mountain RV Park", lat: 44.17, lon: -71.6894444, electric: true, full: false, water: true, pets: false, waterfront: false },
+      { id: 270009, name: "Clough State Park", lat: 43.0742, lon: -71.7270, electric: false, full: false, water: false, pets: false, waterfront: true, approx: true },
+      { id: 270011, name: "Coleman State Park", lat: 44.9427778, lon: -71.3286111, electric: false, full: false, water: false, pets: true, waterfront: false },
+      { id: 270016, name: "Deer Mountain Campground", lat: 45.1905556, lon: -71.1913889, electric: false, full: false, water: false, pets: true, waterfront: true },
+      { id: 270015, name: "Dry River Campground", lat: 44.1575, lon: -71.3638889, electric: false, full: false, water: false, pets: true, waterfront: false },
+      { id: 270021, name: "Ellacoya State Park", lat: 43.5741667, lon: -71.355, electric: true, full: true, water: true, pets: false, waterfront: true },
+      { id: 270027, name: "Greenfield State Park", lat: 42.9580556, lon: -71.8872222, electric: false, full: false, water: false, pets: true, waterfront: false },
+      { id: 270029, name: "Hampton Beach State Park (South)", lat: 42.8983333, lon: -70.8144444, electric: true, full: true, water: true, pets: false, waterfront: true },
+      { id: 270950, name: "Jericho Mountain State Park", lat: 44.5000444, lon: -71.2553333, electric: true, full: true, water: true, pets: true, waterfront: true },
+      { id: 270043, name: "Kingston State Park", lat: 42.9275, lon: -71.0735, electric: false, full: false, water: false, pets: false, waterfront: true, approx: true },
+      { id: 270044, name: "Lafayette Place Campground", lat: 44.1425, lon: -71.6855556, electric: false, full: false, water: false, pets: false, waterfront: true },
+      { id: 270045, name: "Lake Francis State Park", lat: 45.0597222, lon: -71.3027778, electric: true, full: false, water: true, pets: true, waterfront: true },
+      { id: 270047, name: "Milan Hill State Park", lat: 44.5722222, lon: -71.2241667, electric: false, full: false, water: false, pets: true, waterfront: false },
+      { id: 270050, name: "Mollidgewock State Park", lat: 44.7380556, lon: -71.1441667, electric: false, full: false, water: false, pets: true, waterfront: true },
+      { id: 271000, name: "Monadnock HQ", lat: 42.8455556, lon: -72.0894444, electric: false, full: false, water: false, pets: false, waterfront: false },
+      { id: 270051, name: "Monadnock SP — Gilson Pond Area", lat: 42.8460, lon: -72.0820, electric: true, full: false, water: false, pets: false, waterfront: false },
+      { id: 270053, name: "Moose Brook State Park", lat: 44.3994444, lon: -71.2308333, electric: false, full: false, water: false, pets: true, waterfront: true },
+      { id: 270061, name: "Pawtuckaway State Park", lat: 43.0802778, lon: -71.1533333, electric: false, full: false, water: false, pets: true, waterfront: true },
+      { id: 270065, name: "Pillsbury State Park", lat: 43.2333333, lon: -72.1077778, electric: false, full: false, water: false, pets: true, waterfront: false },
+      { id: 270075, name: "Sunapee State Park", lat: 43.3266667, lon: -72.0677778, electric: false, full: false, water: false, pets: true, waterfront: false },
+      { id: 270082, name: "Umbagog Lake State Park", lat: 44.7036111, lon: -71.0505556, electric: true, full: false, water: true, pets: true, waterfront: true },
+      { id: 270083, name: "Wadleigh State Park", lat: 43.3582222, lon: -71.9434722, electric: false, full: false, water: false, pets: false, waterfront: true },
+      { id: 270091, name: "Wellington State Park", lat: 43.6398028, lon: -71.7789056, electric: false, full: false, water: true, pets: false, waterfront: true },
+      { id: 270097, name: "White Lake State Park", lat: 43.8361111, lon: -71.2186111, electric: false, full: false, water: false, pets: false, waterfront: true },
+      { id: 270099, name: "Winslow State Park", lat: 43.4470, lon: -71.9430, electric: false, full: false, water: false, pets: true, waterfront: false, approx: true },
+    ];
+
+    const BASE = "https://newhampshirestateparks.reserveamerica.com";
+
+    function fmtDate(iso) {
+      // RA expects MM/DD/YYYY
+      if (!iso) return null;
+      const [y, m, d] = iso.split('-');
+      return `${m}/${d}/${y}`;
     }
-  });
-})();
-</script>
-<script>
-// Data scraped from newhampshirestateparks.reserveamerica.com directory
-// Coordinates: lon/lat from the official map links (4 missing coords approximated by town)
-const CAMPGROUNDS = [
-  { id: 270003, name: "Bear Brook State Park",                 lat: 43.1141667, lon: -71.3275,    electric: true,  full: false, water: false, pets: true,  waterfront: true  },
-  { id: 270121, name: "Cannon Mountain RV Park",               lat: 44.17,      lon: -71.6894444, electric: true,  full: false, water: true,  pets: false, waterfront: false },
-  { id: 270009, name: "Clough State Park",                     lat: 43.0742,    lon: -71.7270,    electric: false, full: false, water: false, pets: false, waterfront: true,  approx: true },
-  { id: 270011, name: "Coleman State Park",                    lat: 44.9427778, lon: -71.3286111, electric: false, full: false, water: false, pets: true,  waterfront: false },
-  { id: 270016, name: "Deer Mountain Campground",              lat: 45.1905556, lon: -71.1913889, electric: false, full: false, water: false, pets: true,  waterfront: true  },
-  { id: 270015, name: "Dry River Campground",                  lat: 44.1575,    lon: -71.3638889, electric: false, full: false, water: false, pets: true,  waterfront: false },
-  { id: 270021, name: "Ellacoya State Park",                   lat: 43.5741667, lon: -71.355,     electric: true,  full: true,  water: true,  pets: false, waterfront: true  },
-  { id: 270027, name: "Greenfield State Park",                 lat: 42.9580556, lon: -71.8872222, electric: false, full: false, water: false, pets: true,  waterfront: false },
-  { id: 270029, name: "Hampton Beach State Park (South)",      lat: 42.8983333, lon: -70.8144444, electric: true,  full: true,  water: true,  pets: false, waterfront: true  },
-  { id: 270950, name: "Jericho Mountain State Park",           lat: 44.5000444, lon: -71.2553333, electric: true,  full: true,  water: true,  pets: true,  waterfront: true  },
-  { id: 270043, name: "Kingston State Park",                   lat: 42.9275,    lon: -71.0735,    electric: false, full: false, water: false, pets: false, waterfront: true,  approx: true },
-  { id: 270044, name: "Lafayette Place Campground",            lat: 44.1425,    lon: -71.6855556, electric: false, full: false, water: false, pets: false, waterfront: true  },
-  { id: 270045, name: "Lake Francis State Park",               lat: 45.0597222, lon: -71.3027778, electric: true,  full: false, water: true,  pets: true,  waterfront: true  },
-  { id: 270047, name: "Milan Hill State Park",                 lat: 44.5722222, lon: -71.2241667, electric: false, full: false, water: false, pets: true,  waterfront: false },
-  { id: 270050, name: "Mollidgewock State Park",               lat: 44.7380556, lon: -71.1441667, electric: false, full: false, water: false, pets: true,  waterfront: true  },
-  { id: 271000, name: "Monadnock HQ",                          lat: 42.8455556, lon: -72.0894444, electric: false, full: false, water: false, pets: false, waterfront: false },
-  { id: 270051, name: "Monadnock SP — Gilson Pond Area",       lat: 42.8460,    lon: -72.0820,    electric: true,  full: false, water: false, pets: false, waterfront: false },
-  { id: 270053, name: "Moose Brook State Park",                lat: 44.3994444, lon: -71.2308333, electric: false, full: false, water: false, pets: true,  waterfront: true  },
-  { id: 270061, name: "Pawtuckaway State Park",                lat: 43.0802778, lon: -71.1533333, electric: false, full: false, water: false, pets: true,  waterfront: true  },
-  { id: 270065, name: "Pillsbury State Park",                  lat: 43.2333333, lon: -72.1077778, electric: false, full: false, water: false, pets: true,  waterfront: false },
-  { id: 270075, name: "Sunapee State Park",                    lat: 43.3266667, lon: -72.0677778, electric: false, full: false, water: false, pets: true,  waterfront: false },
-  { id: 270082, name: "Umbagog Lake State Park",               lat: 44.7036111, lon: -71.0505556, electric: true,  full: false, water: true,  pets: true,  waterfront: true  },
-  { id: 270083, name: "Wadleigh State Park",                   lat: 43.3582222, lon: -71.9434722, electric: false, full: false, water: false, pets: false, waterfront: true  },
-  { id: 270091, name: "Wellington State Park",                 lat: 43.6398028, lon: -71.7789056, electric: false, full: false, water: true,  pets: false, waterfront: true  },
-  { id: 270097, name: "White Lake State Park",                 lat: 43.8361111, lon: -71.2186111, electric: false, full: false, water: false, pets: false, waterfront: true  },
-  { id: 270099, name: "Winslow State Park",                    lat: 43.4470,    lon: -71.9430,    electric: false, full: false, water: false, pets: true,  waterfront: false, approx: true },
-];
+    function daysBetween(a, b) {
+      const ms = (new Date(b) - new Date(a));
+      return Math.max(1, Math.round(ms / 86400000));
+    }
 
-const BASE = "https://newhampshirestateparks.reserveamerica.com";
+    function reserveUrl(cg) {
+      const arrival = document.getElementById('arrival').value;
+      const departure = document.getElementById('departure').value;
+      if (arrival && departure && new Date(departure) > new Date(arrival)) {
+        const arv = fmtDate(arrival);
+        const stay = daysBetween(arrival, departure);
+        // Unified search results page deep-links to availability for this park with dates
+        return `${BASE}/unifSearchResults.do?contractCode=NH&parkId=${cg.id}&arvdate=${encodeURIComponent(arv)}&lengthOfStay=${stay}&reset`;
+      }
+      return `${BASE}/camping/${slug(cg.name)}/r/campgroundDetails.do?contractCode=NH&parkId=${cg.id}`;
+    }
+    function slug(name) {
+      return name.toLowerCase().replace(/[()]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+    }
 
-function fmtDate(iso) {
-  // RA expects MM/DD/YYYY
-  if (!iso) return null;
-  const [y, m, d] = iso.split('-');
-  return `${m}/${d}/${y}`;
-}
-function daysBetween(a, b) {
-  const ms = (new Date(b) - new Date(a));
-  return Math.max(1, Math.round(ms / 86400000));
-}
+    function amenityLabels(cg) {
+      const a = [];
+      if (cg.electric) a.push('Electric');
+      if (cg.full) a.push('Full hookup');
+      if (cg.water) a.push('Water');
+      if (cg.pets) a.push('Pets OK');
+      if (cg.waterfront) a.push('Waterfront');
+      if (!a.length) a.push('Primitive');
+      return a;
+    }
 
-function reserveUrl(cg) {
-  const arrival = document.getElementById('arrival').value;
-  const departure = document.getElementById('departure').value;
-  if (arrival && departure && new Date(departure) > new Date(arrival)) {
-    const arv = fmtDate(arrival);
-    const stay = daysBetween(arrival, departure);
-    // Unified search results page deep-links to availability for this park with dates
-    return `${BASE}/unifSearchResults.do?contractCode=NH&parkId=${cg.id}&arvdate=${encodeURIComponent(arv)}&lengthOfStay=${stay}&reset`;
-  }
-  return `${BASE}/camping/${slug(cg.name)}/r/campgroundDetails.do?contractCode=NH&parkId=${cg.id}`;
-}
-function slug(name) {
-  return name.toLowerCase().replace(/[()]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
-}
+    // State
+    const state = {
+      query: '',
+      filters: new Set(),
+      focused: null,
+    };
 
-function amenityLabels(cg) {
-  const a = [];
-  if (cg.electric) a.push('Electric');
-  if (cg.full) a.push('Full hookup');
-  if (cg.water) a.push('Water');
-  if (cg.pets) a.push('Pets OK');
-  if (cg.waterfront) a.push('Waterfront');
-  if (!a.length) a.push('Primitive');
-  return a;
-}
+    // Map setup
+    const map = L.map('map', { zoomControl: true }).setView([43.9, -71.6], 8);
+    const TILE_PROVIDERS = {
+      topo: {
+        url: 'https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png',
+        options: { maxZoom: 17, attribution: 'Map: © OpenTopoMap (CC-BY-SA), data © OpenStreetMap contributors' },
+      },
+      osm: {
+        url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+        options: { maxZoom: 19, attribution: '© OpenStreetMap contributors' },
+      },
+    };
+    let currentTileLayer = null;
+    function setTiles(key) {
+      const p = TILE_PROVIDERS[key];
+      if (!p) return;
+      if (currentTileLayer) map.removeLayer(currentTileLayer);
+      currentTileLayer = L.tileLayer(p.url, p.options).addTo(map);
+    }
+    setTiles('osm');
 
-// State
-const state = {
-  query: '',
-  filters: new Set(),
-  focused: null,
-};
+    const markers = new Map();
+    CAMPGROUNDS.forEach(cg => {
+      const icon = L.divIcon({
+        className: '',
+        html: `<div class="marker-pin" data-id="${cg.id}"></div>`,
+        iconSize: [18, 18],
+        iconAnchor: [9, 9],
+      });
+      const marker = L.marker([cg.lat, cg.lon], { icon }).addTo(map);
+      marker.bindPopup(() => popupHtml(cg), { closeButton: true });
+      marker.on('click', () => {
+        state.focused = cg.id;
+        renderList();
+        scrollToCard(cg.id);
+      });
+      markers.set(cg.id, marker);
+    });
 
-// Map setup
-const map = L.map('map', { zoomControl: true }).setView([43.9, -71.6], 8);
-const TILE_PROVIDERS = {
-  topo: {
-    url: 'https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png',
-    options: { maxZoom: 17, attribution: 'Map: © OpenTopoMap (CC-BY-SA), data © OpenStreetMap contributors' },
-  },
-  osm: {
-    url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-    options: { maxZoom: 19, attribution: '© OpenStreetMap contributors' },
-  },
-};
-let currentTileLayer = null;
-function setTiles(key) {
-  const p = TILE_PROVIDERS[key];
-  if (!p) return;
-  if (currentTileLayer) map.removeLayer(currentTileLayer);
-  currentTileLayer = L.tileLayer(p.url, p.options).addTo(map);
-}
-setTiles('topo');
-
-const markers = new Map();
-CAMPGROUNDS.forEach(cg => {
-  const icon = L.divIcon({
-    className: '',
-    html: `<div class="marker-pin" data-id="${cg.id}"></div>`,
-    iconSize: [18, 18],
-    iconAnchor: [9, 9],
-  });
-  const marker = L.marker([cg.lat, cg.lon], { icon }).addTo(map);
-  marker.bindPopup(() => popupHtml(cg), { closeButton: true });
-  marker.on('click', () => {
-    state.focused = cg.id;
-    renderList();
-    scrollToCard(cg.id);
-  });
-  markers.set(cg.id, marker);
-});
-
-function popupHtml(cg) {
-  const ams = amenityLabels(cg).map(a => `<span>◆ ${a}</span>`).join(' ');
-  return `
+    function popupHtml(cg) {
+      const ams = amenityLabels(cg).map(a => `<span>◆ ${a}</span>`).join(' ');
+      return `
     <div class="popup-name">${cg.name}</div>
     <div class="popup-amenities">${ams}</div>
     <a class="reserve-btn" href="${reserveUrl(cg)}" target="_blank" rel="noopener">
       Reserve <span class="arrow">→</span>
     </a>
   `;
-}
+    }
 
-// Filter + render
-function matches(cg) {
-  if (state.query) {
-    if (!cg.name.toLowerCase().includes(state.query.toLowerCase())) return false;
-  }
-  for (const f of state.filters) {
-    if (!cg[f]) return false;
-  }
-  return true;
-}
+    // Filter + render
+    function matches(cg) {
+      if (state.query) {
+        if (!cg.name.toLowerCase().includes(state.query.toLowerCase())) return false;
+      }
+      for (const f of state.filters) {
+        if (!cg[f]) return false;
+      }
+      return true;
+    }
 
-function render() {
-  const visible = CAMPGROUNDS.filter(matches);
-  document.getElementById('count').textContent = `${visible.length} campground${visible.length === 1 ? '' : 's'}`;
-  // Show/hide markers
-  CAMPGROUNDS.forEach(cg => {
-    const m = markers.get(cg.id);
-    const v = visible.includes(cg);
-    if (v && !map.hasLayer(m)) m.addTo(map);
-    else if (!v && map.hasLayer(m)) map.removeLayer(m);
-  });
-  renderList(visible);
-}
+    function render() {
+      const visible = CAMPGROUNDS.filter(matches);
+      document.getElementById('count').textContent = `${visible.length} campground${visible.length === 1 ? '' : 's'}`;
+      // Show/hide markers
+      CAMPGROUNDS.forEach(cg => {
+        const m = markers.get(cg.id);
+        const v = visible.includes(cg);
+        if (v && !map.hasLayer(m)) m.addTo(map);
+        else if (!v && map.hasLayer(m)) map.removeLayer(m);
+      });
+      renderList(visible);
+    }
 
-function renderList(visible) {
-  visible = visible || CAMPGROUNDS.filter(matches);
-  const list = document.getElementById('list');
-  list.innerHTML = visible.map(cg => {
-    const ams = amenityLabels(cg).map(a => `<span class="amenity">${a}</span>`).join('');
-    return `
+    function renderList(visible) {
+      visible = visible || CAMPGROUNDS.filter(matches);
+      const list = document.getElementById('list');
+      list.innerHTML = visible.map(cg => {
+        const ams = amenityLabels(cg).map(a => `<span class="amenity">${a}</span>`).join('');
+        return `
       <div class="campground ${state.focused === cg.id ? 'focused' : ''}" data-id="${cg.id}">
         <div class="cg-name">${cg.name}</div>
         <div class="cg-amenities">${ams}</div>
@@ -557,73 +691,74 @@ function renderList(visible) {
         </a>
       </div>
     `;
-  }).join('') || `<div style="padding: 30px; text-align: center; color: var(--ink-soft); font-style: italic;">No campgrounds match.</div>`;
+      }).join('') || `<div style="padding: 30px; text-align: center; color: var(--ink-soft); font-style: italic;">No campgrounds match.</div>`;
 
-  list.querySelectorAll('.campground').forEach(el => {
-    el.addEventListener('click', () => {
-      const id = parseInt(el.dataset.id);
-      const cg = CAMPGROUNDS.find(c => c.id === id);
-      state.focused = id;
-      map.flyTo([cg.lat, cg.lon], 12, { duration: 0.6 });
-      markers.get(id).openPopup();
-      renderList();
+      list.querySelectorAll('.campground').forEach(el => {
+        el.addEventListener('click', () => {
+          const id = parseInt(el.dataset.id);
+          const cg = CAMPGROUNDS.find(c => c.id === id);
+          state.focused = id;
+          map.flyTo([cg.lat, cg.lon], 12, { duration: 0.6 });
+          markers.get(id).openPopup();
+          renderList();
+        });
+      });
+
+      // Update active marker styling
+      document.querySelectorAll('.marker-pin').forEach(el => {
+        el.classList.toggle('active', parseInt(el.dataset.id) === state.focused);
+      });
+    }
+
+    function scrollToCard(id) {
+      const el = document.querySelector(`.campground[data-id="${id}"]`);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    // Wire up controls
+    document.getElementById('q').addEventListener('input', e => {
+      state.query = e.target.value;
+      render();
     });
-  });
+    ['arrival', 'departure'].forEach(id => {
+      document.getElementById(id).addEventListener('change', () => {
+        // re-render so reserve URLs update
+        render();
+      });
+    });
+    document.querySelectorAll('.pill[data-filter]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const f = btn.dataset.filter;
+        if (state.filters.has(f)) state.filters.delete(f);
+        else state.filters.add(f);
+        btn.classList.toggle('active');
+        render();
+      });
+    });
+    document.querySelectorAll('.tile-opt').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tile-opt').forEach(b => b.classList.toggle('active', b === btn));
+        setTiles(btn.dataset.tiles);
+      });
+    });
+    document.getElementById('clear').addEventListener('click', () => {
+      state.filters.clear();
+      state.query = '';
+      document.getElementById('q').value = '';
+      document.getElementById('arrival').value = '';
+      document.getElementById('departure').value = '';
+      document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
+      render();
+    });
 
-  // Update active marker styling
-  document.querySelectorAll('.marker-pin').forEach(el => {
-    el.classList.toggle('active', parseInt(el.dataset.id) === state.focused);
-  });
-}
+    // Default: arrival = today, departure = +2 days, so reserve links pre-fill
+    const today = new Date();
+    const t = (d) => d.toISOString().slice(0, 10);
+    document.getElementById('arrival').min = t(today);
+    document.getElementById('departure').min = t(today);
 
-function scrollToCard(id) {
-  const el = document.querySelector(`.campground[data-id="${id}"]`);
-  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-}
-
-// Wire up controls
-document.getElementById('q').addEventListener('input', e => {
-  state.query = e.target.value;
-  render();
-});
-['arrival', 'departure'].forEach(id => {
-  document.getElementById(id).addEventListener('change', () => {
-    // re-render so reserve URLs update
     render();
-  });
-});
-document.querySelectorAll('.pill[data-filter]').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const f = btn.dataset.filter;
-    if (state.filters.has(f)) state.filters.delete(f);
-    else state.filters.add(f);
-    btn.classList.toggle('active');
-    render();
-  });
-});
-document.querySelectorAll('.tile-opt').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.tile-opt').forEach(b => b.classList.toggle('active', b === btn));
-    setTiles(btn.dataset.tiles);
-  });
-});
-document.getElementById('clear').addEventListener('click', () => {
-  state.filters.clear();
-  state.query = '';
-  document.getElementById('q').value = '';
-  document.getElementById('arrival').value = '';
-  document.getElementById('departure').value = '';
-  document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
-  render();
-});
-
-// Default: arrival = today, departure = +2 days, so reserve links pre-fill
-const today = new Date();
-const t = (d) => d.toISOString().slice(0,10);
-document.getElementById('arrival').min = t(today);
-document.getElementById('departure').min = t(today);
-
-render();
-</script>
+  </script>
 </body>
+
 </html>
