@@ -319,4 +319,19 @@
 
         .const-image-end .punct { color: $rust-punct; font-weight: 400; }
     }
+
+    // tighten indents on mobile so prose isn't squeezed off the right edge
+    @include media-query($on-palm) {
+        .mod-body {
+            padding-left: 12px;
+            margin-left: 4px;
+        }
+        .fn-body {
+            padding-left: 10px;
+            margin-left: 4px;
+        }
+        .paper-fields {
+            padding-left: 0.8em;
+        }
+    }
 }
