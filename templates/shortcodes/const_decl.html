@@ -1,0 +1,22 @@
+{# A single-line `const NAME: Type = value;` declaration.
+   If href is set, both the type and the value are clickable links.
+   Args:
+     name  — const name, conventionally UPPER_CASE (required)
+     type  — type annotation (required)
+     value — literal/value text shown after `=` (required)
+     href  — optional link target #}
+<div class="const-decl">
+  <span class="kw">const</span>
+  <span class="name">{{ name }}</span><span class="punct">:</span>
+  {% if href -%}
+    <a class="type" href="{{ href }}">{{ type }}</a>
+  {%- else -%}
+    <span class="type">{{ type }}</span>
+  {%- endif %}
+  <span class="punct">=</span>
+  {% if href -%}
+    <a class="val" href="{{ href }}">{{ value }}</a>
+  {%- else -%}
+    <span class="val">{{ value }}</span>
+  {%- endif -%}<span class="punct">;</span>
+</div>

@@ -1,0 +1,20 @@
+{# Wraps content in a `static NAME: Type = [ ... ];` block. Body is the
+   slice contents (typically a list). Useful for NEWS, PUBLICATIONS, etc.
+   Args:
+     name — UPPER_CASE static name (required)
+     type — type annotation, e.g. "[Event; 2]" (required)
+     doc  — optional /// doc comment shown above the signature #}
+<section class="fn-section">
+  {% if doc %}<div class="fn-doc">/// {{ doc }}</div>{% endif %}
+  <div class="fn-sig">
+    <span class="kw">static</span>
+    <span class="name">{{ name }}</span><span class="colon">:</span>
+    <span class="type">{{ type }}</span>
+    <span class="colon">=</span>
+    <span class="brace">[</span>
+  </div>
+  <div class="fn-body">
+    {{ body | markdown | safe }}
+  </div>
+  <div class="fn-close">];</div>
+</section>

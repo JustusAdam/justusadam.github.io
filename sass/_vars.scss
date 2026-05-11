@@ -33,6 +33,14 @@ $on-laptop:        800px;
 $red:              rgb(178, 43, 25);
 $green:            rgb(60, 176, 12);
 
+// "Rust source" aesthetic palette
+$mono-font:        "Source Code Pro", ui-monospace, SFMono-Regular, Menlo, monospace;
+$rust-keyword:     $red;        // fn / mod / struct / const / static
+$rust-fnname:      $blue;       // identifier names
+$rust-type:        #1f8a70;     // type names — teal, distinct from $green
+$rust-punct:       #555;        // braces, colons, semicolons
+$rust-comment:     #8a8a8a;     // ///, // comments, news dates
+
 @mixin media-query($device) {
     @media screen and (max-width: $device) {
         @content;

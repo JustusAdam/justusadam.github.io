@@ -1,75 +1,95 @@
-<style type="text/css">
-    .abstract-toggle {
-        display: none;
-    }
+{% set pubs = load_data(path="data/bib.yaml", format="yaml") | sort(attribute='date') | reverse %}
 
-    .abstract-toggle+label {
-        cursor: pointer;
-        user-select: none;
-        font-size: small;
-        color: #555;
-    }
-
-    .abstract-toggle+label::before {
-        content: '❯';
-        display: inline-block;
-        transition: transform 0.2s ease;
-        margin-right: 0.3em;
-    }
-
-    .abstract-toggle:checked+label::before {
-        transform: rotate(90deg);
-    }
-
-    .abstract {
-        display: none;
-        padding-left: 2em;
-        font-family: serif;
-    }
-
-    .abstract-toggle:checked~.abstract {
-        display: block;
-    }
-</style>
-
-{% set pubs = load_data(path="data/bib.yaml", format="yaml") |
-sort(attribute='date') | reverse %}
-<ul>
+<section class="fn-section">
+  <div class="fn-doc">/// {{ pubs | length }} entries, newest first.</div>
+  <div class="fn-sig">
+    <span class="kw">static</span>
+    <span class="name">PUBLICATIONS</span><span class="colon">:</span>
+    <span class="type">[Paper; {{ pubs | length }}]</span>
+    <span class="colon">=</span>
+    <span class="brace">[</span>
+  </div>
+  <div class="fn-body">
     {% for p in pubs %}
-
-    <li>
-        {{ p.date }}:
-        <strong>
-            {% if p.link %}
-            <a href="{{p.link}}" target="_blank">{{ p.title }}</a>
-            {% else %} {{ p.title }}
-            {% endif %}
-
-            {% if p.other_links %}
-            {% for key, value in p.other_links %}
-            <a style="font-size: small" href="{{value}}">[{{key}}]</a>
-            {% endfor %}
-            {% endif %}
-        </strong>
-
-        <div style="margin-bottom: 15px; padding-left: 1em">
-            <p>
-                <small>
-                    {{p.note | default(value= "") | safe}} {{ p.authors |
-                    join(sep=", ") }} {% if p.publication %} in
-                    <i>{{p.publication }}</i> {% elif p.institution %} at
-                    <i>{{ p.institution }}</i>
-                    {% endif %}
-                </small>
-            </p>
-            {{ p.comment | default(value="") | markdown | safe }} {% if
-            p.abstract %}
-            <input type="checkbox" class="abstract-toggle" id="abstract-{{ loop.index }}" />
-            <label for="abstract-{{ loop.index }}">Abstract</label>
-            <div class="abstract">{{ p.abstract | markdown | safe }}</div>
-            {% endif %}
+    <div class="paper">
+      <div class="paper-sig">
+        <span class="type">Paper</span>
+        <span class="brace">{</span>
+      </div>
+      <div class="paper-fields">
+        <div class="paper-field">
+          <span class="field-name">title</span><span class="punct">:</span>
+          {% if p.link -%}
+            <a class="paper-title" href="{{ p.link }}" target="_blank">"{{ p.title }}"</a>
+          {%- else -%}
+            <span class="paper-title">"{{ p.title }}"</span>
+          {%- endif -%}<span class="punct">,</span>
         </div>
-    </li>
-
+        <div class="paper-field">
+          <span class="field-name">date</span><span class="punct">:</span>
+          {{ p.date }}<span class="punct">,</span>
+        </div>
+        <div class="paper-field">
+          <span class="field-name">authors</span><span class="punct">:</span>
+          {{ p.authors | join(sep=", ") }}<span class="punct">,</span>
+        </div>
+        {% if p.publication %}
+        <div class="paper-field">
+          <span class="field-name">venue</span><span class="punct">:</span>
+          <em>{{ p.publication }}</em><span class="punct">,</span>
+        </div>
+        {% elif p.institution %}
+        <div class="paper-field">
+          <span class="field-name">venue</span><span class="punct">:</span>
+          <em>{{ p.institution }}</em><span class="punct">,</span>
+        </div>
+        {% endif %}
+        {% if p.note %}
+        <div class="paper-field">
+          <span class="field-name">note</span><span class="punct">:</span>
+          {{ p.note | safe }}<span class="punct">,</span>
+        </div>
+        {% endif %}
+        {% if p.comment %}
+        <div class="paper-comment">{{ p.comment | markdown | safe }}</div>
+        {% endif %}
+        {% if p.other_links %}
+        <div class="paper-field paper-extras">
+          {% for key, value in p.other_links %}
+            {% if value is starting_with("/") %}
+              {% set parts = value | split(pat="/") %}
+              {% set segment = parts | nth(n=1) %}
+              {% set short = "/" ~ segment ~ "/..." %}
+            {% elif value is starting_with("http") %}
+              {% set stripped = value | replace(from="https://", to="") | replace(from="http://", to="") %}
+              {% set parts = stripped | split(pat="/") %}
+              {% set host = parts | first %}
+              {% set short = host ~ "/..." %}
+            {% else %}
+              {% set short = value %}
+            {% endif %}
+            <span class="extra-link">
+              <span class="field-name">{{ key }}</span><span class="punct">:</span>
+              <a class="val" href="{{ value }}">"{{ short }}"</a><span class="punct">,</span>
+            </span>
+          {% endfor %}
+        </div>
+        {% endif %}
+        {% if p.abstract %}
+        <input type="checkbox" id="abs-{{ loop.index }}" class="abstract-toggle">
+        <div class="paper-field abstract-field">
+          <label for="abs-{{ loop.index }}" class="abstract-label">
+            <span class="field-name">abstract</span><span class="punct">:</span>
+            <span class="val">"..."</span><span class="punct">,</span>
+            <span class="abstract-hint"></span>
+          </label>
+          <div class="abstract-body">{{ p.abstract | markdown | safe }}</div>
+        </div>
+        {% endif %}
+      </div>
+      <div class="paper-close"><span class="brace">}</span><span class="punct">,</span></div>
+    </div>
     {% endfor %}
-</ul>
+  </div>
+  <div class="fn-close">];</div>
+</section>

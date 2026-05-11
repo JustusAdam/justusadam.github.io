@@ -1,0 +1,17 @@
+{# Renders an image wrapped as a `const NAME: Image = ...;` declaration.
+   Floats right by default (see .const-image in _rust.scss).
+   Args:
+     name  — UPPER_CASE const name (required)
+     src   — image src (required)
+     alt   — alt text (required)
+     width — optional CSS width override #}
+<figure class="const-image"{% if width %} style="width: {{ width }};"{% endif %}>
+  <div class="const-image-decl">
+    <span class="kw">const</span>
+    <span class="name">{{ name }}</span><span class="punct">:</span>
+    <span class="type">Image</span>
+    <span class="punct">=</span>
+  </div>
+  <img src="{{ src }}" alt="{{ alt }}" />
+  <div class="const-image-end"><span class="punct">;</span></div>
+</figure>

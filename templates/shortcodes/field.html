@@ -1,0 +1,22 @@
+{# A single struct field: `name: Type,` with an optional doc comment.
+   If href is set, both name and type are rendered as links to it.
+   Args:
+     name — field name (required)
+     type — field type (required)
+     href — optional link target; if set, makes name and type clickable
+     doc  — optional /// doc comment shown above the field #}
+<div class="struct-field">
+  {% if doc %}<div class="fn-doc">/// {{ doc }}</div>{% endif %}
+  <div class="field-sig">
+    {% if href -%}
+      <a class="field-name" href="{{ href }}">{{ name }}</a>
+    {%- else -%}
+      <span class="field-name">{{ name }}</span>
+    {%- endif -%}<span class="punct">:</span>
+    {% if href -%}
+      <a class="field-type" href="{{ href }}">{{ type }}</a>
+    {%- else -%}
+      <span class="field-type">{{ type }}</span>
+    {%- endif -%}<span class="punct">,</span>
+  </div>
+</div>

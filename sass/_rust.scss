@@ -1,0 +1,322 @@
+// Rust-source aesthetic.
+//
+// Scoped under two body classes so Phase 1 ships without touching the
+// rendered site. Phase 2 wires the classes onto <body>:
+//   .rust-chrome  — site header + nav, applied to every page including blog.
+//   .rust-content — fn/struct/const blocks etc., applied only to pages that
+//                   opt in (not blog).
+
+// ---------- site chrome ----------
+.rust-chrome {
+    .site-header {
+        border-top: 5px solid $grey-color-dark;
+        border-bottom: 1px solid $grey-color-light;
+        min-height: 56px;
+
+        .wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 56px;
+        }
+    }
+
+    .site-title {
+        font-family: $mono-font;
+        font-size: 20px;
+        font-weight: 700;
+        letter-spacing: 0;
+        line-height: 1.4;
+        float: none;
+        color: $rust-punct;
+
+        &, &:visited { color: $rust-punct; }
+
+        .kw    { color: $rust-keyword; }
+        .name  { color: $rust-fnname; }
+        .punct { color: $rust-punct; font-weight: 400; }
+        .comment {
+            color: $rust-comment;
+            font-weight: 400;
+            margin-left: 8px;
+        }
+    }
+
+    .site-nav {
+        float: none;
+        line-height: 1.4;
+
+        .page-link {
+            font-family: $mono-font;
+            font-size: 20px;
+            font-weight: 700;
+            color: $rust-punct;
+            margin-left: 20px;
+
+            .kw    { color: $rust-keyword; }
+            .name  { color: $rust-fnname; }
+            .punct { color: $rust-punct; font-weight: 400; }
+        }
+    }
+}
+
+// ---------- page content ----------
+.rust-content {
+    .post-title {
+        font-family: $mono-font;
+        font-size: 42px;
+        font-weight: 700;
+        letter-spacing: -1px;
+        line-height: 1;
+        margin: 0 0 18px;
+        color: $rust-punct;
+
+        .kw    { color: $rust-keyword; }
+        .name  { color: $rust-fnname; }
+        .brace { color: $rust-punct; font-weight: 400; }
+    }
+
+    .mod-close {
+        font-family: $mono-font;
+        font-size: 42px;
+        font-weight: 400;
+        color: $rust-punct;
+        line-height: 1;
+        margin: 10px 0 0;
+    }
+
+    .mod-body {
+        padding: 8px 0 8px 32px;
+        margin-left: 10px;
+        border-left: 2px solid $grey-color-light;
+
+        > :first-child { margin-top: 0; }
+        > :last-child  { margin-bottom: 0; }
+    }
+
+    .fn-section {
+        margin: 28px 0 36px;
+        position: relative;
+    }
+
+    .fn-sig {
+        font-family: $mono-font;
+        font-size: 30px;
+        font-weight: 700;
+        line-height: 1.2;
+        margin: 0 0 14px;
+        color: $rust-punct;
+        letter-spacing: -0.5px;
+
+        .kw           { color: $rust-keyword; }
+        .name         { color: $rust-fnname; }
+        .colon,
+        .brace        { color: $rust-punct; font-weight: 400; }
+        .type         { color: $rust-type; font-style: italic; }
+    }
+
+    .fn-sub .fn-sig { font-size: 22px; }
+
+    .fn-body {
+        position: relative;
+        padding: 6px 0 6px 22px;
+        margin-left: 6px;
+        border-left: 2px solid $grey-color-light;
+
+        > :first-child { margin-top: 0; }
+        > :last-child  { margin-bottom: 0; }
+    }
+
+    .fn-close {
+        font-family: $mono-font;
+        font-size: 30px;
+        font-weight: 400;
+        color: $rust-punct;
+        margin: 6px 0 0;
+        line-height: 1;
+    }
+
+    .fn-sub .fn-close { font-size: 22px; }
+
+    .fn-doc {
+        font-family: $mono-font;
+        color: $rust-comment;
+        font-size: 14px;
+        margin: 0 0 4px;
+    }
+
+    .struct-field {
+        margin: 0 0 10px;
+
+        &:last-child { margin-bottom: 0; }
+    }
+
+    .field-sig {
+        font-family: $mono-font;
+        font-size: 18px;
+        font-weight: 700;
+        line-height: 1.3;
+        color: $rust-punct;
+
+        .field-name { color: $rust-fnname; }
+        .field-type { color: $rust-type; font-style: italic; }
+        .punct      { color: $rust-punct; font-weight: 400; }
+    }
+
+    .const-decl {
+        font-family: $mono-font;
+        font-size: 22px;
+        font-weight: 700;
+        line-height: 1.3;
+        color: $rust-punct;
+        margin: 28px 0 8px;
+
+        .kw    { color: $rust-keyword; }
+        .name  { color: $rust-fnname; }
+        .type  { color: $rust-type; font-style: italic; }
+        .punct { color: $rust-punct; font-weight: 400; }
+        .val   { color: $brand-color; }
+    }
+
+    .news-date {
+        font-family: $mono-font;
+        color: $rust-comment;
+    }
+
+    // ---------- bib publication entries ----------
+    .paper {
+        margin: 0 0 28px;
+        font-family: $base-font-family;
+
+        &:last-child { margin-bottom: 0; }
+    }
+
+    .paper-sig {
+        font-family: $mono-font;
+        font-weight: 700;
+        line-height: 1.4;
+
+        .type  { color: $rust-type; font-style: italic; }
+        .brace { color: $rust-punct; font-weight: 400; }
+    }
+
+    .paper-fields {
+        padding-left: 1.5em;
+        margin: 4px 0;
+    }
+
+    .paper-field {
+        line-height: 1.5;
+
+        .field-name { font-family: $mono-font; color: $rust-fnname; font-weight: 700; }
+        .punct      { font-family: $mono-font; color: $rust-punct; font-weight: 400; }
+    }
+
+    .paper-title {
+        color: $rust-fnname;
+        font-family: $mono-font;
+        font-weight: 700;
+        margin-left: 4px;
+
+        &:hover { text-decoration: underline; }
+    }
+
+    .paper-extra {
+        font-family: $mono-font;
+        font-size: 0.85em;
+        color: $rust-comment;
+        margin-left: 4px;
+
+        &:hover { color: $rust-fnname; }
+    }
+
+    .paper-comment {
+        margin: 4px 0 4px 0;
+        color: $grey-color-dark;
+        font-size: 0.95em;
+    }
+
+    .paper-close {
+        font-family: $mono-font;
+        font-weight: 400;
+        color: $rust-punct;
+
+        .brace, .punct { color: $rust-punct; }
+    }
+
+    // inline extras row: `preprint: "github.com/..."  artifact: "..."`
+    .paper-extras {
+        .extra-link {
+            margin-right: 14px;
+            white-space: nowrap;
+
+            .field-name { font-family: $mono-font; color: $rust-fnname; font-weight: 700; }
+            .punct      { font-family: $mono-font; color: $rust-punct; font-weight: 400; }
+            .val        { font-family: $mono-font; color: $brand-color; }
+        }
+    }
+
+    // abstract rendered as a collapsible field
+    .abstract-toggle { display: none; }
+
+    .abstract-field {
+        .abstract-label {
+            cursor: pointer;
+            user-select: none;
+
+            .val { color: $rust-comment; font-style: italic; }
+
+            .abstract-hint::before {
+                content: "// ❯ Expand";
+                color: $rust-comment;
+                margin-left: 10px;
+                font-family: $mono-font;
+                font-size: 14px;
+            }
+        }
+        .abstract-body { display: none; }
+    }
+
+    .abstract-toggle:checked + .abstract-field {
+        .abstract-hint::before { content: "// ⌄ Collapse"; }
+        .abstract-body {
+            display: block;
+            padding-left: 1.5em;
+            margin-top: 6px;
+            font-family: $base-font-family;
+            color: $grey-color-dark;
+            font-size: 0.95em;
+        }
+    }
+
+    .const-image {
+        float: right;
+        width: 40%;
+        margin: 0 0 10px 20px;
+
+        img {
+            display: block;
+            width: 100%;
+            height: auto;
+            border-radius: 4px;
+        }
+
+        .const-image-decl,
+        .const-image-end {
+            font-family: $mono-font;
+            font-weight: 700;
+            font-size: 18px;
+            color: $rust-punct;
+            line-height: 1.4;
+        }
+
+        .const-image-decl {
+            .kw    { color: $rust-keyword; }
+            .name  { color: $rust-fnname; }
+            .type  { color: $rust-type; font-style: italic; }
+            .punct { color: $rust-punct; font-weight: 400; }
+        }
+
+        .const-image-end .punct { color: $rust-punct; font-weight: 400; }
+    }
+}

@@ -1,20 +1,37 @@
 {% extends "default.html" %}
 
+{% block body_class %}{% if page.extra.rust_layout or (section and section.extra.rust_layout) %}rust-content{% endif %}{% endblock %}
+
 {% block page_content %}
 {% if not page %}
 {% set page = section %}
 {% endif %}
-<div class="post">
 
-  <header class="post-header">
-    <h1 class="post-title">{{ page.title }}</h1>
+{% if page.extra.rust_layout %}
+  {% set mod_name = page.extra.mod_name | default(value=page.slug) %}
+  <header>
+    <h1 class="post-title">
+      <span class="kw">mod</span>
+      <span class="name">{{ mod_name }}</span>
+      <span class="brace">{</span>
+    </h1>
   </header>
-
-  <article class="post-content">
+  <article class="post-content mod-body">
     {% block content %}
     {{ page.content | safe }}
     {% endblock %}
   </article>
-
-</div>
+  <div class="mod-close">}</div>
+{% else %}
+  <div class="post">
+    <header class="post-header">
+      <h1 class="post-title">{{ page.title }}</h1>
+    </header>
+    <article class="post-content">
+      {% block content_default %}
+      {{ page.content | safe }}
+      {% endblock %}
+    </article>
+  </div>
+{% endif %}
 {% endblock %}

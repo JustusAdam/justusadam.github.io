@@ -1,0 +1,17 @@
+{# Wraps content in a `struct Name { ... }` block. Fields go inside as
+   `field` shortcodes (or any inner markup).
+   Args:
+     name — struct name (required)
+     doc  — optional /// doc comment shown above the signature #}
+<section class="fn-section fn-sub">
+  {% if doc %}<div class="fn-doc">/// {{ doc }}</div>{% endif %}
+  <div class="fn-sig">
+    <span class="kw">struct</span>
+    <span class="type">{{ name }}</span>
+    <span class="brace">{</span>
+  </div>
+  <div class="fn-body">
+    {{ body | markdown | safe }}
+  </div>
+  <div class="fn-close">}</div>
+</section>

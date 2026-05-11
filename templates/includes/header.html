@@ -4,21 +4,23 @@
 <header class="site-header">
 
   <div class="wrapper">
-      {% if config.extra.page_logo.default %}
-	  <img class="page-logo" src="{{ config.extra.page_logo.default }}" alt="Page logo"/>
-	  {% endif %}
+    {% if config.extra.page_logo.default %}
+      <img class="page-logo" src="{{ config.extra.page_logo.default }}" alt="Page logo"/>
+    {% endif %}
 
-    <a class="site-title" href="{{ config.base_url }}/">{{ config.title }}</a>
+    <a class="site-title" href="{{ config.base_url }}/">
+      <span class="kw">extern crate</span> <span class="name">justus</span><span class="punct">;</span>
+      <span class="comment">// version 4.0</span>
+    </a>
 
     <nav class="site-nav">
-      <div class="trigger">
-        {% set pages = config.extra.menu %}
-        {% for p in pages %}
-          {% if p.name %}
-          <a class="page-link" href="{{ config.base_url ~ p.url }}">{{ p.name }}</a>
-          {% endif %}
-        {% endfor %}
-      </div>
+      {% for p in config.extra.menu %}
+        {% if p.name %}
+        <a class="page-link" href="{{ config.base_url ~ p.url }}">
+          <span class="kw">mod</span> <span class="name">{{ p.name | lower | replace(from=" ", to="_") }}</span><span class="punct">;</span>
+        </a>
+        {% endif %}
+      {% endfor %}
     </nav>
 
   </div>
