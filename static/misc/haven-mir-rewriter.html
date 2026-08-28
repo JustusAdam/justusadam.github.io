@@ -1,0 +1,427 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Haven's MIR Rewriter</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+
+<style>
+  :root {
+    --ground: #f5f8f7;
+    --surface: #ffffff;
+    --code-bg: #eef2f1;
+    --ink: #131e1d;
+    --muted: #566664;
+    --rule: #d9e1df;
+    --accent: #0e6a60;
+    --accent-soft: #d6ebe7;
+    --open: #9a5a0c;
+    --open-soft: #f6e9d6;
+
+    --sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+    --serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+    --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: #0f1514;
+      --surface: #151d1c;
+      --code-bg: #121a19;
+      --ink: #e3eae8;
+      --muted: #93a3a0;
+      --rule: #253130;
+      --accent: #58c2b1;
+      --accent-soft: #17322f;
+      --open: #dca059;
+      --open-soft: #2e2416;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --ground: #0f1514;
+    --surface: #151d1c;
+    --code-bg: #121a19;
+    --ink: #e3eae8;
+    --muted: #93a3a0;
+    --rule: #253130;
+    --accent: #58c2b1;
+    --accent-soft: #17322f;
+    --open: #dca059;
+    --open-soft: #2e2416;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    background: var(--ground);
+    color: var(--ink);
+    font-family: var(--serif);
+    font-size: 18px;
+    line-height: 1.62;
+    margin: 0;
+    padding: 0 24px 96px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: 760px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 44px;
+  }
+
+  header {
+    padding-top: 72px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .kicker {
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0;
+  }
+
+  h1 {
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: clamp(34px, 5.4vw, 46px);
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+    margin: 0;
+  }
+
+  .standfirst {
+    font-size: 20px;
+    color: var(--muted);
+    margin: 0;
+    max-width: 60ch;
+  }
+
+  .meta {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--muted);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 18px;
+    padding-top: 10px;
+    border-top: 1px solid var(--rule);
+  }
+
+  .meta b { font-weight: 500; color: var(--ink); }
+
+  section {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .stage {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 0;
+  }
+
+  h2 {
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 24px;
+    letter-spacing: -0.01em;
+    line-height: 1.25;
+    text-wrap: balance;
+    margin: -8px 0 0;
+  }
+
+  p { margin: 0; max-width: 66ch; }
+
+  a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+  code {
+    font-family: var(--mono);
+    font-size: 0.86em;
+    background: var(--code-bg);
+    padding: 0.12em 0.34em;
+    border-radius: 3px;
+  }
+
+  pre {
+    font-family: var(--mono);
+    font-size: 13.5px;
+    line-height: 1.6;
+    background: var(--code-bg);
+    border: 1px solid var(--rule);
+    border-left: 2px solid var(--accent);
+    border-radius: 4px;
+    margin: 4px 0;
+    padding: 16px 18px;
+    overflow-x: auto;
+  }
+
+  pre code { background: none; padding: 0; font-size: inherit; }
+
+  .cmt { color: var(--muted); }
+  .kw { color: var(--accent); font-weight: 500; }
+
+  .note {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 16px 18px;
+    font-size: 15.5px;
+    line-height: 1.55;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .note.open { border-color: var(--open); background: var(--open-soft); }
+
+  .note h3 {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 0;
+  }
+
+  .note.open h3 { color: var(--open); }
+  .note p { max-width: none; }
+
+  .scroller { overflow-x: auto; }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    font-family: var(--sans);
+    font-size: 14.5px;
+    min-width: 460px;
+  }
+
+  th {
+    font-weight: 600;
+    text-align: left;
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 0 14px 8px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  td {
+    padding: 9px 14px 9px 0;
+    border-bottom: 1px solid var(--rule);
+    vertical-align: top;
+  }
+
+  td:first-child { font-family: var(--mono); font-size: 13px; }
+
+  .pill {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: 0.04em;
+    padding: 2px 8px;
+    border-radius: 10px;
+    white-space: nowrap;
+  }
+
+  .pill.done { background: var(--accent-soft); color: var(--accent); }
+  .pill.blocked { background: var(--open-soft); color: var(--open); }
+
+  .gnarly {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+  }
+
+  .gnarly > li {
+    max-width: 66ch;
+    padding-left: 18px;
+    border-left: 1px solid var(--rule);
+  }
+
+  .gnarly > li > b {
+    display: block;
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 16px;
+    letter-spacing: -0.005em;
+    margin-bottom: 2px;
+  }
+
+  .gnarly > li > b::before {
+    content: "";
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    margin: 0 9px 3px -26px;
+    border-radius: 50%;
+    background: var(--accent);
+    vertical-align: middle;
+  }
+
+  footer {
+    border-top: 1px solid var(--rule);
+    padding-top: 20px;
+    font-family: var(--mono);
+    font-size: 13.5px;
+    line-height: 1.75;
+    color: var(--muted);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  footer b { font-weight: 500; color: var(--ink); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <p class="kicker">Palsgraf / Haven · branch haven-mir-rewrite-poc</p>
+    <h1>Teaching rustc to sandbox other people's code</h1>
+    <p class="standfirst">A compiler pass that rewrites effectful calls into policy-checked shims, so MCP tool authors don't have to.</p>
+    <div class="meta">
+      <span><b>67 commits</b> ahead of main</span>
+      <span>last touched <b>2026-05-19</b></span>
+      <span>plan: <b>haven/MIR_REWRITE_PLAN.md</b></span>
+    </div>
+  </header>
+
+  <section>
+    <p class="stage">The problem</p>
+    <h2>Hand-wrapping every effect doesn't scale — and can't reach dependencies</h2>
+    <p>To put an MCP tool inside a Haven sandbox, every effectful call in its body has to go through the runtime <code>Transaction</code> handle: <code>std::fs::write(p, c)</code> becomes <code>txn.fs_write(p, c)</code>. Doing that by hand is tedious for one server and impossible for the crates it depends on — you can't edit <code>reqwest</code>'s source. So we moved the rewrite into the compiler. A MIR pass clones each function body, threads a <code>&amp;Transaction</code> through the clone, and swaps the effect leaves for shims. It doesn't have to be exhaustive, which is the nice part: paralegal's existing side-effect-marker analysis runs right after us and fails the build on anything we missed. Soundness turns into a build error rather than a proof obligation.</p>
+  </section>
+
+  <section>
+    <p class="stage">Where it hooks · before PDG construction</p>
+    <h2>Paralegal grew an extension point; Haven ships its own driver</h2>
+    <p>Paralegal already ran as a rustc driver, so rather than fork it we added one trait and one entry point (<code>run_with_extension</code>) that fires a hook after the marker context is built but before the PDG is. Haven's side is a <code>RUSTC_WRAPPER</code> binary, <code>haven-driver</code>, that depends on <code>paralegal_flow</code> as a library and hands it a <code>HavenExtension</code>. The whole extension is about forty lines — everything interesting is behind <code>rewriter::run</code>.</p>
+    <pre><code><span class="kw">impl</span> DriverExtension <span class="kw">for</span> HavenExtension {
+    <span class="kw">fn</span> pre_pdg&lt;'tcx&gt;(&amp;<span class="kw">mut self</span>, tcx: TyCtxt&lt;'tcx&gt;, markers: &amp;MarkerCtx&lt;'tcx&gt;) {
+        rewriter::run(tcx, markers);
+    }
+    <span class="cmt">// synthetic DefIds have no HIR, so we need query overrides too</span>
+    <span class="kw">fn</span> query_providers(&amp;<span class="kw">self</span>) -&gt; Option&lt;<span class="kw">fn</span>(&amp;Session, &amp;<span class="kw">mut</span> Providers)&gt; {
+        Some(providers::install)
+    }
+}</code></pre>
+  </section>
+
+  <section>
+    <p class="stage">Passes 1–2 · allocate, then rewrite</p>
+    <h2>Every function gets a second, transaction-carrying copy</h2>
+    <p>For each crate-local function we allocate a synthetic <code>DefId</code> with <code>tcx.create_def</code> whose signature is the original's plus a trailing <code>&amp;Transaction</code>, mapping <code>F → F'</code>. Allocation happens for everything first and rewriting second, so mutual recursion just works. Functions carrying a <em>safe</em> marker (<code>std:*</code>, <code>haven:*</code>) and ones whose signature is contractually fixed (trait impls, <code>extern "C"</code>) are skipped — you can't add a parameter to a trait method without breaking the trait. Closures and coroutines have the same problem, since <code>FnMut</code> and <code>Future::poll</code> fix their calling convention, so they get the transaction as an extra <em>upvar</em> at the tail of the captures tuple instead, and their bodies read it out of <code>(*_1).field(N)</code>. Bodies are snapshotted lazily through a <code>mir_promoted</code> wrapper rather than cloned eagerly: const-eval steals MIR out from under you if you get greedy. Because synthetics have no HIR, roughly a dozen queries (<code>fn_sig</code>, <code>optimized_mir</code>, <code>mir_borrowck</code>, <code>def_kind</code>, <code>closure_typeinfo</code>…) get providers that answer for them and fall through to rustc for everyone else.</p>
+    <div class="note open">
+      <h3>Traits are the gap</h3>
+      <p>Closures got a workaround; trait impls didn't. They're skipped outright, so calls into them fall through to the original body and any effects inside are the analyzer's problem rather than the rewriter's. That's why the wiring protocol asks tool authors to lift each framework tool method into a plain <code>_impl</code> free fn or inherent method first. Redirecting <code>&lt;MyType as Read&gt;::read</code> to an inherent rewritten variant when <code>Self</code> is concrete is designed but unimplemented, and <code>dyn Trait</code> dispatch isn't addressed at all.</p>
+    </div>
+  </section>
+
+  <section>
+    <p class="stage">Pass 3 · inside the clone</p>
+    <h2>Leaves become shims; the tool author writes one line</h2>
+    <p>Walking a cloned body, each <code>Call</code> gets one of four treatments: safe-marked callees are left alone, callees we also cloned are redirected to their <code>F'</code> with the transaction appended, known effect leaves are swapped for the matching entry in <code>haven_server::shim</code> (a flat table of free fns whose signatures mirror std's plus a trailing <code>&amp;Transaction</code>), and anything uncovered is left for the analyzer to reject. That leaves one question: how does the rewritten world get entered? Explicitly, at the tool's entrypoint, via a macro. <code>haven_protected!</code> expands to a call to a sentinel that the rewriter pattern-matches in MIR and replaces with a direct call into <code>F'</code>. The sentinel returns <code>!</code> and is wrapped in an <code>if false { f(args) }</code> type anchor so <code>.await</code> still type-checks; if the rewriter never fires — someone built without <code>haven-driver</code> — it panics loudly instead of silently running unsandboxed.</p>
+    <pre><code><span class="cmt">// what the tool author writes</span>
+<span class="kw">async fn</span> protected_shell(&amp;<span class="kw">self</span>, cmd: String, txn: &amp;Transaction) -&gt; Result&lt;String&gt; {
+    haven_protected!(txn, Developer::shell_impl, <span class="kw">self</span>, cmd).<span class="kw">await</span>
+}
+
+<span class="cmt">// what the rewriter produces inside the clone of shell_impl</span>
+<span class="cmt">- std::fs::write(path, contents)</span>
+<span class="cmt">+ haven_server::shim::fs_write(path, contents, _txn)</span></code></pre>
+  </section>
+
+  <section>
+    <p class="stage">Status</p>
+    <h2>Working end-to-end within a crate; cross-crate is the open edge</h2>
+    <p>The pipeline is real: four in-repo MCP servers are fully wrapped, with behaviour tests that compare protected output against an unprotected baseline and assert that denials actually fire, plus 22 inline rewriter tests and a clean paralegal run over the rewritten <code>developer</code> crate. What's <em>not</em> done is the motivating case — reaching into third-party bodies. <code>transaction_referent_ty</code> resolves per crate, so a crate that depends on <code>haven-server</code> threads <code>&amp;Transaction</code> while one that doesn't threads <code>&amp;()</code>; when the first calls into the second's clone, codegen reports <code>NoSolution</code>. Three fixes are written down (don't clone third-party code; clone with <code>&amp;()</code> and trampoline at the boundary; inject a shared sentinel <code>Transaction</code> type everywhere) and the choice was deliberately deferred until a real repro forces it. It blocks the <code>reqwest</code> shims, which blocks <code>financial</code> and <code>JotDown</code>.</p>
+    <div class="scroller">
+      <table>
+        <thead>
+          <tr><th>Server</th><th>Effects</th><th>State</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>calculator, start</td><td>pure compute</td><td><span class="pill done">wrapped</span></td></tr>
+          <tr><td>developer/text_editor</td><td><code>std::fs::*</code></td><td><span class="pill done">wrapped</span></td></tr>
+          <tr><td>developer/shell, fs</td><td><code>tokio::process::Command</code></td><td><span class="pill done">wrapped</span></td></tr>
+          <tr><td>financial, JotDown</td><td><code>reqwest</code></td><td><span class="pill blocked">cross-crate sig</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note open">
+      <h3>Two traps before your first build</h3>
+      <p>Cargo invalidates the fixture build cache when <code>RUSTC_WRAPPER</code>'s <em>path</em> changes, not its contents — after editing the rewriter, <code>rm -rf haven/driver/test-fixtures/*/target</code> or you'll debug cached pre-change behaviour. And reinstall <code>cargo-paralegal-flow</code> whenever the CLI changes: a stale binary silently falls back to the default impl and swallows the extension entirely.</p>
+    </div>
+  </section>
+
+  <section>
+    <p class="stage">Appendix</p>
+    <h2>The parts that fought back</h2>
+    <p>Most of the calendar time went into rustc's opinions about items that don't exist in source. Each of these was found the hard way, usually as an ICE; they're the things worth knowing before you touch the pass.</p>
+    <ul class="gnarly">
+      <li>
+        <b>MIR gets stolen out from under you</b>
+        Cloning bodies eagerly in <code>pre_pdg</code> loses races: typecheck-time const-eval cascades steal <code>mir_built</code> and <code>mir_promoted</code> for anything reachable from a <code>const</code> expression, which in a crate like <code>ring</code> is a lot. The fix is to snapshot lazily from inside our own <code>mir_promoted</code> wrapper — when it fires for an original that's a rewrite candidate, clone the body right there, before any downstream consumer can steal it, with a fallback chain through <code>mir_drops_elaborated_and_const_checked</code> → <code>optimized_mir</code> for bodies whose earlier stages are already gone. Serving a synthetic's body also means re-anchoring <code>body.source</code> to the synthetic <code>DefId</code>, since codegen, the inliner and coverage all key off <code>body.source.instance</code>.
+      </li>
+      <li>
+        <b>No HIR means a long tail of query providers</b>
+        A <code>DefId</code> from <code>tcx.create_def</code> has no source behind it, so every query that expects to find HIR has to be intercepted. Some can simply be fed; the HIR-derived ones (<code>asyncness</code>, <code>fn_arg_idents</code>, <code>closure_typeinfo</code>, whose default implementation <code>span_bug</code>s) need providers. <code>check_well_formed</code> has to skip synthetics outright or monomorphization hits <code>unreachable!("Synthetic")</code>, and paralegal's own reachable-marker walk drags in <code>nested_bodies_within</code> and <code>opaque_types_defined_by</code>. One genuinely obscure case: inheriting <code>Constness::Const</code> from a <code>const fn</code> original tips the synthetic into <code>const_conditions</code>, which <code>bug!</code>s on <code>Node::Synthetic</code> — force <code>NotConst</code> instead.
+      </li>
+      <li>
+        <b>Closures take the transaction as an upvar, not an argument</b>
+        <code>FnMut::call_mut</code> and <code>Future::poll</code> fix the calling convention, so signature amendment is off the table for closures and coroutines; the transaction rides along as an extra capture at the tail of the upvars tuple, and redirected inner calls source it from <code>(*_1).field(N)</code> in a closure body or <code>_1.field(N)</code> in a coroutine. The consequence is at the <em>construction</em> site: an <code>Rvalue::Aggregate(Closure, ..)</code> in a cloned caller has to be substituted to build the rewritten closure, so that a generic adapter like <code>Iterator::for_each</code> — which we never clone, because it has no effects of its own — receives the rewritten value and dispatches into it.
+      </li>
+      <li>
+        <b>Regions have to be wrong in exactly one place</b>
+        The synthetic coroutine type carries <code>re_static</code> on its <code>&amp;Transaction</code> upvar rather than <code>re_erased</code>, because borrowck of any caller body that <em>names</em> that type walks <code>local_decls</code> converting regions to region vids, and <code>'{erased}</code> panics there. Everywhere else the region has to be erased back: the synthetic body runs through <code>erase_regions_in_body</code>, and the opaque-to-concrete fold that substitutes the real coroutine type into caller bodies has to <code>erase_and_anonymize_regions</code> first — without it, any async dispatch with non-trivial code after the <code>.await</code> ICEs with <code>'static != '{erased}</code> in <code>coroutine_witnesses.rs</code>.
+      </li>
+      <li>
+        <b>The sentinel needs a type anchor to survive inference</b>
+        <code>__protected_dispatch</code> returns <code>!</code> so it coerces into any return type, but never-fallback turns that into <code>()</code> — and <code>()</code> isn't a <code>Future</code>, so <code>haven_protected!(...).await</code> wouldn't compile. Hence the <code>if false { f(args) } else { dispatch(..) }</code> shape: the dead branch exists purely to tell inference what the macro's type is. That shape then has to be recognised back in MIR, and the first version of the matcher was too literal — with non-<code>Copy</code> or method-decorated arguments, MIR construction inserts argument-evaluation calls, tuple building, <code>Drop</code> and <code>Goto</code> blocks between the <code>SwitchInt</code> and the dispatch, so the search has to walk through trivial terminators in both directions.
+      </li>
+      <li>
+        <b>Async shims must be written as <code>async fn</code>, not with explicit lifetimes</b>
+        Async desugaring puts reference lifetimes into the <code>Binder&lt;FnSig&gt;</code> as anonymous late-bound regions, which is what tokio's own signatures look like. Writing a shim with named <code>&lt;'a, 'b&gt;</code> lifetimes instead changes the <code>generics_of</code> count and quietly breaks opaque-return matching when the rewriter tries to swap the callee. Relatedly, any opaque return type the rewriter records has to go through <code>instantiate_bound_regions_with_erased</code> — leaving escaping <code>BoundVar</code>s ICEs the moment something downstream wraps the type in a dummy binder.
+      </li>
+      <li>
+        <b>Two design calls that kept the rest simple</b>
+        Threading the transaction through <em>signatures</em> rather than a thread-local was the choice that made async work at all: <code>std::thread_local!</code> doesn't follow a task across <code>.await</code>, and <code>tokio::task_local!</code> would have pinned the whole design to one runtime. And bodies are cloned rather than inlined at call sites — inlining doesn't survive recursion and gets awkward around <code>dyn</code> dispatch — with cloning applied to everything except safe-marked items rather than pruned by reachability. That roughly doubles compile time and binary size for touched crates, which is a deliberate prototype trade with pruning left on the table.
+      </li>
+    </ul>
+  </section>
+
+
+  <footer>
+    <span><b>Design record:</b> haven/MIR_REWRITE_PLAN.md — decisions, rejected alternatives, ranked TODO</span>
+    <span><b>Rewriter:</b> haven/driver/src/{rewriter,providers,sentinel,shims}.rs</span>
+    <span><b>Entry surface:</b> haven/lib/src/protected.rs · <b>Shims:</b> haven/server/src/shim.rs</span>
+    <span><b>Paralegal side:</b> submodule branch haven-driver-extension @ 79ceb8460 (brownsys/paralegal#196)</span>
+  </footer>
+</div>
+</body>
+</html>
